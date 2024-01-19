@@ -1,39 +1,53 @@
-import {useState} from "react";
-import {Button, Form} from "react-bootstrap";
+import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function LoginForm({errors, callback}) {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+      });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value
+        }));
+    };
 
     const sendResponse = (e) => {
         e.preventDefault();
-        callback({username, password});
+        callback(formData);
     }
 
     return (
+        <Form onSubmit={sendResponse} className="px-3">
 
-        <Form onSubmit={sendResponse}>
             <Form.Group className='mt-3 mb-3' controlId='email'>
-                <Form.Label>correo</Form.Label>
                 <Form.Control
-                    type='text'
-                    placeholder='Ingrese su correo'
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    size="lg"
+                    type='email'
+                    name="email"
+                    placeholder='Correo electrónico'
+                    value={formData.email}
+                    onChange={handleChange}
                     isInvalid={errors.email} />
 
                 <Form.Control.Feedback type='invalid'>
                     {errors.email}
                 </Form.Control.Feedback>
             </Form.Group>
+
             <Form.Group className='mt-3 mb-3' controlId='password'>
-                <Form.Label>Contraseña</Form.Label>
                 <Form.Control
+                    size="lg"
                     type='password'
-                    placeholder='Ingrese su contraseña'
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    name="password"
+                    placeholder='Contraseña'
+                    value={formData.password}
+                    onChange={handleChange}
                     isInvalid={errors.password} />
 
                 <Form.Control.Feedback type='invalid'>
@@ -41,11 +55,17 @@ function LoginForm({errors, callback}) {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Button type='submit' variant='primary' className='mt-3'>
+            <Button type='submit' variant='primary' size="lg" className='mt-3 w-100'>
                 Iniciar sesion
             </Button>
+
+            <div className='mt-3 text-center'>
+                <Link to={'/register'}>¿No tienes una cuenta?, registrate aquí</Link>
+            </div>
+            
+            <p class="mt-5 mb-3 text-muted text-center">&copy; 2023-2024</p>
         </Form>
     )
 }
 
-export { LoginForm }
+export { LoginForm };

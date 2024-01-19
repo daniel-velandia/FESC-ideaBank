@@ -29,9 +29,10 @@ const App = () => {
               <Navigation />
               <Outlet />
             </>
-          } />
-          <Route element={<PrivateRoute />}>
-            <Route path='/Home' element={<Home />} />
+          } >
+            <Route element={<PrivateRoute />}>
+              <Route path='/Home' element={<Home />} />
+            </Route>
           </Route>
           <Route path='*' element={<Error404 />} />
         </Routes>

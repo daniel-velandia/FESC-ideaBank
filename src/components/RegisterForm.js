@@ -1,62 +1,166 @@
 import { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const RegisterForm = ({errors, callback}) => {
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [formData, setFormData] = useState({
+        name: '',
+        lastName: '',
+        email: '',
+        cellPhone: '',
+        companyName: '',
+        password: '',
+        repeatPassword: ''
+      });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value
+        }));
+    };
 
     const sendResponse = (e) => {
         e.preventDefault();
-        callback({password, name, email});
+        callback(formData);
     }
 
     return (
-        <Form onSubmit={sendResponse}>
-            <Form.Group className='mt-3 mb-3' controlId='name'>
-                <Form.Label>Nombre</Form.Label>
-                <Form.Control
-                    type='text'
-                    placeholder='Ingrese su nombre'
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    isInvalid={errors.name} />
+        <Form onSubmit={sendResponse} className="px-3">
 
-                <Form.Control.Feedback type='invalid'>
-                    {errors.name}
-                </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className='mb-3' controlId='email'>
-                <Form.Label>Correo</Form.Label>
-                <Form.Control
-                    type='email'
-                    placeholder='Ingrese su correo'
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    isInvalid={errors.email} />
+            <Row>
+                <Col sm="12" md="6">
+                    <Form.Group className='mt-3 mb-3' controlId='name'>
+                        <Form.Control
+                            size="lg"
+                            type='text'
+                            name='name'
+                            placeholder='Nombre'
+                            value={formData.name}
+                            onChange={handleChange}
+                            isInvalid={errors.name} />
 
-                <Form.Control.Feedback type='invalid'>
-                    {errors.email}
-                </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className='mb-3' controlId='password'>
-                <Form.Label>Contraseña</Form.Label>
-                <Form.Control
-                    type='password'
-                    placeholder='Ingrese su contraseña'
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    isInvalid={errors.password} />
+                        <Form.Control.Feedback type='invalid'>
+                            {errors.name}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+            
+                <Col sm="12" md="6">
+                    <Form.Group className='mt-3 mb-3' controlId='lastName'>
+                        <Form.Control
+                            size="lg"
+                            type='text'
+                            name='lastName'
+                            placeholder='Apellido'
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            isInvalid={errors.lastName} />
 
-                <Form.Control.Feedback type='invalid'>
-                    {errors.password}
-                </Form.Control.Feedback>
-            </Form.Group>
+                        <Form.Control.Feedback type='invalid'>
+                            {errors.lastName}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
 
-            <Button type='submit' variant='primary' className='mt-3'>
-                Crear usuario
+                <Col sm="12">
+                    <Form.Group className='mt-3 mb-3' controlId='email'>
+                        <Form.Control
+                            size="lg"
+                            type='email'
+                            name='email'
+                            placeholder='Correo eletrónico'
+                            value={formData.email}
+                            onChange={handleChange}
+                            isInvalid={errors.email} />
+
+                        <Form.Control.Feedback type='invalid'>
+                            {errors.email}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+
+                <Col sm="12" md="6">
+                    <Form.Group className='mt-3 mb-3' controlId='cellPhone'>
+                        <Form.Control
+                            size="lg"
+                            type='number'
+                            name='cellPhone'
+                            placeholder='Telefono'
+                            value={formData.cellPhone}
+                            onChange={handleChange}
+                            isInvalid={errors.cellPhone} />
+
+                        <Form.Control.Feedback type='invalid'>
+                            {errors.cellPhone}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+
+                <Col sm="12" md="6">
+                    <Form.Group className='mt-3 mb-3' controlId='companyName'>
+                        <Form.Control
+                            size="lg"
+                            type='text'
+                            name='companyName'
+                            placeholder='Nombre de empresa'
+                            value={formData.companyName}
+                            onChange={handleChange}
+                            isInvalid={errors.companyName} />
+
+                        <Form.Control.Feedback type='invalid'>
+                            {errors.companyName}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+
+                <Col sm="12" md="6">
+                    <Form.Group className='mt-3 mb-3' controlId='password'>
+                        <Form.Control
+                            size="lg"
+                            type='password'
+                            name='password'
+                            placeholder='Contraseña'
+                            value={formData.password}
+                            onChange={handleChange}
+                            isInvalid={errors.password} />
+
+                        <Form.Control.Feedback type='invalid'>
+                            {errors.password}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+
+                <Col sm="12" md="6">
+                    <Form.Group className='mt-3 mb-3' controlId='repeatPassword'>
+                        <Form.Control
+                            size="lg"
+                            type='password'
+                            name='repeatPassword'
+                            placeholder='Repita la contraseña'
+                            value={formData.repeatPassword}
+                            onChange={handleChange}
+                            isInvalid={errors.password} />
+
+                        <Form.Control.Feedback type='invalid'>
+                            {errors.password}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+
+            </Row>
+
+            <Button type='submit' variant='primary' size="lg" className='mt-3 w-100'>
+                Registrarse
             </Button>
+
+            <div className='mt-3 text-center'>
+                <Link to={'/login'}>¿Ya tienes una cuenta?, Inicia sesion aquí</Link>
+            </div>
+            
+            <p class="mt-5 mb-3 text-muted text-center">&copy; 2023-2024</p>
         </Form>
     )
 }
