@@ -1,11 +1,9 @@
 
-function Inicio() {
+const Home = () => {
 
     return (
-
         <div>Inicio</div>
-        
     )
 }
 
-export {Inicio};
+export { Home };

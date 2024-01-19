@@ -1,30 +1,30 @@
 import {useState} from "react";
 import {Button, Form} from "react-bootstrap";
 
-function SigninFormulario({errores, callback}) {
+function LoginForm({errors, callback}) {
 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const enviarFormulario = (e) => {
+    const sendResponse = (e) => {
         e.preventDefault();
         callback({username, password});
     }
 
     return (
 
-        <Form onSubmit={enviarFormulario}>
-            <Form.Group className='mt-3 mb-3' controlId='userName'>
-                <Form.Label>Usuario</Form.Label>
+        <Form onSubmit={sendResponse}>
+            <Form.Group className='mt-3 mb-3' controlId='email'>
+                <Form.Label>correo</Form.Label>
                 <Form.Control
                     type='text'
-                    placeholder='Ingrese su usuario'
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    isInvalid={errores.username} />
+                    placeholder='Ingrese su correo'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    isInvalid={errors.email} />
 
                 <Form.Control.Feedback type='invalid'>
-                    {errores.username}
+                    {errors.email}
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className='mt-3 mb-3' controlId='password'>
@@ -34,10 +34,10 @@ function SigninFormulario({errores, callback}) {
                     placeholder='Ingrese su contraseña'
                     value={password}
                     onChange={e => setPassword(e.target.value)}
-                    isInvalid={errores.password} />
+                    isInvalid={errors.password} />
 
                 <Form.Control.Feedback type='invalid'>
-                    {errores.password}
+                    {errors.password}
                 </Form.Control.Feedback>
             </Form.Group>
 
@@ -48,4 +48,4 @@ function SigninFormulario({errores, callback}) {
     )
 }
 
-export {SigninFormulario}
+export { LoginForm }

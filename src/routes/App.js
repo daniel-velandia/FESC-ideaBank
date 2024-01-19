@@ -1,33 +1,29 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Navegacion} from '../layouts/Navegacion';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import {store} from '../states/store';
-import {Signup} from '../pages/Signup';
-import {Signin} from '../pages/Signin';
-import {getAutenticacionToken} from '../connections/helpers/token';
-import {RutaPrivada} from './RutaPrivada';
-import {Error404} from '../pages/Error404';
-import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'moment/locale/es';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { Inicio } from '../pages/Inicio';
-import { RegisterUser } from '../pages/RegisterUser';
+import { Navigation } from '../layouts/Navigation';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '../states/store';
+import { Login } from '../pages/Login';
+import { Register } from '../pages/Register';
+import { getAuthenticationToken } from '../connections/helpers/token';
+import { PrivateRoute } from './PrivateRoute';
+import { Error404 } from '../pages/Error404';
+import { ToastContainer } from 'react-toastify';
+import { Home } from '../pages/Home';
 
-getAutenticacionToken();
+getAuthenticationToken();
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Navegacion />
         <ToastContainer />
         <Routes>
           <Route path='/signup' element={<Signup />} />
-          <Route path='/' element={<Signin />} />
-          <Route path='/registerUser' element={<RegisterUser/>} />
-          
+          <Route path='/signin' element={<Signin />} />
           <Route element={<RutaPrivada />}>
             <Route path='/inicio' element={<Inicio />} />
           </Route>
