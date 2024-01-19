@@ -30,8 +30,8 @@ const Navigation = () => {
                             !connected ?
                             (
                                 <React.Fragment>
-                                    <Nav.Link as={NavLink} to={'/register'}>Registrarse</Nav.Link>
-                                    <Nav.Link as={NavLink} to={'/login'}>Iniciar sesion</Nav.Link>
+                                    <Nav.Link as={NavLink} to={'/signup'}>Registrarse</Nav.Link>
+                                    <Nav.Link as={NavLink} to={'/'}>Iniciar sesion</Nav.Link>
                                 </React.Fragment>
                             ): (
 
