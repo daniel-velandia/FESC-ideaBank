@@ -1,4 +1,6 @@
-body {
+.custom-input-margin {
+    margin-right: 8px; 
+  }body {
     background: #f5f5f5 !important;
 }
 

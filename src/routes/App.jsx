@@ -24,17 +24,20 @@ const App = () => {
       <BrowserRouter>
         <ToastContainer />
         <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route element={
-            <>
-              <Navigation />
-              <Outlet />
-            </>
-          } >
-            <Route element={<PrivateRoute />}>
-              <Route path='/Home' element={<Home />} />
-            </Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            element={
+              <>
+                <Navigation />
+                <Outlet />
+              </>
+            }
+          />
+          <Route path="/ViewUsers" element={<ObserveUsers />} />
+
+          <Route element={<PrivateRoute />}>
+            <Route path="/Home" element={<Home />} />
           </Route>
           <Route path="*" element={<Error404 />} />
         </Routes>
