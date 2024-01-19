@@ -1,6 +1,5 @@
 import usersData from "../data/usersData";
 import { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
 
 export const TableViewUsers = () => {
   const initialUsers = usersData;
@@ -43,55 +42,51 @@ export const TableViewUsers = () => {
   };
 
   return (
-    <Container className="col-md-6">
-      <div className="table-container">
-        <div className="mt-3">
-          <div className="d-flex align-items-center mb-3">
-            <input
-              type="text"
-              placeholder="Buscar por nombre o correo"
-              value={searchTerm}
-              onChange={handleSearchChange}
-              className="form-control custom-input-margin"
-            />
-            <select
-              value={selectedRole}
-              onChange={handleRoleChange}
-              className="form-control"
-            >
-              <option>-- Selecciona un Rol --</option>
-              <option value="Administrador">Administrador</option>
-              <option value="Aprobador">Aprobador</option>
-              <option value="Director">Director</option>
-              <option value="Docente">Docente</option>
-              <option value="Estudiante">Estudiante</option>
-            </select>
-          </div>
-
-          <table className="table table-striped table-hover table-sm">
-            <thead>
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Correo Electronico</th>
-                <th scope="col">Rol</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user.id}>
-                  <th scope="row">{user.id}</th>
-                  <td>{user.nombre}</td>
-                  <td>{user.apellido}</td>
-                  <td>{user.email}</td>
-                  <td>{user.rol}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+    <>
+      <div className="d-flex align-items-center mb-3">
+        <input
+          type="text"
+          placeholder="Buscar por nombre o correo"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="form-control custom-input-margin"
+        />
+        <select
+          value={selectedRole}
+          onChange={handleRoleChange}
+          className="form-control"
+        >
+          <option>-- Selecciona un Rol --</option>
+          <option value="Administrador">Administrador</option>
+          <option value="Aprobador">Aprobador</option>
+          <option value="Director">Director</option>
+          <option value="Docente">Docente</option>
+          <option value="Estudiante">Estudiante</option>
+        </select>
       </div>
-    </Container>
+
+      <table className="table table-striped table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo Electronico</th>
+            <th scope="col">Rol</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <th scope="row">{user.id}</th>
+              <td>{user.nombre}</td>
+              <td>{user.apellido}</td>
+              <td>{user.email}</td>
+              <td>{user.rol}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
