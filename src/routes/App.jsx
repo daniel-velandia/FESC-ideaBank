@@ -6,13 +6,12 @@ import { Navigation } from "../layouts/Navigation";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../states/store";
-import { getAuthenticationToken } from "../connections/helpers/token";
-import { PrivateRoute } from "./PrivateRoute";
-import { ToastContainer } from "react-toastify";
-
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
+import { getAuthenticationToken } from "../connections/helpers/token";
+import { PrivateRoute } from "./PrivateRoute";
 import { Error404 } from "../pages/Error404";
+import { ToastContainer } from "react-toastify";
 import { Home } from "../pages/Home";
 import { ObserveUsers } from "../pages/ObserveUsers";
 import { RegisterInternalUser } from "../pages/RegisterInternalUser";
@@ -27,10 +26,6 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/registerInternalUsers" element={<RegisterInternalUser />} />
-          <Route path="/ViewUsers" element={<ObserveUsers />} />
-
-
           <Route
             element={
               <>
@@ -38,10 +33,12 @@ const App = () => {
                 <Outlet />
               </>
             }
-          />
-
-          <Route element={<PrivateRoute />}>
-            <Route path="/Home" element={<Home />} />
+          >
+            <Route element={<PrivateRoute />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/ViewUsers" element={<ObserveUsers />} />
+              <Route path="/registerInternalUser" element={<RegisterInternalUser />} />
+            </Route>
           </Route>
           <Route path="*" element={<Error404 />} />
         </Routes>
