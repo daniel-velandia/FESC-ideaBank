@@ -1,6 +1,7 @@
 // CardsProjects.js
-import React from 'react';
-import CardProject from '../components/CardProject';
+import React from "react";
+import CardProject from "../components/CardProject";
+import "../css/style.css";
 
 import image3 from "../img/imagen 3.png";
 
@@ -27,13 +28,15 @@ const cards = [
 
 function CardsProjects() {
   return (
-    <div className="container d-flex justify-content-center align-items-center h-100">
-      <div className="row">
-        {cards.map(({ title, imageSource, url, id }) => (
-          <div className="col-md-4" key={id}>
-            <CardProject imageSource={imageSource} title={title} url={url} />
-          </div>
-        ))}
+    <div className="cards-container">
+      <div className="container d-flex justify-content-center align-items-center h-100">
+        <div className="row">
+          {cards.map(({ title, imageSource, url, id }) => (
+            <div className="col-md-4" key={id}>
+              <CardProject imageSource={imageSource} title={title} url={url} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

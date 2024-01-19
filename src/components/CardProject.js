@@ -1,7 +1,7 @@
 // CardProject.js
 import React from 'react';
 import PropTypes from "prop-types";
-import './style.css';
+import '../css/style.css';
 
 function CardProject({ imageSource, title, text, url }) {
   return (
