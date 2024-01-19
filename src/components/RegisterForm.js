@@ -160,7 +160,7 @@ const RegisterForm = ({errors, callback}) => {
                 <Link to={'/login'}>¿Ya tienes una cuenta?, Inicia sesion aquí</Link>
             </div>
             
-            <p class="mt-5 mb-3 text-muted text-center">&copy; 2023-2024</p>
+            <p className="mt-5 mb-3 text-muted text-center">&copy; 2023-2024</p>
         </Form>
     )
 }
