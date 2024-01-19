@@ -4,7 +4,6 @@ export const SelectCareer = () => {
   return (
     <Form.Select aria-label="Default select example">
       <option>-- Selecciona una carrera --</option>
-      <option value="">Selecciona una carrera</option>
       <option value="1">Diseño Gráfico</option>
       <option value="2">Diseño y Administración de Negocios de la Moda</option>
       <option value="3">Administracion Turística y Hotelera</option>

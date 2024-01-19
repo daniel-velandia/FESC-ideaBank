@@ -15,6 +15,7 @@ import { Register } from "../pages/Register";
 import { Error404 } from "../pages/Error404";
 import { Home } from "../pages/Home";
 import { ObserveUsers } from "../pages/ObserveUsers";
+import { RegisterInternalUser } from "../pages/RegisterInternalUser";
 
 getAuthenticationToken();
 
@@ -26,6 +27,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/registerInternalUsers" element={<RegisterInternalUser />} />
           <Route
             element={
               <>
