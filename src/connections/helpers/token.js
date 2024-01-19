@@ -1,32 +1,32 @@
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
-import {store} from '../../states/store';
-import {usuario} from "../../states/sliceReducers";
-import {cerrarSesion} from '../usuarioAcciones';
+import { store } from '../../states/store';
+import { user } from "../../states/userReducer";
+import { logout } from '../userActions';
 
-export const setAutenticacionToken = (token) => {
-    if(token) {
+export const setAuthenticationToken = (token) => {
+    if (token) {
         axios.defaults.headers.common['Authorization'] = token;
     } else {
         delete axios.defaults.headers.common['Authorization'];
     }
 }
 
-export const getAutenticacionToken = () => {
+export const getAuthenticationToken = () => {
 
-    if(localStorage.token) {
+    if (localStorage.token) {
         
-        setAutenticacionToken(localStorage.token);
+        setAuthenticationToken(localStorage.token);
         
-        const decodificado = jwt_decode(localStorage.token);
+        const decode = jwt_decode(localStorage.token);
 
-        store.dispatch(usuario({usuario: decodificado, conectado: true}))
+        store.dispatch(user({user: decode, connected: true}))
 
-        const tiempoActual = Math.floor(Date.now() / 1000);
+        const currentDate = Math.floor(Date.now() / 1000);
 
-        if(decodificado.exp < tiempoActual) {
-            store.dispatch(cerrarSesion());
-            window.location.href = '/signin';
+        if(decode.exp < currentDate) {
+            store.dispatch(logout());
+            window.location.href = '/login';
         }
     }
 }

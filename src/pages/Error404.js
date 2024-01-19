@@ -1,10 +1,9 @@
-import {Button} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
-function Error404() {
+const Error404 = () => {
 
     return (
-
         <div className="d-flex align-items-center justify-content-center vh-100">
             <div className="text-center">
                 <h1 className="display-1 fw-bold">404</h1>
@@ -14,9 +13,8 @@ function Error404() {
                   </p>
                 <Button as={NavLink} to={'/'}>Inicio</Button>
             </div>
-        </div>
-        
+        </div> 
     )
 }
 
-export {Error404};
+export { Error404 };
