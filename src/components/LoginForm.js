@@ -8,7 +8,7 @@ function LoginForm({errors, callback}) {
 
     const sendResponse = (e) => {
         e.preventDefault();
-        callback({username, password});
+        callback({email, password});
     }
 
     return (
