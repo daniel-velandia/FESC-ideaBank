@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { SelectUserRol } from "./SelectUserRol";
 
 function FormRegisterUser() {
   return (
@@ -70,14 +71,7 @@ function FormRegisterUser() {
 
             <Row className="align-items-center">
               <Col xs={12} md={6} className="mb-3 text-center">
-                <Form.Select aria-label="Default select example">
-                  <option>-- Selecciona un Rol --</option>
-                  <option value="1">Administrador</option>
-                  <option value="2">Aprobador</option>
-                  <option value="3">Director</option>
-                  <option value="4">Docente</option>
-                  <option value="5">Estudiante</option>
-                </Form.Select>{" "}
+                <SelectUserRol />
               </Col>
 
               <Col xs={12} className="mt-3 text-center">
@@ -94,4 +88,3 @@ function FormRegisterUser() {
 }
 
 export default FormRegisterUser;
-
