@@ -12,9 +12,9 @@ import { getAuthenticationToken } from "../connections/helpers/token";
 import { PrivateRoute } from "./PrivateRoute";
 import { Error404 } from "../pages/Error404";
 import { ToastContainer } from "react-toastify";
-import { Home } from "../pages/Home";
 import { ObserveUsers } from "../pages/ObserveUsers";
 import { RegisterInternalUser } from "../pages/RegisterInternalUser";
+import CardsProjects from "../pages/CardsProjects";
 
 getAuthenticationToken();
 
@@ -35,7 +35,7 @@ const App = () => {
             }
           >
             <Route element={<PrivateRoute />}>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<CardsProjects />} />
               <Route path="/ViewUsers" element={<ObserveUsers />} />
               <Route path="/registerInternalUser" element={<RegisterInternalUser />} />
             </Route>
