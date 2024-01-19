@@ -1,11 +1,16 @@
 import usersData from "../data/usersData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Container } from "react-bootstrap";
 
 export const TableViewUsers = () => {
   const initialUsers = usersData;
   const [users, setUsers] = useState(initialUsers);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
+
+  useEffect(() => {
+    filterUsers();
+  }, [searchTerm, selectedRole]);
 
   const filterUsers = () => {
     let filteredUsers = initialUsers;
@@ -19,63 +24,74 @@ export const TableViewUsers = () => {
     }
 
     if (selectedRole) {
-      filteredUsers = filteredUsers.filter((user) => user.rol === selectedRole);
+      filteredUsers = filteredUsers.filter(
+        (user) => user.rol.toLowerCase() === selectedRole.toLowerCase()
+      );
     }
 
     setUsers(filteredUsers);
   };
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-    filterUsers();
+    const term = e.target.value;
+    setSearchTerm(term);
   };
 
   const handleRoleChange = (e) => {
-    setSelectedRole(e.target.value);
-    filterUsers();
+    const role = e.target.value;
+    setSelectedRole(role);
   };
 
   return (
-    <>
-      <div className="mb-3">
-        <input
-          type="text"
-          placeholder="Buscar por nombre o correo"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-        <select value={selectedRole} onChange={handleRoleChange}>
-          <option value="">Filtrar por Rol</option>
-          <option value="Docente">Docente</option>
-          <option value="Estudiante">Estudiante</option>
-          <option value="Director">Director</option>
-        </select>
-      </div>
+    <Container className="col-md-6">
+      <div className="table-container">
+        <div className="mt-3">
+          <div className="d-flex align-items-center mb-3">
+            <input
+              type="text"
+              placeholder="Buscar por nombre o correo"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="form-control custom-input-margin"
+            />
+            <select
+              value={selectedRole}
+              onChange={handleRoleChange}
+              className="form-control"
+            >
+              <option>-- Selecciona un Rol --</option>
+              <option value="Administrador">Administrador</option>
+              <option value="Aprobador">Aprobador</option>
+              <option value="Director">Director</option>
+              <option value="Docente">Docente</option>
+              <option value="Estudiante">Estudiante</option>
+            </select>
+          </div>
 
-      <table className="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Correo Electronico</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Rol</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <th scope="row">{user.id}</th>
-              <td>{user.nombre}</td>
-              <td>{user.apellido}</td>
-              <td>{user.email}</td>
-              <td>{user.telefono}</td>
-              <td>{user.rol}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+          <table className="table table-striped table-hover table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Correo Electronico</th>
+                <th scope="col">Rol</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.id}>
+                  <th scope="row">{user.id}</th>
+                  <td>{user.nombre}</td>
+                  <td>{user.apellido}</td>
+                  <td>{user.email}</td>
+                  <td>{user.rol}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </Container>
   );
 };
