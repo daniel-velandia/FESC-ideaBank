@@ -6,15 +6,18 @@ import { Navigation } from '../layouts/Navigation';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../states/store';
-import { Login } from '../pages/Login';
-import { Register } from '../pages/Register';
 import { getAuthenticationToken } from '../connections/helpers/token';
 import { PrivateRoute } from './PrivateRoute';
-import { Error404 } from '../pages/Error404';
 import { ToastContainer } from 'react-toastify';
+
+import { Login } from '../pages/Login';
+import { Register } from '../pages/Register';
+import { Error404 } from '../pages/Error404';
 import { Home } from '../pages/Home';
+import { ObserveUsers } from '../pages/ObserveUsers';
+
+
 import FormRegisterUser from '../components/FormRegisterUser';
-import { TableViewUsers } from '../components/TableViewUsers';
 
 getAuthenticationToken();
 
@@ -26,7 +29,7 @@ const App = () => {
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/ViewUsers' element={<TableViewUsers />} />
+          <Route path='/ViewUsers' element={<ObserveUsers />} />
           <Route path='/registerUsers' element={<FormRegisterUser />} />
           <Route element={
             <>
