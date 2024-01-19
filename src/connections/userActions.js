@@ -12,13 +12,13 @@ export const authentication = (data) => dispatch => {
                 { headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' } }
             ).then(res => {
 
-            const {authorization} = res.headers;
+            const { token } = res.data;
 
-            localStorage.setItem('token', authorization);
+            localStorage.setItem('token', token);
 
-            setAuthenticationToken(authorization);
+            setAuthenticationToken(token);
 
-            const decode = jwt_decode(authorization);
+            const decode = jwt_decode(token);
 
             dispatch(user({ user: decode, connected: true }));
 

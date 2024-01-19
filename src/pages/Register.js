@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { REGISTER_POST_ENDPOINT } from '../connections/helpers/endpoints';
 import { Alert, Card, Col, Container, Image, Row } from 'react-bootstrap';
 import { RegisterForm } from '../components/RegisterForm';
 import { isEmptyObject } from "../connections/helpers/isEmptyObject";
 import validator from 'validator';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
@@ -24,7 +24,7 @@ const Register = () => {
             error.lastName = 'El apellido no puede estar vacio';
         }
         
-        if (!validator.isEmail(user.Alertemail)) {
+        if (!validator.isEmail(user.email)) {
             error.email = 'El correo electronico es invalido';
         }
 
@@ -36,17 +36,16 @@ const Register = () => {
             error.password = 'La contraseña debe tener entre 8 y 30 caracteres';
         }
 
-        if (user.password !== user.repeatPasword) {
+        if (user.password !== user.repeatPassword) {
             error.password = 'Las contraseñas debe coincidir';
         }
 
         if (!isEmptyObject(error)) {
             setErrors(error);
         } else {
-            axios.post(REGISTER_POST_ENDPOINT, user,
-                { headers: { 'Accept': 'application/json', 'Content-type': 'application/json' } }
-            ).then(res => navigation('/login'))
-            .catch(err => setErrors({register: err.response.data.message}));
+            axios.get(REGISTER_POST_ENDPOINT)
+            .then(res => navigation('/login'))
+            .catch(err => console.log(err));
         }
     }
 

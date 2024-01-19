@@ -36,8 +36,8 @@ const Login = () => {
             setErrors(error);
         } else {
             dispatch(authentication(user))
-            .then(res => navigation('/'))
-            .catch(err => setErrors({ login: 'Credenciales incorrectas' }));
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
         }
     }
 
