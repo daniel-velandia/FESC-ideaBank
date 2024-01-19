@@ -1,23 +1,20 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-toastify/dist/ReactToastify.css';
-import 'moment/locale/es';
-import 'react-confirm-alert/src/react-confirm-alert.css';
-import { Navigation } from '../layouts/Navigation';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from '../states/store';
-import { getAuthenticationToken } from '../connections/helpers/token';
-import { PrivateRoute } from './PrivateRoute';
-import { ToastContainer } from 'react-toastify';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import "moment/locale/es";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { Navigation } from "../layouts/Navigation";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "../states/store";
+import { getAuthenticationToken } from "../connections/helpers/token";
+import { PrivateRoute } from "./PrivateRoute";
+import { ToastContainer } from "react-toastify";
 
-import { Login } from '../pages/Login';
-import { Register } from '../pages/Register';
-import { Error404 } from '../pages/Error404';
-import { Home } from '../pages/Home';
-import { ObserveUsers } from '../pages/ObserveUsers';
-
-
-import FormRegisterUser from '../components/FormRegisterUser';
+import { Login } from "../pages/Login";
+import { Register } from "../pages/Register";
+import { Error404 } from "../pages/Error404";
+import { Home } from "../pages/Home";
+import { ObserveUsers } from "../pages/ObserveUsers";
 
 getAuthenticationToken();
 
@@ -27,24 +24,26 @@ const App = () => {
       <BrowserRouter>
         <ToastContainer />
         <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/ViewUsers' element={<ObserveUsers />} />
-          <Route path='/registerUsers' element={<FormRegisterUser />} />
-          <Route element={
-            <>
-              <Navigation />
-              <Outlet />
-            </>
-          } />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            element={
+              <>
+                <Navigation />
+                <Outlet />
+              </>
+            }
+          />
+          <Route path="/ViewUsers" element={<ObserveUsers />} />
+
           <Route element={<PrivateRoute />}>
-            <Route path='/Home' element={<Home />} />
+            <Route path="/Home" element={<Home />} />
           </Route>
-          <Route path='*' element={<Error404 />} />
+          <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </Provider>
   );
-}
+};
 
 export default App;
