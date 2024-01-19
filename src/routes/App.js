@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'moment/locale/es';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Inicio } from '../pages/Inicio';
+import { RegisterUser } from '../pages/RegisterUser';
 
 getAutenticacionToken();
 
@@ -24,7 +25,9 @@ function App() {
         <ToastContainer />
         <Routes>
           <Route path='/signup' element={<Signup />} />
-          <Route path='/signin' element={<Signin />} />
+          <Route path='/' element={<Signin />} />
+          <Route path='/registerUser' element={<RegisterUser/>} />
+          
           <Route element={<RutaPrivada />}>
             <Route path='/inicio' element={<Inicio />} />
           </Route>

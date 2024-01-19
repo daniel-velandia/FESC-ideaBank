@@ -32,7 +32,7 @@ function Navegacion() {
                             (
                                 <React.Fragment>
                                     <Nav.Link as={NavLink} to={'/signup'}>Registrarse</Nav.Link>
-                                    <Nav.Link as={NavLink} to={'/signin'}>Iniciar sesion</Nav.Link>
+                                    <Nav.Link as={NavLink} to={'/'}>Iniciar sesion</Nav.Link>
                                 </React.Fragment>
                             ): (
 
