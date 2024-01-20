@@ -1,9 +1,9 @@
 // CardsProjects.js
 import React from "react";
-import CardProject from "../components/CardProject";
-import "../css/style.css";
+import CardProject from "../../components/CardProject";
+import "../../css/style.css";
 
-import image3 from "../img/imagen 3.png";
+import image3 from "../../img/imagen 3.png";
 
 const cards = [
   {
@@ -26,7 +26,7 @@ const cards = [
   },
 ];
 
-function CardsProjects() {
+function ProjectList() {
   return (
     <div className="cards-container">
       <div className="container d-flex justify-content-center align-items-center h-100 mt-5">
@@ -42,4 +42,4 @@ function CardsProjects() {
   );
 }
 
-export default CardsProjects;
+export { ProjectList };

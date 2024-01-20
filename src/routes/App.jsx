@@ -6,15 +6,15 @@ import { Navigation } from "../layouts/Navigation";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../states/store";
-import { Login } from "../pages/Login";
-import { Register } from "../pages/Register";
+import { Login } from "../pages/auth/Login";
+import { Register } from "../pages/auth/Register";
 import { getAuthenticationToken } from "../connections/helpers/token";
 import { PrivateRoute } from "./PrivateRoute";
 import { Error404 } from "../pages/Error404";
 import { ToastContainer } from "react-toastify";
-import { ObserveUsers } from "../pages/ObserveUsers";
-import { RegisterInternalUser } from "../pages/RegisterInternalUser";
-import CardsProjects from "../pages/CardsProjects";
+import { UserList } from "../pages/user/UserList";
+import { UserCreate } from "../pages/user/UserCreate";
+import { ProjectList } from "../pages/project/ProjectList";
 
 getAuthenticationToken();
 
@@ -35,9 +35,9 @@ const App = () => {
             }
           >
             <Route element={<PrivateRoute />}>
-              <Route path="/" element={<CardsProjects />} />
-              <Route path="/ViewUsers" element={<ObserveUsers />} />
-              <Route path="/registerInternalUser" element={<RegisterInternalUser />} />
+              <Route path="/" element={<ProjectList />} />
+              <Route path="/user" element={<UserList />} />
+              <Route path="/user/create" element={<UserCreate />} />
             </Route>
           </Route>
           <Route path="*" element={<Error404 />} />

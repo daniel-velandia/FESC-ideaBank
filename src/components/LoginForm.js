@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function LoginForm({errors, callback}) {
+const LoginForm = ({errors, callback}) => {
 
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-      });
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
