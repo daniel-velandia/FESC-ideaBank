@@ -1,13 +1,27 @@
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { CAREER_ALL_GET_ENDPOINT } from "../connections/helpers/endpoints";
 
 export const SelectCareer = ({ onSelect }) => {
   const [selectedCareer, setSelectedCareer] = useState("");
+  const [programs, setPrograms] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(CAREER_ALL_GET_ENDPOINT)
+      .then((response) => {
+        setPrograms(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching programs:", error);
+      });
+  }, []);
 
   const handleCareerChange = (e) => {
     const selected = e.target.value;
     setSelectedCareer(selected);
-    onSelect("career", selected); 
+    onSelect("career", selected);
   };
   return (
     <Form.Select
@@ -16,14 +30,11 @@ export const SelectCareer = ({ onSelect }) => {
       aria-label="Default select example"
     >
       <option>-- Selecciona una carrera --</option>
-      <option value="1">Diseño Gráfico</option>
-      <option value="2">Diseño y Administración de Negocios de la Moda</option>
-      <option value="3">Administracion Turística y Hotelera</option>
-      <option value="4">Ingeniería de Software</option>
-      <option value="5">Administración de Negocios Internacionales</option>
-      <option value="6">Administracion de Negocios Internacionales - Distancia</option>
-      <option value="7">Administracion Financiera</option>
-      <option value="8">Gestión Logística Empresarial</option>
+      {programs.map((program, index) => (
+        <option key={index} value={program.programName}>
+          {program.programName}
+        </option>
+      ))}
     </Form.Select>
   );
 };

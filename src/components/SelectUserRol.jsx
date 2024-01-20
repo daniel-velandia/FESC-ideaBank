@@ -1,8 +1,23 @@
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { ROL_ALL_GET_ENDPOINT } from "../connections/helpers/endpoints";
+import axios from "axios";
+
 
 export const SelectUserRol = ({ onSelect }) => {
   const [selectedRol, setSelectedRol] = useState("");
+  const [rols, setrols] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(ROL_ALL_GET_ENDPOINT)
+      .then((response) => {
+        setrols(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching rols:", error);
+      });
+  }, []);
 
   const handleRolChange = (e) => {
     const selected = e.target.value;
@@ -16,11 +31,11 @@ export const SelectUserRol = ({ onSelect }) => {
       aria-label="Default select example"
     >
       <option>-- Selecciona un Rol --</option>
-      <option value="Administrador">Administrador</option>
-      <option value="Aprobador">Aprobador</option>
-      <option value="Director">Director</option>
-      <option value="Docente">Docente</option>
-      <option value="Estudiante">Estudiante</option>
+      {rols.map((rol, index) => (
+        <option key={index} value={rol.nameRol}>
+          {rol.nameRol}
+        </option>
+      ))}
     </Form.Select>
   );
 };
