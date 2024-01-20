@@ -13,8 +13,8 @@ import { PrivateRoute } from "./PrivateRoute";
 import { Error404 } from "../pages/Error404";
 import { ToastContainer } from "react-toastify";
 import { UserList } from "../pages/user/UserList";
-import { UserCreate } from "../pages/user/UserCreate";
 import { ProjectList } from "../pages/project/ProjectList";
+import { UserCreate } from "../pages/user/UserCreate";
 
 getAuthenticationToken();
 
