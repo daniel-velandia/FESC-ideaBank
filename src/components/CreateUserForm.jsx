@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Col, Row, Form, Button } from "react-bootstrap";
-import { SelectCareer } from "./SelectCareer";
+import { SelectProgram } from "./SelectProgram";
 import { SelectUserRol } from "./SelectUserRol";
 
 export const CreateUserForm = ({ errors, callback }) => {
@@ -12,7 +12,7 @@ export const CreateUserForm = ({ errors, callback }) => {
     cellPhone: "",
     password: "",
     repeatPassword: "",
-    career: "",
+    program: "",
     rol: "",
   });
 
@@ -148,8 +148,8 @@ export const CreateUserForm = ({ errors, callback }) => {
         </Col>
 
         <Col sm="12" md="6">
-          <Form.Group className="mb-3" controlId="career">
-            <SelectCareer onSelect={handleSelectChange} />
+          <Form.Group className="mb-3" controlId="program">
+            <SelectProgram onSelect={handleSelectChange} />
           </Form.Group>
         </Col>
         <Col sm="12" md="6">

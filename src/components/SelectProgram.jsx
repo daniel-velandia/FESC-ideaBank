@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { CAREER_ALL_GET_ENDPOINT } from "../connections/helpers/endpoints";
 
-export const SelectCareer = ({ onSelect }) => {
+export const SelectProgram = ({ onSelect }) => {
   const [selectedCareer, setSelectedCareer] = useState("");
   const [programs, setPrograms] = useState([]);
 
@@ -21,7 +21,7 @@ export const SelectCareer = ({ onSelect }) => {
   const handleCareerChange = (e) => {
     const selected = e.target.value;
     setSelectedCareer(selected);
-    onSelect("career", selected);
+    onSelect("program", selected);
   };
   return (
     <Form.Select

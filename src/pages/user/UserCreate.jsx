@@ -1,13 +1,13 @@
 import { CreateUserForm } from "../../components/CreateUserForm";
-import { useState } from 'react';
-import { Alert, Card, Col, Container, Row } from 'react-bootstrap';
+import { useState } from "react";
+import { Alert, Card, Col, Container, Row } from "react-bootstrap";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
-import validator from 'validator';
-//import { useNavigate } from 'react-router-dom';
+import validator from "validator";
+import { USER_CREATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+import axios from "axios";
 
 export const UserCreate = () => {
   const [errors, setErrors] = useState({});
-  //const navigation = useNavigate();
 
   const createUser = async (user) => {
     const error = {};
@@ -27,7 +27,7 @@ export const UserCreate = () => {
     if (validator.isEmpty(user.cellPhone)) {
       error.cellPhone = "El telefono no puede estar vacio";
     }
-    
+
     if (!validator.isLength(user.password, { min: 6, max: 30 })) {
       error.password = "La contraseña debe tener entre 6 y 30 caracteres";
     }
@@ -36,32 +36,33 @@ export const UserCreate = () => {
       error.password = "Las contraseñas debe coincidir";
     }
 
-    if (validator.isEmpty(user.career)) {
-      error.career = "Tiene que asignar una carrera";
+    if (validator.isEmpty(user.program)) {
+      error.program = "Tiene que asignar una carrera";
     }
 
     if (validator.isEmpty(user.rol)) {
-      error.career = "Tiene que asignar un rol";
+      error.rol = "Tiene que asignar un rol";
     }
 
     if (!isEmptyObject(error)) {
       setErrors(error);
     } else {
-        console.log(user)
-      /*axios
-        .post(REGISTER_POST_ENDPOINT, user, {
-          haeders: {
+      const token = localStorage.getItem("token"); 
+      axios
+        .post(USER_CREATE_POST_ENDPOINT, user, {
+          headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         })
-        .then((res) => navigation("/login"))
+        .then((res) => console.log(res))
         .catch((err) =>
           setErrors({
             register:
               "Hubo un problema al crear el usuario, puede que el correo ya haya sido registrado",
           })
-        ); */
+        );
     }
   };
 
@@ -73,8 +74,8 @@ export const UserCreate = () => {
             <div>
               <h1 className="h3 font-weight-normal">Crear usuario</h1>
               <p>
-                Crea un usuario para que el pueda que acceder a la plataforma de manera segura y
-                personalizada.
+                Crea un usuario para que el pueda que acceder a la plataforma de
+                manera segura y personalizada.
               </p>
             </div>
           </div>
