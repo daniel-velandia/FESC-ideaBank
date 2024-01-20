@@ -32,7 +32,7 @@ const RegisterForm = ({errors, callback}) => {
 
             <Row>
                 <Col sm="12" md="6">
-                    <Form.Group className='mt-3 mb-3' controlId='name'>
+                    <Form.Group className='mb-3' controlId='name'>
                         <Form.Control
                             size="lg"
                             type='text'
@@ -49,7 +49,7 @@ const RegisterForm = ({errors, callback}) => {
                 </Col>
             
                 <Col sm="12" md="6">
-                    <Form.Group className='mt-3 mb-3' controlId='lastName'>
+                    <Form.Group className='mb-3' controlId='lastName'>
                         <Form.Control
                             size="lg"
                             type='text'
@@ -66,7 +66,7 @@ const RegisterForm = ({errors, callback}) => {
                 </Col>
 
                 <Col sm="12">
-                    <Form.Group className='mt-3 mb-3' controlId='email'>
+                    <Form.Group className='mb-3' controlId='email'>
                         <Form.Control
                             size="lg"
                             type='email'
@@ -83,7 +83,7 @@ const RegisterForm = ({errors, callback}) => {
                 </Col>
 
                 <Col sm="12" md="6">
-                    <Form.Group className='mt-3 mb-3' controlId='cellPhone'>
+                    <Form.Group className='mb-3' controlId='cellPhone'>
                         <Form.Control
                             size="lg"
                             type='number'
@@ -100,7 +100,7 @@ const RegisterForm = ({errors, callback}) => {
                 </Col>
 
                 <Col sm="12" md="6">
-                    <Form.Group className='mt-3 mb-3' controlId='companyName'>
+                    <Form.Group className='mb-3' controlId='companyName'>
                         <Form.Control
                             size="lg"
                             type='text'
@@ -117,7 +117,7 @@ const RegisterForm = ({errors, callback}) => {
                 </Col>
 
                 <Col sm="12" md="6">
-                    <Form.Group className='mt-3 mb-3' controlId='password'>
+                    <Form.Group className='mb-3' controlId='password'>
                         <Form.Control
                             size="lg"
                             type='password'
@@ -134,7 +134,7 @@ const RegisterForm = ({errors, callback}) => {
                 </Col>
 
                 <Col sm="12" md="6">
-                    <Form.Group className='mt-3 mb-3' controlId='repeatPassword'>
+                    <Form.Group className='mb-3' controlId='repeatPassword'>
                         <Form.Control
                             size="lg"
                             type='password'

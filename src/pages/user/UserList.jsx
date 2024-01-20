@@ -1,7 +1,7 @@
-import { TableViewUsers } from "../components/TableViewUsers";
+import { TableViewUsers } from "../../components/TableViewUsers";
 import { Container } from "react-bootstrap";
 
-export const ObserveUsers = () => {
+export const UserList = () => {
   return (
     <Container className="col-md-6">
       <div className="table-container">

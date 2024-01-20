@@ -1,8 +1,8 @@
 import React from "react";
-import FormRegisterUser from "../components/FormRegisterUser";
+import FormRegisterUser from "../../components/FormRegisterUser";
 import { Container, Row, Col } from "react-bootstrap";
 
-export const RegisterInternalUser = () => {
+export const UserCreate = () => {
   return (
     <Container className="mt-3">
       <Row className="justify-content-md-center">

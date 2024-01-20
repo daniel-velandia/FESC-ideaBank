@@ -57,29 +57,12 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {connected && (
-              <NavDropdown title="Usuarios" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/registerInternalUser">
-                  Registrar Usuarios
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/ViewUsers">
-                  Observar Usuarios
-                </NavDropdown.Item>
-              </NavDropdown>
-            )}
+            <Nav.Link as={NavLink} to={"/ViewUsers"}>
+              usuarios
+            </Nav.Link>
           </Nav>
           <Nav>
-            {!connected ? (
-              <React.Fragment>
-                <Nav.Link as={NavLink} to={"/register"}>
-                  Registrarse
-                </Nav.Link>
-                <Nav.Link as={NavLink} to={"/Login"}>
-                  Iniciar sesion
-                </Nav.Link>
-              </React.Fragment>
-            ) : (
-              <NavDropdown title={user.sub} id="basic-nav-dropdown">
+          <NavDropdown title={user.sub} id="basic-nav-dropdown">
                 <NavDropdown.Item as={NavLink} to={"#"} className="text-black">
                   item
                 </NavDropdown.Item>
@@ -88,7 +71,6 @@ const Navigation = () => {
                   Cerrar sesion
                 </NavDropdown.Item>
               </NavDropdown>
-            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
