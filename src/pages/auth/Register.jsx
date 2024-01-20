@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { REGISTER_POST_ENDPOINT } from '../connections/helpers/endpoints';
+import { REGISTER_POST_ENDPOINT } from '../../connections/helpers/endpoints';
 import { Alert, Card, Col, Container, Image, Row } from 'react-bootstrap';
-import { RegisterForm } from '../components/RegisterForm';
-import { isEmptyObject } from "../connections/helpers/isEmptyObject";
+import { RegisterForm } from '../../components/RegisterForm';
+import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from 'validator';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -43,9 +43,10 @@ const Register = () => {
         if (!isEmptyObject(error)) {
             setErrors(error);
         } else {
-            axios.get(REGISTER_POST_ENDPOINT)
+            axios.post(REGISTER_POST_ENDPOINT, user,
+                { haeders: { 'Accept': 'application/json', 'Content-Type': 'application/json' } })
             .then(res => navigation('/login'))
-            .catch(err => console.log(err));
+            .catch(err => setErrors({ register: 'Hubo un problema al crear el usuario, puede que el correo ya haya sido registrado' }));
         }
     }
 
@@ -54,7 +55,7 @@ const Register = () => {
             <Row className='flex-container justify-content-md-center'>
                 <Col sm='12' md='6'>
                     
-                    <div className="d-flex align-items-center mb-2 px-3">
+                    <div className="d-flex align-items-center mt-3 mb-2 px-3">
                         <Image className="me-4" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" rounded alt="" width="96" height="96" />
                         <div>
                             <h1 className="h3 font-weight-normal">Registro</h1>
