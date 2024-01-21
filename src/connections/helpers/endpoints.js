@@ -7,3 +7,4 @@ export const CAREER_ALL_GET_ENDPOINT = API_URL + "/program/get-all";
 export const ROL_ALL_GET_ENDPOINT = API_URL + "/rol/get-all";
 
 export const USER_CREATE_POST_ENDPOINT = API_URL + "/user/create"
+export const USER_DETAIL_POST_ENDPOINT = API_URL + "/user/detail"

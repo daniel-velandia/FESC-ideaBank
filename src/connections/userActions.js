@@ -7,10 +7,8 @@ import jwt_decode from 'jwt-decode';
 export const authentication = (data) => dispatch => {
     return new Promise((resolve, reject) => {
 
-        axios.post(
-                LOGIN_POST_ENDPOINT, data,
-                { headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' } }
-            ).then(res => {
+        axios.post(LOGIN_POST_ENDPOINT, data)
+        .then(res => {
 
             const { token } = res.data;
 

@@ -6,10 +6,13 @@ import { logout } from '../userActions';
 
 export const setAuthenticationToken = (token) => {
     if (token) {
-        axios.defaults.headers.common['Authorization'] = token;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } else {
         delete axios.defaults.headers.common['Authorization'];
     }
+    
+    axios.defaults.headers.common['Accept'] = 'application/json';
+    axios.defaults.headers.common['Content-Type'] = 'application/json';
 }
 
 export const getAuthenticationToken = () => {
