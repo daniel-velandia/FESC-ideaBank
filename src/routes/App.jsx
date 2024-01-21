@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "moment/locale/es";
+import '../css/style.css';
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Navigation } from "../layouts/Navigation";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -21,6 +22,7 @@ getAuthenticationToken();
 const App = () => {
   return (
     <Provider store={store}>
+      {/* <Navigation /> */}
       <BrowserRouter>
         <ToastContainer />
         <Routes>
@@ -29,7 +31,7 @@ const App = () => {
           <Route
             element={
               <>
-                <Navigation />
+                <Navigation/>
                 <Outlet />
               </>
             }

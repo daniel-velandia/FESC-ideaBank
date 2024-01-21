@@ -1,82 +1,70 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import React from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../connections/userActions";
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../connections/userActions';
+import { Container, Nav, Button } from 'react-bootstrap';
 
-const Navigation = () => {
-  const connected = useSelector((state) => state.connected);
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+function Navigation() {
+    const connected = useSelector((state) => state.connected);
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
-  return (
-    <>
-    <div className="container">
-  <header className="border-bottom lh-1 py-3">
-    <div className="row flex-nowrap justify-content-between align-items-center">
-      <div className="col-4 pt-1">
-        <a className="link-secondary" href="#">Subscribe</a>
-      </div>
-      <div className="col-4 text-center">
-        <a className="blog-header-logo text-body-emphasis text-decoration-none" href="#">Large</a>
-      </div>
-      <div className="col-4 d-flex justify-content-end align-items-center">
-        <a className="link-secondary" href="#" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-        </a>
-        <a className="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
-      </div>
-    </div>
-  </header>
+    return (
+        <Container>
+            <header className="blog-header py-3">
+                <div className="row flex-nowrap justify-content-between align-items-center">
+                    <div className="col-4 pt-1">
+                        {connected ? (
+                            <NavDropdown title={user.sub} id="basic-nav-dropdown">
+                                <React.Fragment>
+                                    <NavDropdown.Item as={NavLink} to={"/"} className='text-black'>
+                                        Link de conectado
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                </React.Fragment>
+                            <NavDropdown.Item onClick={() => dispatch(logout())} className='text-black'>
+                                Cerrar sesión
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                        ): <Button as={NavLink} to={'/login'} variant="danger">Sign in</Button>}
+                    </div>
+                    <div className="col-4 text-center">
+                        <Navbar.Brand as={NavLink} to={"/"} className="blog-header-logo text-dark fs-4">FESC IdeaBank</Navbar.Brand>
+                    </div>
+                    <div className="col-4 d-flex justify-content-end align-items-center">
+                        <NavLink to={'/'} className="text-muted">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                className="mx-3">
+                                <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                                <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                            </svg>
+                        </NavLink>
+                        <Button as={NavLink} to={'/register'} variant="danger">Sign up</Button>
+                    </div>
+                </div>
+            </header>
+            <hr/>
+            <div className="nav-scroller py-1 mb-2">
+                <Nav className="nav d-flex justify-content-between">
+                    <NavLink className="link p-2 text-decoration-none">World</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">U.S.</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Technology</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Design</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Culture</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Business</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Politics</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Opinion</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Science</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Health</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Style</NavLink>
+                    <NavLink className="link p-2 text-decoration-none">Travel</NavLink>
+                </Nav>
+            </div>
+        </Container>
+    );
+}
 
-  <div className="nav-scroller py-1 mb-3 border-bottom">
-    <nav className="nav nav-underline justify-content-between">
-      <a className="nav-item nav-link link-body-emphasis active" href="#">World</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">U.S.</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Technology</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Design</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Culture</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Business</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Politics</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Opinion</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Science</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Health</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Style</a>
-      <a className="nav-item nav-link link-body-emphasis" href="#">Travel</a>
-    </nav>
-  </div>
-</div>
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Container>
-        <Navbar.Brand as={NavLink} to={"/"}>
-          FESC-ideaBank
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={NavLink} to={"/ViewUsers"}>
-              usuarios
-            </Nav.Link>
-          </Nav>
-          <Nav>
-          <NavDropdown title={user.sub} id="basic-nav-dropdown">
-                <NavDropdown.Item as={NavLink} to={"#"} className="text-black">
-                  item
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={() => dispatch(logout())}>
-                  Cerrar sesion
-                </NavDropdown.Item>
-              </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    </>
-  );
-};
-
-export { Navigation };
+export { Navigation }
