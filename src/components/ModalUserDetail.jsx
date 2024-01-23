@@ -11,7 +11,7 @@ function MyVerticallyCenteredModal(props) {
   return (
     <Modal
       {...props}
-      size="lg"
+      size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -48,14 +48,14 @@ function MyVerticallyCenteredModal(props) {
           }
           {
             props.user.program &&
-            <div>
+            <>
               <Col xs="12" sm="6">
                 <strong>Programa</strong>
               </Col>
               <Col xs="12" sm="6" className='text-sm-end'>
                 <p>{props.user.program}</p>
               </Col>
-            </div>
+            </>
           }
         </Row>
       </Modal.Body>
