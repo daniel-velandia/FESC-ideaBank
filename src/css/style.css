@@ -1,28 +1,51 @@
-.card:hover {
-    box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273) !important;
-    transition: all 0.7s linear;
-  }
-  
-  .card-body {
-    padding: 2rem 0 !important;
-  }
-  
-  .card-text {
-    padding: 0.3rem 1rem;
-    font-size: 1rem;
-  }
-  
-  .overflow {
+  .Card--featured {
+    position: relative;
+    width: 500px;
+    height: 200px;
     overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 10px; 
   }
-  
-  .card-img-top {
-    transform: scale(1);
-    transition: all 0.2s ease-in-out;
+
+  .Card--featured:hover {
+    transform: scale(1.010);
   }
-  
-  .card-img-top:hover {
-    transform: scale(1.8);
+
+  .Card--featured .d-flex {
+    height: 100%;
+  }
+
+  .Card--featured .d-flex .align-items-center {
+    height: 100%;
+  }
+
+  .Card--featured .Card.Body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+    text-align: justify;
+  }
+
+  .image-container {
+    flex: 0 0 30%; 
+    display: flex;
+    align-items: stretch;
+  }
+
+  .custom-img {
+    width: 100%;
+    object-fit: cover; 
+  }
+
+  .Card--link {
+    text-decoration: none; 
+    color: inherit; 
+  }
+
+  .Card--link:hover {
+    text-decoration: none; 
   }
 
   .nav-scroller {
