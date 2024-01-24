@@ -3,10 +3,11 @@ import React from "react";
 import CardProject from "../../components/CardProject";
 import "../../css/style.css";
 import { Container, Row, Col } from "react-bootstrap";
-
+import { CreateProposalModal } from "../../components/ModalProposal";
 import image1 from "../../img/imagen 1.jpg";
 import image2 from "../../img/imagen 2.jpg";
 import image4 from "../../img/imagen 4.jpg";
+
 
 const cards = [
   {
@@ -36,10 +37,12 @@ function ProjectList() {
   return (
     <div className="cards-container">
       <Container className="mt-5">
+      <CreateProposalModal  />
         <Row>
           {cards.map(({ title, imageSource, url, id, text }) => (
             <Col key={id} xs={12} md={6} lg={6} className="mb-4">
               <CardProject text={text} imageSource={imageSource} title={title} url={url} />
+              
             </Col>
           ))}
         </Row>
