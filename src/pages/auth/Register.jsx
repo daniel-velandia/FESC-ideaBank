@@ -43,8 +43,7 @@ const Register = () => {
         if (!isEmptyObject(error)) {
             setErrors(error);
         } else {
-            axios.post(REGISTER_POST_ENDPOINT, user,
-                { haeders: { 'Accept': 'application/json', 'Content-Type': 'application/json' } })
+            axios.post(REGISTER_POST_ENDPOINT, user)
             .then(res => navigation('/login'))
             .catch(err => setErrors({ register: 'Hubo un problema al crear el usuario, puede que el correo ya haya sido registrado' }));
         }
