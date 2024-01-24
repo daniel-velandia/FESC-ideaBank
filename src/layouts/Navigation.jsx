@@ -4,7 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../connections/userActions';
-import { Container, Nav, Button, SplitButton } from 'react-bootstrap';
+import { Container, Nav, Button, SplitButton,Image } from 'react-bootstrap';
+import logo from '../img/logo-nav.png';
 
 function Navigation() {
     const connected = useSelector((state) => state.connected);
@@ -33,7 +34,7 @@ function Navigation() {
                     <div className="row flex-nowrap justify-content-between align-items-center">
                         <div className="d-flex justify-content-between">
                         <div className="text-center mt-3">
-                            <Navbar.Brand as={NavLink} to={"/"} className="text-dark fs-4">FESC IdeaBank</Navbar.Brand>
+                            <Navbar.Brand as={NavLink} to={"/"} className="text-dark fs-4"><Image src={logo} height={40} /></Navbar.Brand>
                         </div>
                             {connected ? (
                                 <SplitButton
