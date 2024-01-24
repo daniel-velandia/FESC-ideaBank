@@ -1,7 +1,6 @@
   .Card--featured {
-    position: relative;
-    width: 500px;
     height: 200px;
+    position: relative;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
     margin-bottom: 10px; 
@@ -25,7 +24,7 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 20px;
-    text-align: justify;
+    text-align: justify !important;
   }
 
   .image-container {
@@ -75,34 +74,32 @@
     font-size: .875rem;
 }
 
-.link {
-  color: gray;
-  text-decoration: none;
-  position: relative;
-  display: flex;
-  align-items: center;
+.link:hover {
+    color: white;
+    background-color: red;
+    border-radius: 13%;
 }
 
-.link::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 2px;
-  background-color: transparent;
-  transition: width 0.3s, background-color 0.3s;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+@media (max-width: 374px) {
+  .Card--featured {
+    height: 280px;
+  }
 }
 
-.link:hover::after,
-.link:focus::after {
-  width: 100%;
-  background-color: red;
+@media (min-width: 375px) and (max-width: 768px) {
+  .Card--featured {
+    height: 250px;
+  }
 }
 
-.link:hover,
-.link:focus {
-  color: red;
+@media (min-width: 768px) and (max-width: 992px) {
+  .Card--featured {
+    height: 230px;
+  }
+}
+
+@media (min-width: 992px) {
+  .Card--featured {
+    height: 200px;
+  }
 }
