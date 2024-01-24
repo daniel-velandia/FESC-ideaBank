@@ -53,8 +53,7 @@ const Register = () => {
     return (
         <Container>
             <Row className='flex-container justify-content-md-center'>
-                <Col sm='12' md='6'>
-                    
+                <Col sm='12' md='6' lg="6">
                     <div className="d-flex align-items-center mt-3 mb-2 px-3">
                         <Image className="me-4" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" rounded alt="" width="96" height="96" />
                         <div>
@@ -62,7 +61,6 @@ const Register = () => {
                             <p>Crea una cuenta para acceder a la plataforma de manera segura y personalizada.</p>
                         </div>
                     </div>
-
                     <Card.Body>
                         {errors.register && <Alert variant='danger'>{errors.register}</Alert>}
                         <RegisterForm errors={errors} callback={register} />

@@ -45,19 +45,16 @@ const Login = () => {
 
         <Container>
             <Row className='flex-container justify-content-md-center'>
-                <Col sm='12' md='4'>
-
+                <Col sm='12' md='4' lg="5">
                     <div className="text-center mt-3 mb-2">
                         <Image className="mb-4" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" rounded alt="" width="72" height="72" />
                         <h1 className="h3 mb-3 font-weight-normal">Login</h1>
                         <p>Ingresa tus credenciales para acceder a la plataforma de manera segura y personalizada.</p>
                     </div>
-
                     <Card.Body>
                         {errors.login && <Alert variant='danger'>{errors.login}</Alert>}
                         <LoginForm errors={errors} callback={login} />
                     </Card.Body>
-                    
                 </Col>
             </Row>
         </Container>

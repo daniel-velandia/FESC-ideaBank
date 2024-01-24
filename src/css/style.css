@@ -47,8 +47,8 @@
   .Card--link:hover {
     text-decoration: none; 
   }
-
-  .nav-scroller {
+/* ESTILOS DE NAVBAR */
+.nav-scroller {
     position: relative;
     z-index: 2;
     height: 2.75rem;
@@ -67,12 +67,6 @@
     text-align: center;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-}
-  
-.nav-scroller .nav-link {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: .875rem;
 }
 
 .link {
@@ -96,13 +90,56 @@
   right: 0;
 }
 
-.link:hover::after,
-.link:focus::after {
+.link.active::after,
+.link:hover::after {
   width: 100%;
   background-color: red;
 }
 
-.link:hover,
-.link:focus {
+.link.active span,
+.link:hover span,
+.link.active svg,
+.link:hover svg {
+  color: red;
+}
+
+/* ESTILOS DE FOOTER */
+.Footer {
+  padding: 2rem 0;
+  margin-top: 15rem;
+  background: #86001b;
+}
+
+.item-listGroup {
+  background: #86001b;
+  border-color: #86001b;
+}
+
+.ft-1 p {
+  text-align: justify;
+  color: #fff;
+}
+
+.icono {
+  border-radius: 50%;
+}
+
+.icono:hover {
+  border-radius: 50%;
+  transition: .3s;
+  overflow: hidden;
+  transform: translateY(-10%);
+}
+
+.ft-2 ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ft-2 ul li {
+  padding: 0.35rem 0;
+}
+
+.ft-2 ul a:hover {
   color: red;
 }

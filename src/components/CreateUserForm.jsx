@@ -37,7 +37,7 @@ export const CreateUserForm = ({ errors, callback }) => {
   };
 
   return (
-    <Form onSubmit={sendResponse} className="px-3">
+    <Form onSubmit={sendResponse} className="px-3 border-danger">
       <Row>
         <Col sm="12" md="6">
           <Form.Group className="mb-3" controlId="name">
