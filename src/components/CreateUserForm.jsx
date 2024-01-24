@@ -105,7 +105,7 @@ export const CreateUserForm = ({ callback }) => {
         Abrir Modal
       </Button>
 
-      <Modal show={showModal} onHide={handleModalClose} size="lg">
+      <Modal show={showModal} onHide={handleModalClose} size="lg"  aria-labelledby="contained-modal-title-vcenter" centered>
         <Modal.Header style={{ backgroundColor: "#9c0f06", color: "white" }} closeButton>
           <Modal.Title className="text-center">Crear usuario</Modal.Title>
         </Modal.Header>
@@ -113,8 +113,7 @@ export const CreateUserForm = ({ callback }) => {
           <Form onSubmit={sendResponse} className="px-3">
             <Row>
               <Col sm="12" md="6">
-                <Form.Group className="mb-4" controlId="name">
-                  <Form.Label>Nombre</Form.Label>
+                <Form.Group className="mb-5 mt-3" controlId="name">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -132,8 +131,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-4" controlId="lastName">
-                  <Form.Label>Apellido</Form.Label>
+                <Form.Group className="mb-5 mt-3" controlId="lastName">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -151,8 +149,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-4" controlId="email">
-                  <Form.Label>Correo electrónico</Form.Label>
+                <Form.Group className="mb-5" controlId="email">
                   <Form.Control
                     size="lg"
                     type="email"
@@ -170,8 +167,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-4" controlId="cellPhone">
-                  <Form.Label>Teléfono</Form.Label>
+                <Form.Group className="mb-5" controlId="cellPhone">
                   <Form.Control
                     size="lg"
                     type="number"
@@ -189,8 +185,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-4" controlId="password">
-                  <Form.Label>Contraseña</Form.Label>
+                <Form.Group className="mb-5" controlId="password">
                   <Form.Control
                     size="lg"
                     type="password"
@@ -208,8 +203,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-4" controlId="repeatPassword">
-                  <Form.Label>Repetir Contraseña</Form.Label>
+                <Form.Group className="mb-5" controlId="repeatPassword">
                   <Form.Control
                     size="lg"
                     type="password"
@@ -227,8 +221,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-4" controlId="program">
-                  <Form.Label>Programa</Form.Label>
+                <Form.Group className="mb-5" controlId="program">
                   <SelectProgram onSelect={handleSelectChange} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.program}
@@ -237,8 +230,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-4" controlId="rol">
-                  <Form.Label>Rol</Form.Label>
+                <Form.Group className="mb-5" controlId="rol">
                   <SelectUserRol onSelect={handleSelectChange} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.rol}
@@ -247,8 +239,8 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
             </Row>
 
-            <div className="text-center">
-              <Button type="submit" variant="primary" className="mt-3" style={{ backgroundColor: "#e30513", width: "fit-content" }}>
+            <div className="text-center mb-3">
+              <Button type="submit" variant="danger" className="mt-3" style={{ backgroundColor: "#9c0f06", width: "fit-content" }}>
                 Crear usuario
               </Button>
             </div>

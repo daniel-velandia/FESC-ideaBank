@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Row, Form, Button, Modal } from "react-bootstrap";
-import { SelectUserRol } from "./SelectUserRol";
+
 
 export const CreateProposalModal = ({ callback }) => {
     const [showModal, setShowModal] = useState(false);
@@ -8,7 +8,6 @@ export const CreateProposalModal = ({ callback }) => {
     const [formErrors, setFormErrors] = useState({
         valueProposal: "",
         descripcion: "",
-        state: "",
     });
 
     const handleModalShow = () => {
@@ -17,7 +16,6 @@ export const CreateProposalModal = ({ callback }) => {
         setFormErrors({
             valueProposal: "",
             descripcion: "",
-            state: "",
         });
     };
 
@@ -29,15 +27,8 @@ export const CreateProposalModal = ({ callback }) => {
     const [formData, setFormData] = useState({
         valueProposal: "",
         descripcion: "",
-        state: "",
     });
 
-    const handleSelectChange = (fieldName, selectedValue) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            [fieldName]: selectedValue,
-        }));
-    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -77,7 +68,7 @@ export const CreateProposalModal = ({ callback }) => {
                 Abrir Modal
             </Button>
 
-            <Modal show={showModal} onHide={handleModalClose} size="lg">
+            <Modal show={showModal} onHide={handleModalClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                 <Modal.Header style={{ backgroundColor: "#9c0f06", color: "white" }} closeButton>
                     <Modal.Title className="text-center">Crear Propuesta</Modal.Title>
                 </Modal.Header>
@@ -86,7 +77,6 @@ export const CreateProposalModal = ({ callback }) => {
                         <Row>
                             <Col sm="12">
                                 <Form.Group className="mb-4" controlId="valueProposal">
-                                    <Form.Label>Valor de la Propuesta</Form.Label>
                                     <Form.Control
                                         size="lg"
                                         type="text"
@@ -105,7 +95,6 @@ export const CreateProposalModal = ({ callback }) => {
 
                             <Col sm="12">
                                 <Form.Group className="mb-4" controlId="descripcion">
-                                    <Form.Label>Descripción</Form.Label>
                                     <Form.Control
                                         as="textarea"
                                         rows={4}
@@ -122,20 +111,10 @@ export const CreateProposalModal = ({ callback }) => {
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
-
-                            <Col sm="12">
-                                <Form.Group className="mb-4" controlId="state">
-                                    <Form.Label>Estado</Form.Label>
-                                    <SelectUserRol onSelect={(selectedValue) => handleSelectChange("state", selectedValue)} />
-                                    <Form.Control.Feedback type="invalid">
-                                        {formSubmitted && formErrors.state}
-                                    </Form.Control.Feedback>
-                                </Form.Group>
-                            </Col>
                         </Row>
 
                         <div className="text-center">
-                            <Button type="submit" variant="primary" className="mt-3" style={{ backgroundColor: "#e30513", width: "fit-content" }}>
+                            <Button type="submit" variant="danger" className="mt-3" style={{ backgroundColor: "#9c0f06", width: "fit-content" }}>
                                 Crear Propuesta
                             </Button>
                         </div>
