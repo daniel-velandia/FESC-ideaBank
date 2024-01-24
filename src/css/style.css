@@ -75,8 +75,34 @@
     font-size: .875rem;
 }
 
-.link:hover {
-    color: white;
-    background-color: red;
-    border-radius: 13%;
+.link {
+  color: gray;
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: transparent;
+  transition: width 0.3s, background-color 0.3s;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.link:hover::after,
+.link:focus::after {
+  width: 100%;
+  background-color: red;
+}
+
+.link:hover,
+.link:focus {
+  color: red;
 }
