@@ -59,11 +59,6 @@ const Footer = () => {
                                     </a>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="item-listGroup mt-3">
-                                    <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/programas-extension-sede-ocana">
-                                        Programas extensión sede Ocaña
-                                    </a>
-                                </ListGroup.Item>
-                                <ListGroup.Item className="item-listGroup mt-3">
                                     <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/diplomados-de-grados#slider-6">
                                         Diplomados
                                     </a>
