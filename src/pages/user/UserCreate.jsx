@@ -5,11 +5,14 @@ import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from "validator";
 import { USER_CREATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import axios from "axios";
+import ToastError from "../../components/ToastError";
 
 export const UserCreate = () => {
   const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const createUser = async (user) => {
+    setErrorMessage(null);
     const error = {};
 
     if (validator.isEmpty(user.name)) {
@@ -47,7 +50,7 @@ export const UserCreate = () => {
     if (!isEmptyObject(error)) {
       setErrors(error);
     } else {
-      const token = localStorage.getItem("token"); 
+      const token = localStorage.getItem("token");
       axios
         .post(USER_CREATE_POST_ENDPOINT, user, {
           headers: {
@@ -57,13 +60,17 @@ export const UserCreate = () => {
           },
         })
         .then((res) => console.log(res))
-        .catch((err) =>
-          setErrors({
-            register:
-              "Hubo un problema al crear el usuario, puede que el correo ya haya sido registrado",
-          })
-        );
+        .catch((err) => {
+          setErrorMessage(err.response.data);
+        });
     }
+  };
+
+  const renderToastError = () => {
+    if (errorMessage) {
+      return <ToastError message={errorMessage} />;
+    }
+    return null;
   };
 
   return (
@@ -85,6 +92,7 @@ export const UserCreate = () => {
               <Alert variant="danger">{errors.register}</Alert>
             )}
             <CreateUserForm errors={errors} callback={createUser} />
+            {renderToastError()}
           </Card.Body>
         </Col>
       </Row>
