@@ -1,7 +1,6 @@
   .Card--featured {
-    position: relative;
-    width: 500px;
     height: 200px;
+    position: relative;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
     margin-bottom: 10px; 
@@ -25,7 +24,7 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 20px;
-    text-align: justify;
+    text-align: justify !important;
   }
 
   .image-container {
@@ -47,36 +46,123 @@
   .Card--link:hover {
     text-decoration: none; 
   }
-
-  .nav-scroller {
-    position: relative;
-    z-index: 2;
-    height: 2.75rem;
-    overflow-y: hidden;
+/* ESTILOS DE NAVBAR */
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
 }
-  
+
 .nav-scroller .nav {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-}
-  
-.nav-scroller .nav-link {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: .875rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
-.link:hover {
-    color: white;
-    background-color: red;
-    border-radius: 13%;
+.link {
+color: gray;
+text-decoration: none;
+position: relative;
+display: flex;
+align-items: center;
+}
+
+.link::after {
+content: "";
+display: block;
+width: 0;
+height: 2px;
+background-color: transparent;
+transition: width 0.3s, background-color 0.3s;
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+}
+
+.link.active::after,
+.link:hover::after {
+width: 100%;
+background-color: red;
+}
+
+.link.active span,
+.link:hover span,
+.link.active svg,
+.link:hover svg {
+color: red;
+}
+
+/* ESTILOS DE FOOTER */
+.Footer {
+padding: 2rem 0;
+margin-top: 15rem;
+background: #86001b;
+}
+
+.item-listGroup {
+background: #86001b;
+border-color: #86001b;
+}
+
+.ft-1 p {
+text-align: justify;
+color: #fff;
+}
+
+.icono {
+border-radius: 50%;
+}
+
+.icono:hover {
+border-radius: 50%;
+transition: .3s;
+overflow: hidden;
+transform: translateY(-10%);
+}
+
+.ft-2 ul {
+list-style: none;
+padding-left: 0;
+}
+
+.ft-2 ul li {
+padding: 0.35rem 0;
+}
+
+.ft-2 ul a:hover {
+color: red;
+}
+
+@media (max-width: 374px) {
+  .Card--featured {
+    height: 280px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 768px) {
+  .Card--featured {
+    height: 250px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .Card--featured {
+    height: 230px;
+  }
+}
+
+@media (min-width: 992px) {
+  .Card--featured {
+    height: 200px;
+  }
 }

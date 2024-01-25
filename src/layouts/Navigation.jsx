@@ -1,66 +1,97 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../connections/userActions';
-import { Container, Nav, Button } from 'react-bootstrap';
+import { Container, Nav, NavDropdown, SplitButton, Image } from 'react-bootstrap';
+import { FaUser, FaUserPlus } from "react-icons/fa";
+import logo from '../img/logo-nav.png';
+import { useEffect } from "react";
 
 function Navigation() {
     const connected = useSelector((state) => state.connected);
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
+    const circuloEstilo = {
+        width: "30px",
+        height: "30px",
+        borderRadius: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#fff",
+        color: "#e30513",
+        cursor: "pointer",
+        fontWeight: '600',
+    };
+    
+      const dropdownEstilo = {
+        borderRadius: "50%",
+    };
+
+    useEffect(() => {
+        const links = document.querySelectorAll('.link');
+    
+        const handleLinkClick = (event) => {
+          links.forEach(link => link.classList.remove('active'));
+          event.currentTarget.classList.add('active');
+        };
+    
+        links.forEach(link => {
+          link.addEventListener('click', handleLinkClick);
+        });
+    
+        return () => {
+          links.forEach(link => {
+            link.removeEventListener('click', handleLinkClick);
+          });
+        };
+      }, []);
+
     return (
         <Container>
-            <header className="blog-header py-3">
+            <header className="py-1">
                 <div className="row flex-nowrap justify-content-between align-items-center">
-                    <div className="col-4 pt-1">
+                    <div className="d-flex justify-content-between">
+                        <Navbar.Brand as={NavLink} to={"/"} 
+                        className="animate__animated animate__tada text-dark animate__slower 3s animate__delay-1s animate__infinite fs-4 mt-3">
+                            <Image src={logo} height={40}/>
+                        </Navbar.Brand>
                         {connected ? (
-                            <NavDropdown title={user.sub} id="basic-nav-dropdown">
+                            <SplitButton
+                                title={<div style={circuloEstilo}>{user.sub.substring(0, 2).toUpperCase()}</div>}
+                                id="split-button-dropdown"
+                                className='me-0 mt-2 ms-2'
+                                style={dropdownEstilo}
+                                variant="danger"
+                                >
                                 <React.Fragment>
                                     <NavDropdown.Item as={NavLink} to={"/"} className='text-black'>
-                                        Link de conectado
+                                        Resetear contraseña
                                     </NavDropdown.Item>
                                     <NavDropdown.Divider />
                                 </React.Fragment>
-                            <NavDropdown.Item onClick={() => dispatch(logout())} className='text-black'>
-                                Cerrar sesión
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                        ): <Button as={NavLink} to={'/login'} variant="danger">Sign in</Button>}
-                    </div>
-                    <div className="col-4 text-center">
-                        <Navbar.Brand as={NavLink} to={"/"} className="blog-header-logo text-dark fs-4">FESC IdeaBank</Navbar.Brand>
-                    </div>
-                    <div className="col-4 d-flex justify-content-end align-items-center">
-                        <NavLink to={'/'} className="text-muted">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                                className="mx-3">
-                                <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                                <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
-                            </svg>
-                        </NavLink>
-                        <Button as={NavLink} to={'/register'} variant="danger">Sign up</Button>
+                                <NavDropdown.Item onClick={() => dispatch(logout())} className='text-black'>
+                                    Cerrar sesión
+                                </NavDropdown.Item>
+                            </SplitButton>
+                        ) : ""}
                     </div>
                 </div>
             </header>
             <hr/>
             <div className="nav-scroller py-1 mb-2">
-                <Nav className="nav d-flex justify-content-between">
-                    <NavLink className="link p-2 text-decoration-none">World</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">U.S.</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Technology</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Design</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Culture</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Business</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Politics</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Opinion</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Science</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Health</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Style</NavLink>
-                    <NavLink className="link p-2 text-decoration-none">Travel</NavLink>
+                <Nav className="nav animate__animated animate__zoomIn animate__slow 1s">
+                    <NavLink to={"/user"} className="link p-2 ms-0 mx-3" id="usuarios-link">
+                        <FaUser className='mx-2' />
+                        <span>Usuarios</span>
+                    </NavLink>
+
+                    <NavLink to={"/user/create"} className="link p-2 ms-0 mx-3" id="crear-usuario-link">
+                        <FaUserPlus className='mx-2' />
+                        <span>Crear usuario</span>
+                    </NavLink>
                 </Nav>
             </div>
         </Container>

@@ -1,14 +1,14 @@
-import { TableViewUsers } from "../../components/TableViewUsers";
-import { Container } from "react-bootstrap";
+import { CardViewUsers } from "../../components/CardViewUsers";
+import { ModalUserDetail } from "../../components/ModalUserDetail";
+import { Container, Row } from "react-bootstrap";
 
 export const UserList = () => {
   return (
-    <Container className="col-md-6">
-      <div className="table-container">
-        <div className="mt-3">
-          <TableViewUsers />
-        </div>
-      </div>
+    <Container className="my-3 p-3 bg-body rounded shadow-sm">
+      <Row>
+        <ModalUserDetail />
+        <CardViewUsers />
+      </Row>
     </Container>
   );
 };

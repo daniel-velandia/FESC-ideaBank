@@ -1,15 +1,20 @@
 import { CreateUserForm } from "../../components/CreateUserForm";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Alert, Card, Col, Container, Row } from "react-bootstrap";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from "validator";
 import { USER_CREATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import axios from "axios";
+import ToastError from "../../components/ToastError";
 
 export const UserCreate = () => {
   const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
+  const navegar = useNavigate();
 
   const createUser = async (user) => {
+    setErrorMessage(null);
     const error = {};
 
     if (validator.isEmpty(user.name)) {
@@ -47,7 +52,7 @@ export const UserCreate = () => {
     if (!isEmptyObject(error)) {
       setErrors(error);
     } else {
-      const token = localStorage.getItem("token"); 
+      const token = localStorage.getItem("token");
       axios
         .post(USER_CREATE_POST_ENDPOINT, user, {
           headers: {
@@ -56,7 +61,9 @@ export const UserCreate = () => {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((res) => console.log(res))
+        .then((res) => {
+          navegar("/user");
+        })
         .catch((err) =>
           setErrors({
             register:
@@ -64,6 +71,13 @@ export const UserCreate = () => {
           })
         );
     }
+  };
+
+  const renderToastError = () => {
+    if (errorMessage) {
+      return <ToastError message={errorMessage} />;
+    }
+    return null;
   };
 
   return (
@@ -85,6 +99,7 @@ export const UserCreate = () => {
               <Alert variant="danger">{errors.register}</Alert>
             )}
             <CreateUserForm errors={errors} callback={createUser} />
+            {renderToastError()}
           </Card.Body>
         </Col>
       </Row>

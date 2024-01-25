@@ -19,10 +19,10 @@ const cards = [
   },
   {
     id: 2,
-    title: "Conectando Mentes, Construyendo Futuros",
+    title: "Conectando Mentes",
     imageSource: image2,
     url: "",
-    text: `¡Bienvenidos a "Conectando Mentes, Construyendo Futuros"! Este proyecto tiene como objetivo principal derribar barreras y promover la inclusión educativa para todos. `
+    text: `¡Bienvenidos a "Conectando Mentes"! Este proyecto tiene como objetivo principal derribar barreras y promover la inclusión educativa para todos nuestros alumnos. `
   },
   {
     id: 3,
