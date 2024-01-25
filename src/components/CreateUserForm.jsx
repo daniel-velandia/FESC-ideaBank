@@ -93,8 +93,6 @@ export const CreateUserForm = ({ callback }) => {
   };
 
   const isValidEmail = (email) => {
-    // Puedes implementar una lógica más avanzada para validar correos electrónicos
-    // Este ejemplo es muy básico y puede no cubrir todos los casos
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
