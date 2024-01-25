@@ -36,8 +36,8 @@ export const SelectUserRolFilter = ({ onRolesChange }) => {
   }, [selectedRoles, onRolesChange]);
 
   return (
-    <Dropdown>
-      <Dropdown.Toggle variant="primary" id="dropdown-basic">
+    <Dropdown >
+      <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{ backgroundColor: '#e30513' }}>
         Filtrar Roles
       </Dropdown.Toggle>
 

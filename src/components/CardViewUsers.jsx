@@ -64,8 +64,8 @@ export const CardViewUsers = () => {
               focusable="false"
             >
               {/* <title>Placeholder</title> */}
-              <rect width="100%" height="100%" fill="#007bff"></rect>
-              <text x="50%" y="50%" fill="#007bff" dy=".3em">
+              <rect width="100%" height="100%" fill="#e30513"></rect>
+              <text x="50%" y="50%" fill="#e30513" dy=".3em">
                 32x32
               </text>
             </svg>
