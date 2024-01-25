@@ -50,17 +50,12 @@ const Footer = () => {
                             <ListGroup>
                                 <ListGroup.Item className="item-listGroup mt-3">
                                     <a className="text-white" href="https://www.fesc.edu.co/portal/">
-                                        Pregrado
+                                        Pregrados
                                     </a>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="item-listGroup mt-3">
                                     <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/posgrado/especializaciones/administracion-de-la-salud">
-                                        Posgrado
-                                    </a>
-                                </ListGroup.Item>
-                                <ListGroup.Item className="item-listGroup mt-3">
-                                    <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/programas-extension-sede-ocana">
-                                        Programas extensión sede Ocaña
+                                        Especializaciones
                                     </a>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="item-listGroup mt-3">

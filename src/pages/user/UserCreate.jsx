@@ -1,5 +1,6 @@
 import { CreateUserForm } from "../../components/CreateUserForm";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Alert, Card, Col, Container, Row } from "react-bootstrap";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from "validator";
@@ -8,6 +9,7 @@ import axios from "axios";
 
 export const UserCreate = () => {
   const [errors, setErrors] = useState({});
+  const navegar = useNavigate();
 
   const createUser = async (user) => {
     const error = {};
@@ -56,7 +58,10 @@ export const UserCreate = () => {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((res) => console.log(res))
+        .then((res) => {
+          navegar("/user");
+          console.log(res)
+        })
         .catch((err) =>
           setErrors({
             register:
