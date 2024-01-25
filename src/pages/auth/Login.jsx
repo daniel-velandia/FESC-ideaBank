@@ -7,6 +7,8 @@ import { authentication } from "../../connections/userActions";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from "validator";
 import ToastError from "../../components/ToastError";
+import FESCfondo from "../../img/fachada.png"
+import logof from "../../img/logof.png"
 
 const Login = () => {
   const [errors, setErrors] = useState({});
@@ -53,33 +55,45 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <Row className="flex-container justify-content-md-center">
-        <Col sm="12" md="4">
-          <div className="text-center mt-3 mb-2">
-            <Image
-              className="mb-4"
-              src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-              rounded
-              alt=""
-              width="72"
-              height="72"
-            />
-            <h1 className="h3 mb-3 font-weight-normal">Login</h1>
-            <p>
-              Ingresa tus credenciales para acceder a la plataforma de manera
-              segura y personalizada.
-            </p>
-          </div>
+<Container className="d-flex align-items-center justify-content-center" style={{ height: '105vh' }}>
+    <div className="shadow p-3 mb-5 bg-white rounded" style={{ maxWidth: '800px', width: '100%', maxHeight: '800px' }}>
+        <Row className='flex-container h-100'>
+            <Col md='6' lg='6' className="custom-card left-container d-flex align-items-center justify-content-center">
+                <Image src={FESCfondo} alt="imagen" className="img-fluid d-none d-md-block" style={{ objectFit: 'cover', maxHeight: '100%', width: '100%' }} />
+            </Col>
 
-          <Card.Body>
-            {errors.login && <Alert variant="danger">{errors.login}</Alert>}
-            <LoginForm errors={errors} callback={login} />
-            {renderToastError()}
-          </Card.Body>
-        </Col>
-      </Row>
-    </Container>
+            <Col md='6'  lg='6' className="custom-card right-container d-flex align-items-center">
+                <div className="d-flex flex-column justify-content-between h-100">
+                    <div>
+                        <div className="text-center mt-3 mb-2">
+                            <Image src={logof} alt="logo" className="img-fluid" />
+                        </div>
+
+                        <div className="text-center mt-3 mb-2">
+                            <p>Ingresa tus credenciales para acceder a la plataforma de manera segura y personalizada.</p>
+                        </div>
+
+                        <Card.Body>
+                            {errors.login && <Alert variant='danger'>{errors.login}</Alert>}
+                            <LoginForm errors={errors} callback={login} />
+                        </Card.Body>
+                    </div>
+
+                    <div>
+                        <p className="mt-5 mb-3 text-muted text-center">&copy; 2023-2024</p>
+                    </div>
+                </div>
+            </Col>
+        </Row>
+    </div>
+</Container>
+
+
+
+
+
+
+
   );
 };
 

@@ -6,6 +6,7 @@ import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from 'validator';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import logof from "../../img/logof.png"
 
 const Register = () => {
 
@@ -50,23 +51,36 @@ const Register = () => {
     }
 
     return (
-        <Container>
-            <Row className='flex-container justify-content-md-center'>
-                <Col sm='12' md='10' lg="6" xl="8">
-                    <div className="d-flex align-items-center mt-3 mb-2 px-3">
-                        <Image className="me-4" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" rounded alt="" width="96" height="96" />
-                        <div>
-                            <h1 className="h3 font-weight-normal">Registro</h1>
-                            <p>Crea una cuenta para acceder a la plataforma de manera segura y personalizada.</p>
-                        </div>
-                    </div>
-                    <Card.Body>
-                        {errors.register && <Alert variant='danger'>{errors.register}</Alert>}
-                        <RegisterForm errors={errors} callback={register} />
-                    </Card.Body>
-                </Col>
-            </Row>
-        </Container>
+<Container>
+    <Row className='flex-container justify-content-md-center'>
+        <Col sm='12' md='8' lg='7' className='custom-container shadow p-3 mb-5 bg-white rounded'>
+
+            <div className="d-md-flex align-items-center mt-3 mb-2 px-3 custom-header">
+                <div className="text-center mb-3 mb-md-2 mx-auto">
+                    <Image className="me-4" src={logof} />
+                </div>
+
+                <div className="text-center text-md-start flex-grow-1">
+                    <h1 className="h3 font-weight-normal">Registro</h1>
+                    <p>Crea una cuenta para acceder a la plataforma de manera segura y personalizada.</p>
+                </div>
+            </div>
+
+            <Card.Body className="custom-card-body">
+                {errors.register && <Alert variant='danger'>{errors.register}</Alert>}
+                <RegisterForm errors={errors} callback={register} />
+            </Card.Body>
+
+        </Col>
+    </Row>
+</Container>
+
+
+
+
+
+
+
     );
 }
 
