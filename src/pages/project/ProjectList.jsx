@@ -11,6 +11,7 @@ import validator from "validator";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import { PROPOSAL_CREATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import ToastError from "../../components/ToastError";
+import ToastSucces from "../../components/ToastSucces";
 
 const cards = [
   {
@@ -38,9 +39,11 @@ const cards = [
 
 function ProjectList() {
   const [errorMessage, setErrorMessage] = useState(null);
+  const [succesMessage, setsuccesMessage] = useState("");
 
   const createProposal = async (proposal) => {
     setErrorMessage(null);
+    setsuccesMessage("");
     const error = {};
 
     if (validator.isEmpty(proposal.valueProposal)) {
@@ -64,7 +67,7 @@ function ProjectList() {
           },
         })
         .then((res) => {
-          console.log(res)
+          setsuccesMessage("Propuesta creada con exito")
         })
         .catch((err) =>
           setErrorMessage(err.response.data)
@@ -75,6 +78,12 @@ function ProjectList() {
   const renderToastError = () => {
     if (errorMessage) {
       return <ToastError message={errorMessage} />;
+    }
+    return null;
+  };
+  const renderToastSucces = () => {
+    if (succesMessage) {
+      return <ToastSucces message={succesMessage} />;
     }
     return null;
   };
@@ -96,6 +105,7 @@ function ProjectList() {
           ))}
         </Row>
         {renderToastError()}
+        {renderToastSucces()}
       </Container>
     </div>
   );
