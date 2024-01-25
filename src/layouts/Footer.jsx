@@ -55,11 +55,7 @@ const Footer = () => {
                                 </ListGroup.Item>
                                 <ListGroup.Item className="item-listGroup mt-3">
                                     <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/posgrado/especializaciones/administracion-de-la-salud">
-<<<<<<< HEAD
                                         Especializaciones
-=======
-                                        Posgrado
->>>>>>> 0b32259b67a027234b663990818a0fba69af3aa8
                                     </a>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="item-listGroup mt-3">
