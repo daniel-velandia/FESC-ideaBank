@@ -2,7 +2,9 @@
 import "moment/locale/es";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
+import 'animate.css';
 import { Navigation } from "../layouts/Navigation";
+import { Footer } from "../layouts/Footer";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../states/store";
@@ -49,6 +51,7 @@ const App = () => {
           </Route>
           <Route path="*" element={<Error404 />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </Provider>
   );

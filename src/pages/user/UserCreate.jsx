@@ -1,5 +1,6 @@
 import { CreateUserForm } from "../../components/CreateUserForm";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Alert, Card, Col, Container, Row } from "react-bootstrap";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from "validator";
@@ -10,6 +11,7 @@ import ToastError from "../../components/ToastError";
 export const UserCreate = () => {
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
+  const navegar = useNavigate();
 
   const createUser = async (user) => {
     setErrorMessage(null);
@@ -59,10 +61,15 @@ export const UserCreate = () => {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((res) => console.log(res))
-        .catch((err) => {
-          setErrorMessage(err.response.data);
-        });
+        .then((res) => {
+          navegar("/user");
+        })
+        .catch((err) =>
+          setErrors({
+            register:
+              "Hubo un problema al crear el usuario, puede que el correo ya haya sido registrado",
+          })
+        );
     }
   };
 
