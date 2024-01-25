@@ -11,14 +11,16 @@ export const CardViewUsers = () => {
 
   const handleCheckboxChange = (selectedRoles) => {
     setSelectedRoles(selectedRoles);
-    fetchUsers(selectedRoles);
   };
+
+  useEffect(() => {
+    fetchUsers(selectedRoles);
+  }, [selectedRoles]);
 
   const fetchUsers = (selectedRoles) => {
     let token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    // Construccion de la URL con los roles seleccionados
     const url =
       USER_LIST_GET_ENDPOINT +
       (selectedRoles.length > 0
