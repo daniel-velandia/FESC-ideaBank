@@ -9,3 +9,6 @@ export const ROL_ALL_GET_ENDPOINT = API_URL + "/rol/get-all";
 export const USER_DETAIL_POST_ENDPOINT = API_URL + "/user/detail"
 export const USER_LIST_GET_ENDPOINT = API_URL+"/user/list";
 export const USER_CREATE_POST_ENDPOINT = API_URL + "/user/invited/create";
+
+
+export const PROPOSAL_CREATE_POST_ENDPOINT = API_URL + "/project/create"
