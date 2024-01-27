@@ -103,19 +103,17 @@ export const CreateUserForm = ({ callback }) => {
         Abrir Modal
       </Button>
 
-      <Modal show={showModal} onHide={handleModalClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-        <div className="d-none  d-lg-block" style={{ backgroundColor: "#e30513", color: "#EBEBEB", padding: "10px", textAlign: "center", width: "150px", height: "45px", position: "absolute", top: "10%", left: "13.5%", transform: "translate(-50%, -50%)", borderRadius: "3px", fontSize: "18px", fontWeight: "bold" }}>
-          Crear usuario
-        </div>
-        <div className="d-none d-md-block d-lg-none" style={{ backgroundColor: "#e30513", color: "#EBEBEB", padding: "11px", textAlign: "center", width: "135px", position: "absolute", top: "10%", left: "18%", transform: "translate(-50%, -50%)", borderRadius: "3px", fontSize: "16px", fontWeight: "bold" }}>
-          Crear usuario
-        </div>
-        <div className="d-sm-block d-md-none" style={{ backgroundColor: "#e30513", color: "#EBEBEB", padding: "12px", textAlign: "center", width: "135px", position: "absolute", top: "6%", left: "22%", transform: "translate(-50%, -50%)", borderRadius: "3px", fontSize: "14px", fontWeight: "bold" }}>
-          Crear usuario
-        </div>
-        <Modal.Header style={{ backgroundColor: "#FAB9B9", color: "white", height: "65px" }} closeButton>
-        </Modal.Header>
-        <Modal.Body>
+      <Modal show={showModal} 
+      onHide={handleModalClose} 
+      size="lg" 
+      aria-labelledby="contained-modal-title-vcenter" 
+      centered>
+
+      <Modal.Header className='my-modal-header px-4' closeButton>
+          <div className='my-badge-state'>Crear Usuario</div>
+      </Modal.Header>
+
+      <Modal.Body className='px-4 pt-5'>
           <Form onSubmit={sendResponse} className="px-3">
             <Row>
               <Col sm="12" md="6">
@@ -246,7 +244,7 @@ export const CreateUserForm = ({ callback }) => {
             </Row>
 
             <div style={{ textAlign: "right", marginBottom: "10px" }}>
-              <Button type="submit" variant="danger" style={{ backgroundColor: "#e30513", width: "90px", fontSize: "18px", color: "#EBEBEB", fontWeight: "bold", padding: "10px", textAlign: "center" }}>
+              <Button type="submit" variant="danger" className="my-modal-button">
                 Crear
               </Button>
             </div>

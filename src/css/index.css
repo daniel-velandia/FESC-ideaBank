@@ -26,6 +26,14 @@ body {
   top: 23px;
 }
 
+.my-modal-button {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #da241e !important;
+  border-radius: 3px;
+}
+
 .my-badge-pending-state {
   background-color: #da241e !important;
 }
