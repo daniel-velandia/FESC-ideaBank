@@ -23,6 +23,7 @@ import { UserCreate } from "../pages/user/UserCreate";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import '../css/style.css';
+import { ProjectDetail } from "../pages/project/ProjectDetail";
 
 getAuthenticationToken();
 
@@ -47,6 +48,7 @@ const App = () => {
               <Route path="/" element={<ProjectList />} />
               <Route path="/user" element={<UserList />} />
               <Route path="/user/create" element={<UserCreate />} />
+              <Route path="/project/detail" element={<ProjectDetail />}/>
             </Route>
           </Route>
           <Route path="*" element={<Error404 />} />
