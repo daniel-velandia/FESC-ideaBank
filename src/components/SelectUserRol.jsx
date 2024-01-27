@@ -25,12 +25,12 @@ export const SelectUserRol = ({ onSelect }) => {
     onSelect("rol", selected);
   };
   return (
-    <Form.Select
+    <Form.Select  style={{ height: "45px", fontSize: "16px" }}
       value={selectedRol}
       onChange={handleRolChange}
       aria-label="Default select example"
     >
-      <option>-- Selecciona un Rol --</option>
+      <option style={{ fontSize: "16px" }}>Seleccione su rol</option>
       {rols.map((rol, index) => (
         <option key={index} value={rol.nameRol}>
           {rol.nameRol}

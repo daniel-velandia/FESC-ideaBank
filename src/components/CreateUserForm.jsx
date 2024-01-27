@@ -103,15 +103,21 @@ export const CreateUserForm = ({ callback }) => {
         Abrir Modal
       </Button>
 
-      <Modal show={showModal} onHide={handleModalClose} size="lg"  aria-labelledby="contained-modal-title-vcenter" centered>
-        <Modal.Header style={{ backgroundColor: "#9c0f06", color: "white" }} closeButton>
-          <Modal.Title className="text-center">Crear usuario</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <Modal show={showModal} 
+      onHide={handleModalClose} 
+      size="lg" 
+      aria-labelledby="contained-modal-title-vcenter" 
+      centered>
+
+      <Modal.Header className='my-modal-header px-4' closeButton>
+          <div className='my-badge-state'>Crear Usuario</div>
+      </Modal.Header>
+
+      <Modal.Body className='px-4 pt-5'>
           <Form onSubmit={sendResponse} className="px-3">
             <Row>
               <Col sm="12" md="6">
-                <Form.Group className="mb-5 mt-3" controlId="name">
+                <Form.Group className="mb-5 mt-4" controlId="name">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -120,8 +126,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.name}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.name !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.name}
                   </Form.Control.Feedback>
@@ -129,7 +135,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5 mt-3" controlId="lastName">
+                <Form.Group className="mb-5 mt-4" controlId="lastName">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -138,8 +144,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.lastName}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.lastName !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.lastName}
                   </Form.Control.Feedback>
@@ -156,8 +162,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.email}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.email !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.email}
                   </Form.Control.Feedback>
@@ -174,8 +180,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.cellPhone}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.cellPhone !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.cellPhone}
                   </Form.Control.Feedback>
@@ -192,8 +198,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.password}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.password !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.password}
                   </Form.Control.Feedback>
@@ -210,8 +216,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.repeatPassword}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.repeatPassword !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.repeatPassword}
                   </Form.Control.Feedback>
@@ -220,7 +226,7 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="program">
-                  <SelectProgram onSelect={handleSelectChange} />
+                  <SelectProgram onSelect={handleSelectChange} style={{ height: "45px" }} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.program}
                   </Form.Control.Feedback>
@@ -229,7 +235,7 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="rol">
-                  <SelectUserRol onSelect={handleSelectChange} />
+                  <SelectUserRol onSelect={handleSelectChange} style={{ height: "45px" }} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.rol}
                   </Form.Control.Feedback>
@@ -237,9 +243,9 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
             </Row>
 
-            <div className="text-center mb-3">
-              <Button type="submit" variant="danger" className="mt-3" style={{ backgroundColor: "#9c0f06", width: "fit-content" }}>
-                Crear usuario
+            <div style={{ textAlign: "right", marginBottom: "10px" }}>
+              <Button type="submit" variant="danger" className="my-modal-button">
+                Crear
               </Button>
             </div>
           </Form>

@@ -24,12 +24,12 @@ export const SelectProgram = ({ onSelect }) => {
     onSelect("program", selected);
   };
   return (
-    <Form.Select
+    <Form.Select style={{height:"45px"}}
       value={selectedCareer}
       onChange={handleCareerChange}
       aria-label="Default select example"
     >
-      <option>-- Selecciona una carrera --</option>
+      <option>Seleccione su programa</option>
       {programs.map((program, index) => (
         <option key={index} value={program.programName}>
           {program.programName}
