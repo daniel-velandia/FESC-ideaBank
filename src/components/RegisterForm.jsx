@@ -152,7 +152,7 @@ const RegisterForm = ({errors, callback}) => {
 
             </Row>
 
-            <Button type='submit' variant='primary' size="lg" className='mt-3 w-100'>
+            <Button type='submit' variant='danger' size="lg" className='mt-3 w-100' style={{ backgroundColor: "#9c0f06", width: "fit-content" }}>
                 Registrarse
             </Button>
 
