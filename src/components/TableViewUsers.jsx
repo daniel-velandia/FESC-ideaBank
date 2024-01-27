@@ -54,7 +54,7 @@ export const TableViewUsers = () => {
         <select
           value={selectedRole}
           onChange={handleRoleChange}
-          className="form-control"
+          className="form-select"
         >
           <option>-- Selecciona un Rol --</option>
           <option value="Administrador">Administrador</option>

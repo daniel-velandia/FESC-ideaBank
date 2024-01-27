@@ -18,6 +18,7 @@ import { ToastContainer } from "react-toastify";
 import { UserList } from "../pages/user/UserList";
 import { ProjectList } from "../pages/project/ProjectList";
 import { UserCreate } from "../pages/user/UserCreate";
+import { TableTask } from "../pages/user/UserTableTask";
 
 getAuthenticationToken();
 
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/" element={<ProjectList />} />
               <Route path="/user" element={<UserList />} />
               <Route path="/user/create" element={<UserCreate />} />
+              <Route path="/tableTask/projects" element={<TableTask />}/>
             </Route>
           </Route>
           <Route path="*" element={<Error404 />} />

@@ -103,6 +103,46 @@
   color: red;
 }
 
+/* ESTILOS DE BOTONES DE VER Y DESCARGAR DOCUMENTOS */
+.linkIcon {
+  margin-right: 10%;
+  font-size: 130%;
+  color: gray;
+}
+
+.linkIcon:hover {
+  cursor: pointer;
+  color: #e30513;
+  border-radius: 50%;
+  transform: translateY(-25%);
+  transition: 0.3s;
+}
+
+/* ESTILOS DE PÁGINA DE TABLA DE TAREAS Y CREAR TAREA*/
+.button-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.986);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.button-text:hover {
+  background-color: #e30513;
+  color: #fff;
+  opacity: 1;
+}
+
+.button-text:hover + svg {
+  opacity: 0;
+}
+
 /* ESTILOS DE FOOTER */
 .Footer {
   padding: 2rem 0;

@@ -49,21 +49,17 @@ const Footer = () => {
                             <hr className="text-white fw-bold" />
                             <ListGroup>
                                 <ListGroup.Item className="item-listGroup mt-3">
-                                    <a className="text-white" href="https://www.fesc.edu.co/portal/">
+                                    <a className="text-white" href="https://www.fesc.edu.co/portal/" target='_blank'>
                                         Pregrados
                                     </a>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="item-listGroup mt-3">
-                                    <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/posgrado/especializaciones/administracion-de-la-salud">
-<<<<<<< HEAD
+                                    <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/posgrado/especializaciones/administracion-de-la-salud" target='_blank'>
                                         Especializaciones
-=======
-                                        Posgrado
->>>>>>> 0b32259b67a027234b663990818a0fba69af3aa8
                                     </a>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="item-listGroup mt-3">
-                                    <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/diplomados-de-grados#slider-6">
+                                    <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/diplomados-de-grados#slider-6" target='_blank'>
                                         Diplomados
                                     </a>
                                 </ListGroup.Item>

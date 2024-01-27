@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../connections/userActions';
 import { Container, Nav, NavDropdown, SplitButton, Image } from 'react-bootstrap';
 import { FaUser, FaUserPlus } from "react-icons/fa";
+import { HiAnnotation } from 'react-icons/hi'
 import logo from '../img/logo-nav.png';
 import { useEffect } from "react";
 
@@ -26,7 +27,7 @@ function Navigation() {
         fontWeight: '600',
     };
     
-      const dropdownEstilo = {
+    const dropdownEstilo = {
         borderRadius: "50%",
     };
 
@@ -34,20 +35,20 @@ function Navigation() {
         const links = document.querySelectorAll('.link');
     
         const handleLinkClick = (event) => {
-          links.forEach(link => link.classList.remove('active'));
-          event.currentTarget.classList.add('active');
+            links.forEach(link => link.classList.remove('active'));
+            event.currentTarget.classList.add('active');
         };
     
         links.forEach(link => {
-          link.addEventListener('click', handleLinkClick);
+            link.addEventListener('click', handleLinkClick);
         });
     
         return () => {
-          links.forEach(link => {
+            links.forEach(link => {
             link.removeEventListener('click', handleLinkClick);
           });
         };
-      }, []);
+    }, []);
 
     return (
         <Container>
@@ -83,7 +84,7 @@ function Navigation() {
             <hr/>
             <div className="nav-scroller py-1 mb-2">
                 <Nav className="nav animate__animated animate__zoomIn animate__slow 1s">
-                    <NavLink to={"/user"} className="link p-2 ms-0 mx-3" id="usuarios-link">
+                    <NavLink to={"/user"} className="link p-2 ms-0 mx-3" id="mostrar-usuarios-link">
                         <FaUser className='mx-2' />
                         <span>Usuarios</span>
                     </NavLink>
@@ -91,6 +92,11 @@ function Navigation() {
                     <NavLink to={"/user/create"} className="link p-2 ms-0 mx-3" id="crear-usuario-link">
                         <FaUserPlus className='mx-2' />
                         <span>Crear usuario</span>
+                    </NavLink>
+
+                    <NavLink to={"/tableTask/projects"} className="link p-2 ms-0 mx-3" id="crear-proyecto-link">
+                        <HiAnnotation className='mx-2' />
+                        <span>Proyectos</span>
                     </NavLink>
                 </Nav>
             </div>

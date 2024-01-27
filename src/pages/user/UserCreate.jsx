@@ -35,7 +35,7 @@ export const UserCreate = () => {
     }
 
     if (user.password !== user.repeatPassword) {
-      error.password = "Las contraseñas debe coincidir";
+      error.password = "Las contraseñas deben coincidir";
     }
 
     if (validator.isEmpty(user.program)) {
