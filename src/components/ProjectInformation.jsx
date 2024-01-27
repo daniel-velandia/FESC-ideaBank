@@ -13,12 +13,12 @@ export const ProjectInformation = () => {
   });
 
   const selectedTypes = [
-    { name: "INGENIERIA DE SOFWARE", color: "#21618C" },
-    { name: "DISEÃ‘O GRAFICO", color: "#B7950B" },
-    { name: "ADMINISTRACION FINANCIERA", color: "#C0392B" },
-    { name: "DISEÃ‘O DE MODAS", color: "#E856A3" },
-    { name: "HOTELERIA Y TURISMO", color: "#27AE60" },
-    { name: "LOGISTICA EMPRESARIAL", color: "#D35400" },
+    { name: "INGENIERIA DE SOFWARE" },
+    { name: "DISEÃ‘O GRAFICO" },
+    { name: "ADMINISTRACION FINANCIERA" },
+    { name: "DISEÃ‘O DE MODAS" },
+    { name: "HOTELERIA Y TURISMO" },
+    { name: "LOGISTICA EMPRESARIAL" },
   ];
 
   const students = [

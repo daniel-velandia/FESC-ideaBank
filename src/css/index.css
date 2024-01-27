@@ -42,6 +42,25 @@ body {
   background-color: #03a9f4 !important;
 }
 
+.my-badge-career-software {
+  background-color: #2596be !important;
+}
+.my-badge-career-graphic  {
+  background-color: #ffb900 !important;
+}
+.my-badge-career-tourism  {
+  background-color: #00a99d !important;
+}
+.my-badge-career-fashions  {
+  background-color: #ab4bde !important;
+}
+.my-badge-career-financial   {
+  background-color: #8e0606 !important;
+}
+.my-badge-career-logistics    {
+  background-color: #f44336 !important;
+}
+
 .my-projects-table {
   max-height: 300px !important;
   overflow-y: auto !important;
