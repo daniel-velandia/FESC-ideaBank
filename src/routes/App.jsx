@@ -2,6 +2,8 @@
 import "moment/locale/es";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import 'animate.css';
 import { Navigation } from "../layouts/Navigation";
 import { Footer } from "../layouts/Footer";
@@ -16,14 +18,16 @@ import { ToastContainer } from "react-toastify";
 import { Login } from "../pages/auth/Login";
 import { Register } from "../pages/auth/Register";
 import { Error404 } from "../pages/Error404";
+
 import { UserList } from "../pages/user/UserList";
-import { ProjectList } from "../pages/project/ProjectList";
 import { UserCreate } from "../pages/user/UserCreate";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "react-toastify/dist/ReactToastify.css";
-import '../css/style.css';
+import { ProjectList } from "../pages/project/ProjectList";
 import { ProjectDetail } from "../pages/project/ProjectDetail";
+
+
+
+import '../css/style.css';
 
 getAuthenticationToken();
 

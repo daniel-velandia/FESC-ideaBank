@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Form, ListGroup } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 
 export const ListTeamMembers = ({ students, onStudentSelect }) => {
   const [selectedStudents, setSelectedStudents] = useState([]);
 
-  const handleCheckboxChange = (studentId) => {
-    setSelectedStudents((prevSelectedStudents) => {
-      const isSelected = prevSelectedStudents.includes(studentId);
+  const handleUserClick = (studentId) => {
+    const isSelected = selectedStudents.includes(studentId);
 
+    setSelectedStudents((prevSelectedStudents) => {
       if (isSelected) {
         return prevSelectedStudents.filter((id) => id !== studentId);
       } else {
@@ -15,26 +15,26 @@ export const ListTeamMembers = ({ students, onStudentSelect }) => {
       }
     });
 
-    // Llama a la función de devolución de llamada con el estado más reciente
     onStudentSelect(selectedStudents);
   };
 
   return (
-    <div style={{ maxHeight: "640px", overflowY: "auto" }}>
+    <div className="mt-4" style={{ maxHeight: "320px", overflowY: "auto" }}>
       <ListGroup>
         {students.map((student) => (
-          <ListGroup.Item key={student.id}>
-            <Form.Check
-              type="checkbox"
-              id={`checkbox-${student.id}`}
-              label={student.name}
-              checked={selectedStudents.includes(student.id)}
-              onChange={() => handleCheckboxChange(student.id)}
-            />
+          <ListGroup.Item
+            key={student.id}
+            onClick={() => handleUserClick(student.id)}
+            style={{
+              cursor: "pointer",
+              position: "relative",
+              opacity: selectedStudents.includes(student.id) ? 0.2 : 1,
+            }}
+          >
+            {student.name}
           </ListGroup.Item>
         ))}
       </ListGroup>
     </div>
   );
 };
-

@@ -42,9 +42,7 @@ export const ProjectInformation = () => {
     { id: 18, name: "Estudiante 18" },
     { id: 19, name: "Estudiante 19" },
     { id: 20, name: "Estudiante 20" },
-   
   ];
-  
 
   const handleStudentSelect = (selectedStudents) => {
     console.log("Estudiantes seleccionados:", selectedStudents);
@@ -52,10 +50,10 @@ export const ProjectInformation = () => {
   };
 
   return (
-    <Form className="px-3">
+    <Form className="px-3 mt-4">
       <Row>
         <Col sm="12" md="6">
-          <Form.Group className="mb-5 mt-3" controlId="title">
+          <Form.Group controlId="title">
             <Form.Control
               size="lg"
               type="text"
@@ -63,38 +61,39 @@ export const ProjectInformation = () => {
               placeholder="Ingrese el nombre del proyecto"
               value={formData.title}
               isInvalid={formSubmitted && formErrors.title !== ""}
+              style={{ width: "90%" }}
             />
 
             <Form.Control.Feedback type="invalid">
               {formSubmitted && formErrors.title}
             </Form.Control.Feedback>
           </Form.Group>
-          <h3>Valor de propuesta</h3>
+          <h3 className="mt-4">Valor de propuesta</h3>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, ipsam
             exercitationem. Officia dicta, tenetur unde necessitatibus possimus
             earum voluptate beatae saepe, labore delectus consectetur cupiditate
             voluptatum ea excepturi facere praesentium!
           </p>
-          <h3>Descripcion</h3>
+          <h3 className="mt-4">Descripcion</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Recusandae, distinctio quod! Quaerat expedita similique deserunt,
             ducimus corporis optio, nisi inventore commodi culpa animi itaque
             esse magni aut iusto qui. Aperiam.
           </p>
-          <h3>Usuario</h3>
+          <h3 className="mt-4">Usuario</h3>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
             temporibus ducimus accusantium doloremque voluptatem, asperiores ut!
             Ad sunt tempora, dolor cupiditate veritatis quia, vitae impedit
             doloremque odit, asperiores quos ab?
           </p>
-          <h3>Tags</h3>
+          <h3 className="mt-4">Tags</h3>
           {selectedTypes.map((type, index) => (
             <SelectTypeTags key={index} name={type.name} color={type.color} />
           ))}
-          <p>fecha</p>
+          <p className="mt-4">fecha</p>
         </Col>
 
         <Col sm="12" md="6">
