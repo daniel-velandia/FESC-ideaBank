@@ -68,24 +68,20 @@ export const CreateProposalModal = ({ callback }) => {
         Abrir Modal
       </Button>
 
-      <Modal
-        show={showModal}
-        onHide={handleModalClose}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header
-          style={{ backgroundColor: "#9c0f06", color: "white" }}
-          closeButton
-        >
-          <Modal.Title className="text-center">Crear Propuesta</Modal.Title>
-        </Modal.Header>
+      <Modal show={showModal} 
+      onHide={handleModalClose} 
+      size="lg" 
+      aria-labelledby="contained-modal-title-vcenter" 
+      centered>
+
+      <Modal.Header className='my-modal-header px-4' closeButton>
+          <div className='my-badge-state'>Crear Proyecto</div>
+      </Modal.Header>
         <Modal.Body>
           <Form onSubmit={sendResponse} className="px-3">
             <Row>
               <Col sm="12">
-                <Form.Group className="mb-4" controlId="valueProposal">
+                <Form.Group className="mb-4 mt-4" controlId="valueProposal">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -106,7 +102,7 @@ export const CreateProposalModal = ({ callback }) => {
                 <Form.Group className="mb-4" controlId="description">
                   <Form.Control
                     as="textarea"
-                    rows={4}
+                    rows={8}
                     size="lg"
                     name="description"
                     placeholder="Ingrese la descripción"
@@ -122,16 +118,12 @@ export const CreateProposalModal = ({ callback }) => {
               </Col>
             </Row>
 
-            <div className="text-center">
-              <Button
-                type="submit"
-                variant="danger"
-                className="mt-3"
-                style={{ backgroundColor: "#9c0f06", width: "fit-content" }}
-              >
-                Crear Propuesta
+            <div style={{ textAlign: "right", marginBottom: "10px" }}>
+              <Button type="submit" variant="danger" className="my-modal-button">
+                Crear
               </Button>
             </div>
+
           </Form>
         </Modal.Body>
       </Modal>

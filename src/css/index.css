@@ -32,6 +32,7 @@ body {
   font-weight: 600;
   background: #da241e !important;
   border-radius: 3px;
+  width: 80px;
 }
 
 .my-badge-pending-state {
