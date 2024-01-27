@@ -1,28 +1,38 @@
 import { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { USER_DETAIL_POST_ENDPOINT } from '../connections/helpers/endpoints';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Badge, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
+import ToastError from './ToastError';
+import { UserProyectsTable } from './UserProyectsTable';
 
 function MyVerticallyCenteredModal(props) {
 
+  const renderToastError = () => {
+    if (props.errorMessage) {
+      return <ToastError message={props.errorMessage} />;
+    }
+    return null;
+  };
+  
   return (
-    <Modal
+    <>
+      {renderToastError()}
+      <Modal
       {...props}
       size="md"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-        <Modal.Header>
-        <Modal.Title className='me-5' id="contained-modal-title-vcenter">
-          {props.user.name} {props.user.lastName}
-        </Modal.Title>
-        <Badge bg="primary">{props.user.rol}</Badge>
+      <Modal.Header className='my-modal-header px-4' closeButton>
+          <div className='my-badge-state'>{props.user.rol}</div>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className='px-4 pt-5'>
         <Row>
+          <Col xs="12" className='mb-4'>
+            <strong className="h3">{props.user.name} {props.user.lastName}</strong>
+          </Col>
           <Col xs="12" sm="6">
             <strong>Correo</strong>
           </Col>
@@ -33,18 +43,18 @@ function MyVerticallyCenteredModal(props) {
             <strong>Telefono</strong>
           </Col>
           <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{props.user.cellPhone}</p>
+            <p>{props.user.cellPhone || "No tiene"}</p>
           </Col>
           {
             props.user.companyName &&
-            <div>
+            <>
               <Col xs="12" sm="6">
                 <strong>Empresa</strong>
               </Col>
               <Col xs="12" sm="6" className='text-sm-end'>
                 <p>{props.user.companyName}</p>
               </Col>
-            </div>
+            </>
           }
           {
             props.user.program &&
@@ -57,17 +67,34 @@ function MyVerticallyCenteredModal(props) {
               </Col>
             </>
           }
+          <Col xs="12" className='mt-3 mb-4'>
+            <strong className="h5">Proyectos</strong>
+          </Col>
+          <Col xs="12">
+            <UserProyectsTable 
+              projects={props.user.projects || [
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
+                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'}
+              ]}
+            />
+          </Col>
         </Row>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
+    </>
   );
 }
 
 function ModalUserDetail() {
   const [modalShow, setModalShow] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -78,11 +105,13 @@ function ModalUserDetail() {
     if(q){
       axios.get(`${USER_DETAIL_POST_ENDPOINT}?email=${q}`)
       .then(res => {
-        setUser(res.data)
-        setModalShow(true)
-        console.log(res.data)
+        setUser(res.data);
+        setModalShow(true);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setModalShow(false);
+        setErrorMessage(err.response.data);
+      });
     }
   }, [q, location]);
 
@@ -97,6 +126,7 @@ function ModalUserDetail() {
   return (
       <MyVerticallyCenteredModal
         user={user}
+        errorMessage={errorMessage}
         show={modalShow}
         onHide={() => hideModal()}
       />
