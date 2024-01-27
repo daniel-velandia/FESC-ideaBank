@@ -105,15 +105,23 @@ export const CreateUserForm = ({ callback }) => {
         Abrir Modal
       </Button>
 
-      <Modal show={showModal} onHide={handleModalClose} size="lg"  aria-labelledby="contained-modal-title-vcenter" centered>
-        <Modal.Header style={{ backgroundColor: "#9c0f06", color: "white" }} closeButton>
-          <Modal.Title className="text-center">Crear usuario</Modal.Title>
+      <Modal show={showModal} onHide={handleModalClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+        <div className="d-none  d-lg-block" style={{ backgroundColor: "#e30513", color: "#EBEBEB", padding: "10px", textAlign: "center", width: "150px", height: "45px", position: "absolute", top: "10%", left: "13.5%", transform: "translate(-50%, -50%)", borderRadius: "3px", fontSize: "18px", fontWeight: "bold" }}>
+          Crear usuario
+        </div>
+        <div className="d-none d-md-block d-lg-none" style={{ backgroundColor: "#e30513", color: "#EBEBEB", padding: "11px", textAlign: "center", width: "135px", position: "absolute", top: "10%", left: "18%", transform: "translate(-50%, -50%)", borderRadius: "3px", fontSize: "16px", fontWeight: "bold" }}>
+          Crear usuario
+        </div>
+        <div className="d-sm-block d-md-none" style={{ backgroundColor: "#e30513", color: "#EBEBEB", padding: "12px", textAlign: "center", width: "135px", position: "absolute", top: "6%", left: "22%", transform: "translate(-50%, -50%)", borderRadius: "3px", fontSize: "14px", fontWeight: "bold" }}>
+          Crear usuario
+        </div>
+        <Modal.Header style={{ backgroundColor: "#FAB9B9", color: "white", height: "65px" }} closeButton>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={sendResponse} className="px-3">
             <Row>
               <Col sm="12" md="6">
-                <Form.Group className="mb-5 mt-3" controlId="name">
+                <Form.Group className="mb-5 mt-4" controlId="name">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -122,8 +130,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.name}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.name !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.name}
                   </Form.Control.Feedback>
@@ -131,7 +139,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5 mt-3" controlId="lastName">
+                <Form.Group className="mb-5 mt-4" controlId="lastName">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -140,8 +148,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.lastName}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.lastName !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.lastName}
                   </Form.Control.Feedback>
@@ -158,8 +166,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.email}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.email !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.email}
                   </Form.Control.Feedback>
@@ -176,8 +184,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.cellPhone}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.cellPhone !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.cellPhone}
                   </Form.Control.Feedback>
@@ -194,8 +202,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.password}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.password !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.password}
                   </Form.Control.Feedback>
@@ -212,8 +220,8 @@ export const CreateUserForm = ({ callback }) => {
                     value={formData.repeatPassword}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.repeatPassword !== ""}
+                    style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
-
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.repeatPassword}
                   </Form.Control.Feedback>
@@ -222,7 +230,7 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="program">
-                  <SelectProgram onSelect={handleSelectChange} />
+                  <SelectProgram onSelect={handleSelectChange} style={{ height: "45px" }} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.program}
                   </Form.Control.Feedback>
@@ -231,7 +239,7 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="rol">
-                  <SelectUserRol onSelect={handleSelectChange} />
+                  <SelectUserRol onSelect={handleSelectChange} style={{ height: "45px" }} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.rol}
                   </Form.Control.Feedback>
@@ -239,9 +247,9 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
             </Row>
 
-            <div className="text-center mb-3">
-              <Button type="submit" variant="danger" className="mt-3" style={{ backgroundColor: "#9c0f06", width: "fit-content" }}>
-                Crear usuario
+            <div style={{ textAlign: "right", marginBottom: "10px" }}>
+              <Button type="submit" variant="danger" style={{ backgroundColor: "#e30513", width: "90px", fontSize: "18px", color: "#EBEBEB", fontWeight: "bold", padding: "10px", textAlign: "center" }}>
+                Crear
               </Button>
             </div>
           </Form>
