@@ -10,3 +10,39 @@ body {
   display: flex;
   align-items: center;
 }
+
+.my-modal-header {
+  border-bottom: none !important;
+  background-color: #ffc8c8;
+}
+
+.my-badge-state {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #da241e !important;
+  border-radius: 3px;
+  position: absolute;
+  top: 23px;
+}
+
+.my-badge-pending-state {
+  background-color: #da241e !important;
+}
+
+.my-badge-appoved-state {
+  background-color: #f9db4a !important;
+}
+
+.my-badge-progress-state {
+  background-color: #4baf4f !important;
+}
+
+.my-badge-done-state {
+  background-color: #03a9f4 !important;
+}
+
+.my-projects-table {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}
