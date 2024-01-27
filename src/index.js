@@ -5,8 +5,6 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import './css/index.css';
 import App from './routes/App';
 
-import './css/index.css';
-import App from './routes/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
