@@ -92,14 +92,14 @@ right: 0;
 .link.active::after,
 .link:hover::after {
 width: 100%;
-background-color: red;
+background-color: #d92323;
 }
 
 .link.active span,
 .link:hover span,
 .link.active svg,
 .link:hover svg {
-color: red;
+color: #d92323;
 }
 
 /* ESTILOS DE FOOTER */
