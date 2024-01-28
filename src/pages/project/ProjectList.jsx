@@ -3,9 +3,6 @@ import CardProject from "../../components/CardProject";
 import "../../css/style.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { CreateProposalModal } from "../../components/CreateProposalModal";
-import image1 from "../../img/imagen 1.jpg";
-import image2 from "../../img/imagen 2.jpg";
-import image4 from "../../img/imagen 4.jpg";
 import axios from "axios";
 import validator from "validator";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
@@ -16,24 +13,33 @@ import ToastSucces from "../../components/ToastSucces";
 const cards = [
   {
     id: 1,
-    title: "Verde Esperanza",
-    imageSource: image1,
+    title: "Tigo",
     url: "",
-    text: `Damos la bienvenida a "Verde Esperanza", un proyecto dedicado a la promoción de prácticas sostenibles y al impulso de la conciencia ambiental en nuestra comunidad.`,
+    estado: `Pendiente`,
   },
   {
     id: 2,
     title: "Conectando Mentes",
-    imageSource: image2,
     url: "",
-    text: `¡Bienvenidos a "Conectando Mentes"! Este proyecto tiene como objetivo principal derribar barreras y promover la inclusión educativa para todos nuestros alumnos. `,
+    estado: `Validada`,
   },
   {
     id: 3,
     title: "EcoVida",
-    imageSource: image4,
     url: "",
-    text: `Te damos la bienvenida a "EcoVida", un proyecto dedicado a fomentar el desarrollo sostenible en nuestra comunidad.`,
+    estado: `En ejecución`,
+  },
+  {
+    id: 47,
+    title: "EcoVida",
+    url: "",
+    estado: `En ejecución`,
+  },
+  {
+    id: 5,
+    title: "EcoVida",
+    url: "",
+    estado: `Terminada`,
   },
 ];
 
@@ -67,11 +73,9 @@ function ProjectList() {
           },
         })
         .then((res) => {
-          setsuccesMessage("Propuesta creada con exito")
+          setsuccesMessage("Propuesta creada con exito");
         })
-        .catch((err) =>
-          setErrorMessage(err.response.data)
-        );
+        .catch((err) => setErrorMessage(err.response.data));
     }
   };
 
@@ -91,15 +95,16 @@ function ProjectList() {
   return (
     <div className="cards-container">
       <Container className="mt-5">
+      <h2 className="titleCard"><strong>Proyectos</strong></h2>
         <CreateProposalModal callback={createProposal} />
         <Row>
-          {cards.map(({ title, imageSource, url, id, text }) => (
-            <Col key={id} xs={12} md={6} lg={6} className="mb-4">
+          {cards.map(({ title, url, id, text, estado }) => (
+            <Col key={id} xs={12} sm={8} md={6} lg={4} xl={3} className="mb-4">
               <CardProject
                 text={text}
-                imageSource={imageSource}
                 title={title}
                 url={url}
+                estado={estado.toLowerCase()}
               />
             </Col>
           ))}
