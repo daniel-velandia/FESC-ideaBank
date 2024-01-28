@@ -42,7 +42,7 @@ const Login = () => {
       dispatch(authentication(user))
         .then((res) => navigation("/"))
         .catch((err) => {
-          setErrorMessage(err.response.data.mensaje);
+          setErrorMessage(err.response.data.mensaje)
         });
     }
   };
@@ -86,6 +86,7 @@ const Login = () => {
             </Col>
         </Row>
     </div>
+    {renderToastError()}
 </Container>
 
 

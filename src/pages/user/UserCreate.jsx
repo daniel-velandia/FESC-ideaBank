@@ -7,10 +7,13 @@ import validator from "validator";
 import { USER_CREATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import axios from "axios";
 import ToastError from "../../components/ToastError";
+import ToastSucces from "../../components/ToastSucces";
 
 export const UserCreate = () => {
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
+  const [succesMessage, setsuccesMessage] = useState("");
+
   const navegar = useNavigate();
 
   const createUser = async (user) => {
@@ -63,12 +66,10 @@ export const UserCreate = () => {
         })
         .then((res) => {
           navegar("/user");
+          setsuccesMessage("Propuesta creada con exito");
         })
         .catch((err) =>
-          setErrors({
-            register:
-              "Hubo un problema al crear el usuario, puede que el correo ya haya sido registrado",
-          })
+        setErrorMessage(err.response.data)
         );
     }
   };
@@ -76,6 +77,13 @@ export const UserCreate = () => {
   const renderToastError = () => {
     if (errorMessage) {
       return <ToastError message={errorMessage} />;
+    }
+    return null;
+  };
+
+  const renderToastSucces = () => {
+    if (succesMessage) {
+      return <ToastSucces message={succesMessage} />;
     }
     return null;
   };
@@ -100,6 +108,7 @@ export const UserCreate = () => {
             )}
             <CreateUserForm errors={errors} callback={createUser} />
             {renderToastError()}
+            {renderToastSucces()}
           </Card.Body>
         </Col>
       </Row>
