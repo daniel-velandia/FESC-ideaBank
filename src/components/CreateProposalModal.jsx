@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Col, Row, Form, Button, Modal } from "react-bootstrap";
+import { FaPlus, FaFilter } from "react-icons/fa";
 
 export const CreateProposalModal = ({ callback }) => {
   const [showModal, setShowModal] = useState(false);
@@ -64,19 +65,31 @@ export const CreateProposalModal = ({ callback }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleModalShow}>
-        Abrir Modal
-      </Button>
+      <div className="button-container">
+        <Button
+          variant="secondary"
+        >
+          <FaFilter className="mr-2" />
+        </Button>
 
-      <Modal show={showModal} 
-      onHide={handleModalClose} 
-      size="lg" 
-      aria-labelledby="contained-modal-title-vcenter" 
-      centered>
+        <Button
+          variant="secondary"
+          onClick={handleModalShow}
+        >
+          <FaPlus className="mr-2" />
+        </Button>
+      </div>
 
-      <Modal.Header className='my-modal-header px-4' closeButton>
-          <div className='my-badge-state'>Crear Proyecto</div>
-      </Modal.Header>
+      <Modal
+        show={showModal}
+        onHide={handleModalClose}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header className="my-modal-header px-4" closeButton>
+          <div className="my-badge-state">Crear Proyecto</div>
+        </Modal.Header>
         <Modal.Body>
           <Form onSubmit={sendResponse} className="px-3">
             <Row>
@@ -119,11 +132,14 @@ export const CreateProposalModal = ({ callback }) => {
             </Row>
 
             <div style={{ textAlign: "right", marginBottom: "10px" }}>
-              <Button type="submit" variant="danger" className="my-modal-button">
+              <Button
+                type="submit"
+                variant="danger"
+                className="my-modal-button"
+              >
                 Crear
               </Button>
             </div>
-
           </Form>
         </Modal.Body>
       </Modal>

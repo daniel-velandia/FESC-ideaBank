@@ -5,27 +5,23 @@ import "../css/style.css";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function CardProject({ imageSource, title, text, url }) {
+function CardProject({ imageSource, title, text, url, estado }) {
   return (
-    <Link to={url} className="Card--link">
-      <Card className="Card--featured">
-        <div className="d-flex align-items-center">
-          <Card.Body>
-            <Card.Title>{title}</Card.Title>
-            <Card.Text>
-              {text ? text : "Lorem ipsum dolor sit amet consectetu"}
-            </Card.Text>
-          </Card.Body>
-          <div className="image-container">
-            <Card.Img
-              className="custom-img"
-              variant="bottom"
-              src={imageSource}
-            />
-          </div>
+    
+    <div className={`card card-project card-${estado}`}>
+      <div className="card-header"></div>
+      <div className="status-indicator">
+        <div className={`status-indicator__dot status-${estado}`}>
+          <span className="status-text">{estado}</span>
         </div>
-      </Card>
-    </Link>
+      </div>
+      <div className="card-body">
+        <h5>{title}</h5>
+        <p>Contenido del proyecto</p>{" "}
+        {/* Agrega el contenido del proyecto aquí */}
+        <span>17/12/2023</span>
+      </div>
+    </div>
   );
 }
 
