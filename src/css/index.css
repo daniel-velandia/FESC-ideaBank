@@ -11,6 +11,49 @@ body {
   align-items: center;
 }
 
+.my-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f6f6f6;
+  color: #000;
+  cursor: pointer;
+}
+
+.dropdown-toggle {
+  display: -webkit-box !important;
+}
+
+.dropdown-toggle::after {
+  margin-left: 15px;
+  color: #000;
+  vertical-align: middle;
+}
+
+.my-avatar-dropdown:hover > .dropdown-toggle::after {
+  color: #fff;
+}
+
+.my-avatar-dropdown {
+  width: 70px;
+  background-color: #e5e5e5;
+  align-self: center;
+  padding: 5px;
+  border-radius: 20px;
+  align-self: self-end;
+}
+
+.my-avatar-dropdown:hover {
+  background-color: #d92323;
+}
+
+.dropdown-menu {
+  margin-top: 5px;
+}
+
 .my-modal-header {
   border-bottom: none !important;
   background-color: #ffc8c8;
