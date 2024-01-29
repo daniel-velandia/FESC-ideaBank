@@ -10,5 +10,5 @@ export const USER_DETAIL_POST_ENDPOINT = API_URL + "/user/detail" //obtener el d
 export const USER_LIST_GET_ENDPOINT = API_URL+"/user/list"; //obtener usuarios existentes
 export const USER_CREATE_POST_ENDPOINT = API_URL + "/user/create"; //Creacion usuarios internos
 
-
+export const PROPOSAL_LIST_GET_ENDPOINT = API_URL + "/project/list" //Creacion de un propuesta de proyecto
 export const PROPOSAL_CREATE_POST_ENDPOINT = API_URL + "/project/create" //Creacion de un propuesta de proyecto

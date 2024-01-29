@@ -118,6 +118,26 @@ body {
   overflow-y: auto !important;
 }
 
+.my-dropdown-project-filter, .my-btn-create-project {
+  background-color: #b6b6b6 !important;
+  border: none;
+}
+
+.my-dropdown-project-filter::after {
+  display: none !important;
+}
+
+.my-dropdown-filter-active {
+  background-color: #fff !important;
+  color: #000 !important;
+  font-weight: 600;
+}
+
+.my-dropdown-filter-desactive {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
 .border-info-component {
   border-right: 1px solid #ccc;
 }
