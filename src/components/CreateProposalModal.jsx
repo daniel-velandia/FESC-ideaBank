@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Col, Row, Form, Button, Modal } from "react-bootstrap";
-import { FaPlus, FaFilter } from "react-icons/fa";
+import { Col, Row, Form, Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FaPlus } from "react-icons/fa";
+import { SelectProjectFilter } from "./SelectProjectFilter";
 
 export const CreateProposalModal = ({ callback }) => {
   const [showModal, setShowModal] = useState(false);
@@ -63,21 +64,30 @@ export const CreateProposalModal = ({ callback }) => {
     return errors;
   };
 
+  const renderCreateTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Crear un proyecto
+    </Tooltip>
+  );
+
+
   return (
     <>
       <div className="button-container">
-        <Button
-          variant="secondary"
-        >
-          <FaFilter className="mr-2" />
-        </Button>
+        <SelectProjectFilter />
 
-        <Button
-          variant="secondary"
-          onClick={handleModalShow}
+        <OverlayTrigger
+          placement="top"
+          delay={{ show: 250, hide: 400 }}
+          overlay={renderCreateTooltip}
         >
-          <FaPlus className="mr-2" />
-        </Button>
+          <Button
+            className="my-btn-create-project"
+            onClick={handleModalShow}
+          >
+            <FaPlus className="mr-2" />
+          </Button>
+        </OverlayTrigger>
       </div>
 
       <Modal

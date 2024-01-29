@@ -2,34 +2,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../css/style.css";
-import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-function CardProject({ imageSource, title, text, url, estado }) {
+function CardProject({ project }) {
   return (
-    
-    <div className={`card card-project card-${estado}`}>
-      <div className="card-header"></div>
-      <div className="status-indicator">
-        <div className={`status-indicator__dot status-${estado}`}>
-          <span className="status-text">{estado}</span>
+    <NavLink to={`/project/detail/${project.identificator}`} className="text-decoration-none">
+      <div className={`card card-project card-${project.status.toLowerCase()}`}>
+        <div className="card-header border-0"></div>
+        <div className="status-indicator">
+          <div className={`status-indicator__dot status-${project.status.toLowerCase()}`}>
+            <span className="status-text">{project.status}</span>
+          </div>
+        </div>
+        <div className="card-body">
+          <h5>{project.company}</h5>
+          <p>{project.creationDate}</p>
         </div>
       </div>
-      <div className="card-body">
-        <h5>{title}</h5>
-        <p>Contenido del proyecto</p>{" "}
-        {/* Agrega el contenido del proyecto aquí */}
-        <span>17/12/2023</span>
-      </div>
-    </div>
+    </NavLink>
   );
 }
 
 CardProject.propTypes = {
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string,
-  url: PropTypes.string,
-  imageSource: PropTypes.string,
+  project: PropTypes.object.isRequired
 };
 
 export default CardProject;
