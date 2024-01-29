@@ -157,7 +157,7 @@ body {
   margin-bottom: "0.5rem";
 }
 
-.my-header-project-pending  {
+.my-header-project-PENDIENTE  {
   border-bottom: none !important;
   background-color: #ffc8c8;
 }
@@ -174,7 +174,7 @@ body {
   background-color: #78d5ff;
 }
 
-.my-badge-state-pending {
+.my-badge-state-PENDIENTE {
   padding: 12px;
   color: #fff;
   font-weight: 600;
@@ -210,3 +210,13 @@ body {
   position: absolute;
   top: 15px;
 }
+
+/* SelectTypeTags.css */
+
+.select-type-tag {
+  opacity: 0.5; 
+}
+.select-type-tag.selected {
+  opacity: 1; 
+}
+

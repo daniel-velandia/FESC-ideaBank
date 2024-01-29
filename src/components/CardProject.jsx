@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 function CardProject({ project }) {
   return (
-    <NavLink to={`/project/detail/${project.identificator}`} className="text-decoration-none">
+    <NavLink to={`/project/detail?id=${project.identificator}`} className="text-decoration-none">
       <div className={`card card-project card-${project.status.toLowerCase()}`}>
         <div className="card-header border-0"></div>
         <div className="status-indicator">

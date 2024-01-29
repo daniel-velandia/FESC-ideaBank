@@ -11,38 +11,6 @@ import ToastError from "../../components/ToastError";
 import ToastSucces from "../../components/ToastSucces";
 import { useLocation } from "react-router-dom";
 
-const cards = [
-  {
-    id: 1,
-    title: "Tigo",
-    url: "",
-    estado: `Pendiente`,
-  },
-  {
-    id: 2,
-    title: "Conectando Mentes",
-    url: "",
-    estado: `Validada`,
-  },
-  {
-    id: 3,
-    title: "EcoVida",
-    url: "",
-    estado: `En ejecución`,
-  },
-  {
-    id: 47,
-    title: "EcoVida",
-    url: "",
-    estado: `En ejecución`,
-  },
-  {
-    id: 5,
-    title: "EcoVida",
-    url: "",
-    estado: `Terminada`,
-  },
-];
 
 function ProjectList() {
   const [errorMessage, setErrorMessage] = useState(null);
