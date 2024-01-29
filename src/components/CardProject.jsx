@@ -2,10 +2,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "../css/style.css";
-import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
-function CardProject({ imageSource, title, text, url, estado }) {
+
+function CardProject({  title, estado }) {
   return (
     
     <div className={`card card-project card-${estado}`}>

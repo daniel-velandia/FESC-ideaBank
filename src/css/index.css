@@ -97,23 +97,96 @@ body {
 .my-badge-career-software {
   background-color: #2596be !important;
 }
-.my-badge-career-graphic  {
+.my-badge-career-graphic {
   background-color: #ffb900 !important;
 }
-.my-badge-career-tourism  {
+.my-badge-career-tourism {
   background-color: #00a99d !important;
 }
-.my-badge-career-fashions  {
+.my-badge-career-fashions {
   background-color: #ab4bde !important;
 }
-.my-badge-career-financial   {
+.my-badge-career-financial {
   background-color: #8e0606 !important;
 }
-.my-badge-career-logistics    {
+.my-badge-career-logistics {
   background-color: #f44336 !important;
 }
 
 .my-projects-table {
   max-height: 300px !important;
   overflow-y: auto !important;
+}
+
+.border-info-component {
+  border-right: 1px solid #ccc;
+}
+
+@media (max-width: 767px) {
+  .border-info-component {
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+}
+
+
+.label-as-h2 {
+  font-size: "1.5rem";
+  font-weight: "bold";
+  margin-bottom: "0.5rem";
+}
+
+.my-header-project-pending  {
+  border-bottom: none !important;
+  background-color: #ffc8c8;
+}
+.my-header-project-validated  {
+  border-bottom: none !important;
+  background-color: #f5f6ab;
+}
+.my-header-project-inprogress  {
+  border-bottom: none !important;
+  background-color: #d3ffc8;
+}
+.my-header-project-finalized  {
+  border-bottom: none !important;
+  background-color: #78d5ff;
+}
+
+.my-badge-state-pending {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #da241e !important;
+  border-radius: 3px;
+  position: absolute;
+  top: 15px;
+}
+.my-badge-state-validated {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #f9db4a !important;
+  border-radius: 3px;
+  position: absolute;
+  top: 15px;
+}
+.my-badge-state-inprogress {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #4baf4f !important;
+  border-radius: 3px;
+  position: absolute;
+  top: 15px;
+}
+.my-badge-state-finalized {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #03a9f4 !important;
+  border-radius: 3px;
+  position: absolute;
+  top: 15px;
 }
