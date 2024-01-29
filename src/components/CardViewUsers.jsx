@@ -1,13 +1,22 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { USER_LIST_GET_ENDPOINT } from "../connections/helpers/endpoints";
 import { SelectUserRolFilter } from "./SelectUserRolFilter";
+import IconRolAdmin from "../img/icon-roles/IconRolAdmin.png";
+import iconRolDirector from "../img/icon-roles/IconRolDirector.png";
+import IconRolEstudiante from "../img/icon-roles/IconRolEstudiante.png";
+import IconRolEmpresa from "../img/icon-roles/IconRolEmpresa.png";
+import IconRolDocente from "../img/icon-roles/IconRolDocente.png";
+import IconRolUsuario from "../img/icon-roles/IconRolUsuario.png";
+import IconRolValidador from "../img/icon-roles/IconRolValidador.png";
+import { Plus } from "react-bootstrap-icons";
 
 export const CardViewUsers = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [selectedRoles, setSelectedRoles] = useState([]);
+  const [colWidth, setColWidth] = useState("400px");
 
   const handleCheckboxChange = (selectedRoles) => {
     setSelectedRoles(selectedRoles);
@@ -21,64 +30,116 @@ export const CardViewUsers = () => {
     let token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    const url =
-      USER_LIST_GET_ENDPOINT +
-      (selectedRoles.length > 0
-        ? `?roles=${selectedRoles.join("&roles=")}`
-        : "");
+    const rolesQueryString =
+      selectedRoles.length > 0 ? `?roles=${selectedRoles.join("&roles=")}` : "";
+
+    const url = USER_LIST_GET_ENDPOINT + rolesQueryString;
 
     axios
       .get(url)
-      .then((res) => {
-        setUsuarios(res.data);
-      })
+      .then((res) => setUsuarios(res.data))
       .catch((err) => console.error(err));
   };
+  useEffect(() => {
+    const handleResize = () => {
+      setColWidth(window.innerWidth <= 768 ? "100%" : "400px");
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     fetchUsers([]);
   }, []);
 
+  const renderUserIcon = (rol) => {
+    const iconMap = {
+      admin: IconRolAdmin,
+      director: iconRolDirector,
+      validador: IconRolValidador,
+      estudiante: IconRolEstudiante,
+      empresa: IconRolEmpresa,
+      docente: IconRolDocente,
+      usuario: IconRolUsuario,
+    };
+
+    const IconComponent = iconMap[rol.toLowerCase()];
+
+    return (
+      IconComponent && (
+        <img
+          src={IconComponent}
+          className="img-fluid"
+          width={50}
+          height={50}
+          alt={`Icono de ${rol}`}
+        />
+      )
+    );
+  };
+
+ 
   return (
     <>
-      <Row className="gx-5 border-bottom mx-2 p-2">
-        <Col>
-          <h6>Usuarios Encontrados</h6>
+      <Row className="gx-5 mx-2 mt-2 p-2 align-items-center">
+        <Col xs={12} md={6}>
+          <h3>Usuarios</h3>
         </Col>
-        <Col className="text-end">
-          <SelectUserRolFilter onRolesChange={handleCheckboxChange} />
+        <Col
+          xs={12}
+          md={6}
+          className="d-flex justify-content-end align-items-center"
+        >
+          <SelectUserRolFilter
+            onRolesChange={handleCheckboxChange}
+            className="me-2"
+          />
+          <Link to={`/user/create`}>
+            <Button
+              variant="ligth"
+              className=""
+              style={{ backgroundColor: "#EBEBEB" }}
+            >
+              <Plus></Plus>
+            </Button>
+          </Link>
         </Col>
       </Row>
 
-      {usuarios.map((usuario, index) => (
-        <Col key={index}>
-          <div className="d-flex text-body-secondary pt-3">
-            <svg
-              className="bd-placeholder-img flex-shrink-0 me-2 rounded"
-              width="32"
-              height="32"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Placeholder: 32x32"
-              preserveAspectRatio="xMidYMid slice"
-              focusable="false"
+      <Row>
+        {usuarios.map((usuario, index) => (
+          <Col
+            style={{
+              width: colWidth ,
+            }}
+            key={index}
+            xs={12}
+            md={6}
+            lg={4}
+            className="bg-body rounded border mt-2 me-1"
+          >
+            <Link
+              to={`/user?q=${usuario.email}`}
+              style={{ textDecoration: "none", color: "inherit" }}
             >
-              {/* <title>Placeholder</title> */}
-              <rect width="100%" height="100%" fill="#e30513"></rect>
-              <text x="50%" y="50%" fill="#e30513" dy=".3em">
-                32x32
-              </text>
-            </svg>
-            <div className="pb-3 mb-0 small lh-sm border-bottom w-100">
-              <div className="d-flex justify-content-between">
-                <strong className="text-gray-dark">{usuario.name}</strong>
-                <Link to={`/user?q=${usuario.email}`}>Follow</Link>
+              <div className="d-flex text-body-secondary pt-3 pb-3">
+                {renderUserIcon(usuario.rol)}
+                <div className="px-3 mb-0 ">
+                  <div className="d-flex justify-content-between">
+                    <h6>
+                      <strong className="text-dark">{usuario.name}</strong>
+                    </h6>
+                  </div>
+                  <span className="d-block">{usuario.email}</span>
+                </div>
               </div>
-              <span className="d-block">{usuario.email}</span>
-            </div>
-          </div>
-        </Col>
-      ))}
+            </Link>
+          </Col>
+        ))}
+      </Row>
     </>
   );
 };
