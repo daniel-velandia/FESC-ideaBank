@@ -21,7 +21,7 @@ const tableTaskData = [
         id: 3,
         name: "Configuración DB",
         description: "Configurar la base de datos para el sistema",
-        state: "Terminada",
+        state: "Aprobado",
         manager: "Luis García",
         deliverable: document
     },
@@ -30,6 +30,22 @@ const tableTaskData = [
         name: "Pruebas unitarias",
         description: "Realizar pruebas unitarias del componente X",
         state: "Rechazada",
+        manager: "María Rodríguez",
+        deliverable: document
+    },
+    {
+        id: 5,
+        name: "Pruebas unitarias",
+        description: "Realizar pruebas unitarias del componente X",
+        state: "Pendiente",
+        manager: "María Rodríguez",
+        deliverable: document
+    },
+    {
+        id: 6,
+        name: "Pruebas unitarias",
+        description: "Realizar pruebas unitarias del componente X",
+        state: "Hecho",
         manager: "María Rodríguez",
         deliverable: document
     },

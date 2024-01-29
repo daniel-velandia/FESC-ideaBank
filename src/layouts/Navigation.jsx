@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../connections/userActions';
 import { Container, Nav, NavDropdown, SplitButton, Image } from 'react-bootstrap';
 import { FaUser, FaUserPlus } from "react-icons/fa";
-import { HiAnnotation } from 'react-icons/hi'
 import logo from '../img/logo-nav.png';
 import { useEffect } from "react";
 
@@ -92,11 +91,6 @@ function Navigation() {
                     <NavLink to={"/user/create"} className="link p-2 ms-0 mx-3" id="crear-usuario-link">
                         <FaUserPlus className='mx-2' />
                         <span>Crear usuario</span>
-                    </NavLink>
-
-                    <NavLink to={"/tableTask/projects"} className="link p-2 ms-0 mx-3" id="crear-proyecto-link">
-                        <HiAnnotation className='mx-2' />
-                        <span>Proyectos</span>
                     </NavLink>
                 </Nav>
             </div>

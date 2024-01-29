@@ -1,35 +1,31 @@
-import { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React from 'react';
+import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { BsPlus } from 'react-icons/bs';
 
 const CreateTaskButton = () => {
-    const [isHovered, setIsHovered] = useState(false);
-
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    }
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    }
 
     const styleIcon = {
-        fontSize: '160%',
-        transition: 'opacity 0.3s ease',
+        fontSize: "140%"
     }
 
     const styleButton = {
-        position: 'relative',
-        overflow: 'hidden',
-        width: isHovered ? '21%' : '16%', 
-        transition: 'width 0.3s ease'
-    }   
-
+        height: "20%"
+    }
+    
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Haz clic para crear una tarea
+        </Tooltip>
+    )
+    
     return (
-        <Button variant='light' style={styleButton} className="mt-3" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <BsPlus style={{ ...styleIcon, opacity: isHovered ? 0 : 1 }} />
-            <span className='button-text fw-semibold'>Crear tarea</span>
-        </Button>
+        <OverlayTrigger
+          placement="left"
+          delay={{ show: 100, hide: 100 }}
+          overlay={renderTooltip}
+        >
+          <Button variant="light" style={styleButton} className='mt-2'><BsPlus style={styleIcon}/></Button>
+        </OverlayTrigger>
     )
 }
 
