@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Col, Row, Form, Button, Modal, FloatingLabel } from "react-bootstrap";
+import { Col, Row, Form, Button, Modal, FloatingLabel, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FaPlus } from "react-icons/fa";
+import { SelectProjectFilter } from "./SelectProjectFilter";
 
 export const CreateProposalModal = ({ callback }) => {
   const [showModal, setShowModal] = useState(false);
@@ -62,21 +64,42 @@ export const CreateProposalModal = ({ callback }) => {
     return errors;
   };
 
+  const renderCreateTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Crear un proyecto
+    </Tooltip>
+  );
+
+
   return (
     <>
-      <Button variant="primary" onClick={handleModalShow}>
-        Abrir Modal
-      </Button>
+      <div className="button-container">
+        <SelectProjectFilter />
 
-      <Modal show={showModal} 
-      onHide={handleModalClose} 
-      size="lg" 
-      aria-labelledby="contained-modal-title-vcenter" 
-      centered>
+        <OverlayTrigger
+          placement="top"
+          delay={{ show: 250, hide: 400 }}
+          overlay={renderCreateTooltip}
+        >
+          <Button
+            className="my-btn-create-project"
+            onClick={handleModalShow}
+          >
+            <FaPlus className="mr-2" />
+          </Button>
+        </OverlayTrigger>
+      </div>
 
-      <Modal.Header className='my-modal-header px-4' closeButton>
-          <div className='my-badge-state'>Crear Proyecto</div>
-      </Modal.Header>
+      <Modal
+        show={showModal}
+        onHide={handleModalClose}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header className="my-modal-header px-4" closeButton>
+          <div className="my-badge-state">Crear Proyecto</div>
+        </Modal.Header>
         <Modal.Body>
           <Form onSubmit={sendResponse} className="px-3">
             <Row>
@@ -122,11 +145,14 @@ export const CreateProposalModal = ({ callback }) => {
             </Row>
 
             <div style={{ textAlign: "right", marginBottom: "10px" }}>
-              <Button type="submit" variant="danger" className="my-modal-button">
+              <Button
+                type="submit"
+                variant="danger"
+                className="my-modal-button"
+              >
                 Crear
               </Button>
             </div>
-
           </Form>
         </Modal.Body>
       </Modal>

@@ -10,5 +10,10 @@ export const USER_DETAIL_POST_ENDPOINT = API_URL + "/user/detail" //obtener el d
 export const USER_LIST_GET_ENDPOINT = API_URL+"/user/list"; //obtener usuarios existentes
 export const USER_CREATE_POST_ENDPOINT = API_URL + "/user/create"; //Creacion usuarios internos
 
+export const USER_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/user/list/project"; //Obtener usuarios para formar el equipo de los proyectos
 
+export const PROPOSAL_LIST_GET_ENDPOINT = API_URL + "/project/list" //Obtener la lista de proyectos o propuestas
 export const PROPOSAL_CREATE_POST_ENDPOINT = API_URL + "/project/create" //Creacion de un propuesta de proyecto
+export const  PROPOSAL_DETAIL_GET_ENDPOINT = API_URL + "/project/detail"
+
+export const TAGS_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/project/tag/list" //Obtener la lista de tags

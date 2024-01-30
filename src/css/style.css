@@ -1,51 +1,3 @@
-  .Card--featured {
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 10px; 
-  }
-
-  .Card--featured:hover {
-    transform: scale(1.010);
-  }
-
-  .Card--featured .d-flex {
-    height: 100%;
-  }
-
-  .Card--featured .d-flex .align-items-center {
-    height: 100%;
-  }
-
-  .Card--featured .Card.Body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 20px;
-    text-align: justify !important;
-  }
-
-  .image-container {
-    flex: 0 0 30%; 
-    display: flex;
-    align-items: stretch;
-  }
-
-  .custom-img {
-    width: 100%;
-    object-fit: cover; 
-  }
-
-  .Card--link {
-    text-decoration: none; 
-    color: inherit; 
-  }
-
-  .Card--link:hover {
-    text-decoration: none; 
-  }
 /* ESTILOS DE NAVBAR */
 .nav-scroller {
   position: relative;
@@ -92,14 +44,14 @@ right: 0;
 .link.active::after,
 .link:hover::after {
 width: 100%;
-background-color: red;
+background-color: #d92323;
 }
 
 .link.active span,
 .link:hover span,
 .link.active svg,
 .link:hover svg {
-color: red;
+color: #d92323;
 }
 
 /* ESTILOS DE FOOTER */
@@ -143,26 +95,101 @@ padding: 0.35rem 0;
 color: red;
 }
 
-@media (max-width: 374px) {
-  .Card--featured {
-    height: 280px;
+/* diseño de las cartas */
+
+.card {
+  width: 300px; 
+  margin: 20px auto; 
+  position: relative;
+}
+.card-project {
+  max-width: 250px; 
+  margin: auto; 
+  margin-top: 50px;
+}
+
+.card-header {
+  padding: 10px;
+  position: relative;
+  height: 40px;
+}
+
+.status-indicator {
+  position: absolute;
+  width: 30px;
+  top: 25px;
+  left: 40px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator__dot {
+  width: fit-content;
+  min-width: 100px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #4baf4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-text {
+  color: #fff; 
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.card-body {
+  padding: 20px;
+}
+.card-project.card-pendiente .card-header {
+  background-color: #ffc8c8; 
+}
+
+.card-project.card-validada .card-header {
+  background-color: #f5f6ab; 
+}
+
+.card-project.card-terminada .card-header {
+  background-color: #78d5ff; 
+}
+
+
+.status-indicator__dot.status-pendiente {
+  background-color: #da241e; 
+}
+
+.status-indicator__dot.status-validada {
+  background-color: #f9db4a;
+}
+
+.status-indicator__dot.status-terminada {
+  background-color: #03a9f4; 
+}
+
+@media (min-width: 768px) {
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -50px; 
+  }
+
+  .button-container > .btn {
+    margin-left: 10px; 
   }
 }
 
-@media (min-width: 375px) and (max-width: 768px) {
-  .Card--featured {
-    height: 250px;
+@media (max-width: 767px) {
+  .button-container {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: -40px;
   }
-}
 
-@media (min-width: 768px) and (max-width: 992px) {
-  .Card--featured {
-    height: 230px;
-  }
-}
-
-@media (min-width: 992px) {
-  .Card--featured {
-    height: 200px;
+  .button-container > .btn {
+    margin-left: 10px; 
   }
 }
