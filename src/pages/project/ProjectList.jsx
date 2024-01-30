@@ -12,6 +12,7 @@ import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import { PROPOSAL_CREATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import ToastError from "../../components/ToastError";
 import ToastSucces from "../../components/ToastSucces";
+import { CreateModalTarea } from "../../components/CreateModalTarea";
 
 const cards = [
   {
@@ -92,6 +93,7 @@ function ProjectList() {
     <div className="cards-container">
       <Container className="mt-5">
         <CreateProposalModal callback={createProposal} />
+        <CreateModalTarea />
         <Row>
           {cards.map(({ title, imageSource, url, id, text }) => (
             <Col key={id} xs={12} md={6} lg={6} className="mb-4">

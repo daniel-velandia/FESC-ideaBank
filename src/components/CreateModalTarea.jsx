@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, FloatingLabel, Row, Col } from 'react-bootstrap';
 
 export const CreateModalTarea = ({ show, onHide, onCrearTarea }) => {
   const [nombre, setNombre] = useState('');
@@ -63,69 +63,87 @@ export const CreateModalTarea = ({ show, onHide, onCrearTarea }) => {
                     Crear Tarea
                 </Button>
 
-                <Modal show={showModal} onHide={handleOcultarModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Crear Tarea</Modal.Title>
-                </Modal.Header>
+                <Modal show={showModal} 
+      onHide={handleOcultarModal} 
+      size="lg" 
+      aria-labelledby="contained-modal-title-vcenter" 
+      centered>
+
+      <Modal.Header className='my-modal-header px-4 mb-5' closeButton>
+          <div className='my-badge-state'>Crear Tarea</div>
+      </Modal.Header>
                 <Modal.Body>
+
+                  
                     <Form>
-                    <Form.Group controlId="nombreTarea">
-                        <Form.Label>Nombre de la Tarea</Form.Label>
+                    <Row>
+                      <Col>
+                    <Form.Group controlId="nombreTarea" className="mb-4">
+                    <FloatingLabel controlId="floatingSelect" label="Titulo de la tarea">
                         <Form.Control
                         type="text"
-                        placeholder="Ingrese el nombre de la tarea"
                         value={nombre}
                         onChange={(e) => setNombre(e.target.value)}
+                        style={{ height: "50px" }} 
                         />
                         {errores.nombre && <Form.Text className="text-danger">{errores.nombre}</Form.Text>}
+                        </FloatingLabel>
                     </Form.Group>
 
-                    <Form.Group controlId="fechaTarea">
-                        <Form.Label>Fecha</Form.Label>
+
+                    
+                    <Form.Group controlId="fechaTarea" className="mb-4" >
+                    <FloatingLabel controlId="floatingSelect" label="Fecha Limite">
                         <Form.Control
                         type="date"
                         value={fecha}
                         onChange={(e) => setFecha(e.target.value)}
+                        style={{ height: "50px" }} 
                         />
                         {errores.fecha && <Form.Text className="text-danger">{errores.fecha}</Form.Text>}
+                        </FloatingLabel>                       
                     </Form.Group>
+                    </Col>
+                    </Row>
 
-                    <Form.Group controlId="descripcionTarea">
-                        <Form.Label>Descripción</Form.Label>
-                        <Form.Control
-                        as="textarea"
-                        rows={3}
-                        placeholder="Ingrese la descripción de la tarea"
-                        value={descripcion}
-                        onChange={(e) => setDescripcion(e.target.value)}
-                        />
-                        {errores.descripcion && <Form.Text className="text-danger">{errores.descripcion}</Form.Text>}
-                    </Form.Group>
-
-                    <Form.Group controlId="cargoTarea">
-                        <Form.Label>Cargo</Form.Label>
-                        <Form.Control
+                    <Form.Group controlId="cargoTarea"  className="mb-4">
+                      <FloatingLabel controlId="floatlabel3" label="Cargo">
+                        <Form.Select
                         as="select"
                         value={cargo}
                         onChange={(e) => setCargo(e.target.value)}
+                        style={{ height: "50px" }} 
                         >
                         <option value="">Seleccione un cargo</option>
                         <option value="cargo1">Cargo 1</option>
                         <option value="cargo2">Cargo 2</option>
                         
-                        </Form.Control>
+                        </Form.Select>
                         {errores.cargo && <Form.Text className="text-danger">{errores.cargo}</Form.Text>}
+                        </FloatingLabel>
                     </Form.Group>
+
+                    <Form.Group controlId="descripcionTarea" className="mb-4">
+                    <FloatingLabel controlId="floatingSelect" label="Descripción de la tarea">
+                        <Form.Control
+                        as="textarea"
+                        rows={3}
+                        value={descripcion}
+                        onChange={(e) => setDescripcion(e.target.value)}
+                        style={{ height: "150px" }} 
+                        />
+                        {errores.descripcion && <Form.Text className="text-danger">{errores.descripcion}</Form.Text>}
+                        </FloatingLabel>
+                    </Form.Group>
+
+                    <div style={{ textAlign: "right", marginBottom: "10px" }}>
+                      <Button type="submit" variant="danger" className="my-modal-button">
+                        Crear
+                      </Button>
+                    </div>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleOcultarModal}>
-                    Cerrar
-                    </Button>
-                    <Button variant="danger" onClick={handleCrearTarea}>
-                    Crear
-                    </Button>
-                </Modal.Footer>
+
                 </Modal>
 
     </>

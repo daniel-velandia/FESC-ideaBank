@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, FloatingLabel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const RegisterForm = ({errors, callback}) => {
@@ -33,15 +33,15 @@ const RegisterForm = ({errors, callback}) => {
             <Row>
                 <Col sm="12" md="6">
                     <Form.Group className='mb-3' controlId='name'>
+                        <FloatingLabel label='Nombre' className='label'>
                         <Form.Control
                             size="lg"
                             type='text'
                             name='name'
-                            placeholder='Nombre'
                             value={formData.name}
                             onChange={handleChange}
                             isInvalid={errors.name} />
-
+                            </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.name}
                         </Form.Control.Feedback>
@@ -50,15 +50,15 @@ const RegisterForm = ({errors, callback}) => {
             
                 <Col sm="12" md="6">
                     <Form.Group className='mb-3' controlId='lastName'>
+                        <FloatingLabel label='Apellido' className='label'>
                         <Form.Control
                             size="lg"
                             type='text'
                             name='lastName'
-                            placeholder='Apellido'
                             value={formData.lastName}
                             onChange={handleChange}
                             isInvalid={errors.lastName} />
-
+                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.lastName}
                         </Form.Control.Feedback>
@@ -67,15 +67,15 @@ const RegisterForm = ({errors, callback}) => {
 
                 <Col sm="12">
                     <Form.Group className='mb-3' controlId='email'>
+                        <FloatingLabel label='Correo electrónico' className='label'>
                         <Form.Control
                             size="lg"
                             type='email'
                             name='email'
-                            placeholder='Correo eletrónico'
                             value={formData.email}
                             onChange={handleChange}
                             isInvalid={errors.email} />
-
+                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.email}
                         </Form.Control.Feedback>
@@ -84,15 +84,15 @@ const RegisterForm = ({errors, callback}) => {
 
                 <Col sm="12" md="6">
                     <Form.Group className='mb-3' controlId='cellPhone'>
+                        <FloatingLabel  label='Teléfono celular' className='label'>
                         <Form.Control
                             size="lg"
                             type='number'
                             name='cellPhone'
-                            placeholder='Telefono'
                             value={formData.cellPhone}
                             onChange={handleChange}
                             isInvalid={errors.cellPhone} />
-
+                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.cellPhone}
                         </Form.Control.Feedback>
@@ -101,15 +101,15 @@ const RegisterForm = ({errors, callback}) => {
 
                 <Col sm="12" md="6">
                     <Form.Group className='mb-3' controlId='companyName'>
+                        <FloatingLabel label='Nombre de la empresa' className='label'>
                         <Form.Control
                             size="lg"
                             type='text'
                             name='companyName'
-                            placeholder='Nombre de empresa'
                             value={formData.companyName}
                             onChange={handleChange}
                             isInvalid={errors.companyName} />
-
+                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.companyName}
                         </Form.Control.Feedback>
@@ -118,15 +118,15 @@ const RegisterForm = ({errors, callback}) => {
 
                 <Col sm="12" md="6">
                     <Form.Group className='mb-3' controlId='password'>
+                        <FloatingLabel label='Contraseña' className='label'>
                         <Form.Control
                             size="lg"
                             type='password'
                             name='password'
-                            placeholder='Contraseña'
                             value={formData.password}
                             onChange={handleChange}
                             isInvalid={errors.password} />
-
+                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.password}
                         </Form.Control.Feedback>
@@ -135,15 +135,15 @@ const RegisterForm = ({errors, callback}) => {
 
                 <Col sm="12" md="6">
                     <Form.Group className='mb-3' controlId='repeatPassword'>
+                        <FloatingLabel label='Repetir contraseña' className='label'>
                         <Form.Control
                             size="lg"
                             type='password'
                             name='repeatPassword'
-                            placeholder='Repita la contraseña'
                             value={formData.repeatPassword}
                             onChange={handleChange}
                             isInvalid={errors.password} />
-
+                            </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.password}
                         </Form.Control.Feedback>

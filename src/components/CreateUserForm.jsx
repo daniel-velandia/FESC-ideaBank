@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Form, Button, Modal } from "react-bootstrap";
+import { Col, Row, Form, Button, Modal, FloatingLabel } from "react-bootstrap";
 import { SelectProgram } from "./SelectProgram";
 import { SelectUserRol } from "./SelectUserRol";
 
@@ -118,16 +118,17 @@ export const CreateUserForm = ({ callback }) => {
             <Row>
               <Col sm="12" md="6">
                 <Form.Group className="mb-5 mt-4" controlId="name">
+                  <FloatingLabel  label="Nombre" type="text" className="form-floating">
                   <Form.Control
                     size="lg"
                     type="text"
                     name="name"
-                    placeholder="Ingrese su nombre"
                     value={formData.name}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.name !== ""}
                     style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
+                  </FloatingLabel>
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.name}
                   </Form.Control.Feedback>
@@ -136,16 +137,17 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5 mt-4" controlId="lastName">
+                  <FloatingLabel  label="Apellido" type="text" className="form-floating">
                   <Form.Control
                     size="lg"
                     type="text"
                     name="lastName"
-                    placeholder="Ingrese su apellido"
                     value={formData.lastName}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.lastName !== ""}
                     style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
+                  </FloatingLabel>
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.lastName}
                   </Form.Control.Feedback>
@@ -154,16 +156,17 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="email">
+                  <FloatingLabel  label="Correo electrónico" htmlFor="email">
                   <Form.Control
                     size="lg"
                     type="email"
                     name="email"
-                    placeholder="Ingrese su correo electrónico"
                     value={formData.email}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.email !== ""}
                     style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
+                  </FloatingLabel>
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.email}
                   </Form.Control.Feedback>
@@ -172,16 +175,17 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="cellPhone">
+                  <FloatingLabel  label="Teléfono celular" htmlFor="cellPhone">
                   <Form.Control
                     size="lg"
                     type="number"
                     name="cellPhone"
-                    placeholder="Ingrese su teléfono"
                     value={formData.cellPhone}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.cellPhone !== ""}
                     style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
+                  </FloatingLabel>
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.cellPhone}
                   </Form.Control.Feedback>
@@ -190,16 +194,17 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="password">
+                  <FloatingLabel label="Contraseña" htmlFor="password">
                   <Form.Control
                     size="lg"
                     type="password"
                     name="password"
-                    placeholder="Ingrese su contraseña"
                     value={formData.password}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.password !== ""}
                     style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
+                  </FloatingLabel>
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.password}
                   </Form.Control.Feedback>
@@ -208,16 +213,17 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="repeatPassword">
+                  <FloatingLabel  label="Repetir Contraseña" htmlFor="repeatPassword">
                   <Form.Control
                     size="lg"
                     type="password"
                     name="repeatPassword"
-                    placeholder="Repita su contraseña"
                     value={formData.repeatPassword}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.repeatPassword !== ""}
                     style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                   />
+                  </FloatingLabel>
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.repeatPassword}
                   </Form.Control.Feedback>
@@ -226,19 +232,23 @@ export const CreateUserForm = ({ callback }) => {
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="program">
+                  <FloatingLabel  label="Programa" >
                   <SelectProgram onSelect={handleSelectChange} style={{ height: "45px" }} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.program}
                   </Form.Control.Feedback>
+                  </FloatingLabel>
                 </Form.Group>
               </Col>
 
               <Col sm="12" md="6">
                 <Form.Group className="mb-5" controlId="rol">
+                  <FloatingLabel  label="Rol de Usuario" >
                   <SelectUserRol onSelect={handleSelectChange} style={{ height: "45px" }} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.rol}
                   </Form.Control.Feedback>
+                  </FloatingLabel>
                 </Form.Group>
               </Col>
             </Row>
