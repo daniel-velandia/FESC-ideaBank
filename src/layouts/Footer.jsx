@@ -49,7 +49,7 @@ const Footer = () => {
                             <hr className="text-white fw-bold" />
                             <ListGroup>
                                 <ListGroup.Item className="item-listGroup mt-3">
-                                    <a className="text-white" href="https://www.fesc.edu.co/portal/">
+                                    <a className="text-white" href="https://www.fesc.edu.co/portal/" target='_blank'>
                                         Pregrados
                                     </a>
                                 </ListGroup.Item>
@@ -59,7 +59,7 @@ const Footer = () => {
                                     </a>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="item-listGroup mt-3">
-                                    <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/diplomados-de-grados#slider-6">
+                                    <a className="text-white" href="https://www.fesc.edu.co/portal/index.php/programas-academicos/diplomados-de-grados#slider-6" target='_blank'>
                                         Diplomados
                                     </a>
                                 </ListGroup.Item>

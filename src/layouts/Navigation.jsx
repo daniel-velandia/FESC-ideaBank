@@ -16,20 +16,20 @@ function Navigation() {
         const links = document.querySelectorAll('.link');
     
         const handleLinkClick = (event) => {
-          links.forEach(link => link.classList.remove('active'));
-          event.currentTarget.classList.add('active');
+            links.forEach(link => link.classList.remove('active'));
+            event.currentTarget.classList.add('active');
         };
     
         links.forEach(link => {
-          link.addEventListener('click', handleLinkClick);
+            link.addEventListener('click', handleLinkClick);
         });
     
         return () => {
-          links.forEach(link => {
+            links.forEach(link => {
             link.removeEventListener('click', handleLinkClick);
           });
         };
-      }, []);
+    }, []);
 
     return (
         <Container>

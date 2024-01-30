@@ -21,6 +21,7 @@ import { Error404 } from "../pages/Error404";
 
 import { UserList } from "../pages/user/UserList";
 import { UserCreate } from "../pages/user/UserCreate";
+import { TableTask } from "../pages/user/UserTableTask";
 
 import { ProjectList } from "../pages/project/ProjectList";
 import { ProjectDetail } from "../pages/project/ProjectDetail";
@@ -53,6 +54,7 @@ const App = () => {
               <Route path="/user" element={<UserList />} />
               <Route path="/user/create" element={<UserCreate />} />
               <Route path="/project/detail" element={<ProjectDetail />}/>
+              <Route path="/tableTask/projects" element={<TableTask />}/>
             </Route>
           </Route>
           <Route path="*" element={<Error404 />} />

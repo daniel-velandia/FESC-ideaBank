@@ -54,6 +54,79 @@ background-color: #d92323;
 color: #d92323;
 }
 
+/* ESTILOS DE BOTONES DE VER Y DESCARGAR DOCUMENTOS */
+.linkIconEye {
+  margin-right: 10%;
+  font-size: 130%;
+  color: #f44336;
+}
+
+.linkIconDownload {
+  margin-right: 10%;
+  font-size: 130%;
+  color: #00bcd4;
+}
+
+.linkIconEye:hover {
+  cursor: pointer;
+  color: #e30513;
+  transform: translateY(-25%);
+  transition: 0.3s;
+}
+
+.linkIconDownload:hover {
+  cursor: pointer;
+  color: #0097ab;
+  transform: translateY(-25%);
+  transition: 0.3s;
+}
+
+/* ESTILOS DE BADGES DE ESTADOS*/
+.bd-pending {
+  background-color: #da241e !important;
+}
+
+.bd-progress {
+  background-color: #4baf4f !important;
+}
+
+.bd-appoved {
+  background-color: #f9db4a !important;
+}
+
+.bd-done {
+  background-color: #03a9f4 !important;
+}
+
+.bd-rechazado {
+  background-color: #e4dcd7 !important;
+}
+
+/* ESTILOS DE PÁGINA DE TABLA DE TAREAS Y CREAR TAREA*/
+/* .button-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.986);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.button-text:hover {
+  background-color: #e30513;
+  color: #fff;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.button-text:hover + svg {
+  opacity: 0;
+} */
+
 /* ESTILOS DE FOOTER */
 .Footer {
 padding: 2rem 0;
