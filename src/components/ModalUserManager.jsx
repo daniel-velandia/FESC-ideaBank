@@ -1,5 +1,5 @@
 import { Modal, ListGroup, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState,  } from "react";
 
 export const ModalUserManager = ({
   isOpen,
@@ -14,7 +14,13 @@ export const ModalUserManager = ({
   };
 
   const handleConfirm = () => {
-    onDocenteSelect(selectedDocenteUser);
+    if (selectedDocenteUser) {
+      const docenteWithManagerFlag = {
+        email: selectedDocenteUser.email,
+        isManager: true,
+      };
+      onDocenteSelect(docenteWithManagerFlag);
+    }
     closeModal();
   };
 

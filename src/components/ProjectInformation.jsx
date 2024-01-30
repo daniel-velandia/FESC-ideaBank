@@ -1,123 +1,115 @@
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import SelectTypeTags from "./SelectTypeTags";
 import { ListTeamMembers } from "./ListTeamMembers";
 import { useProjectData } from "../hooks/useProjectData";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { ModalUserManager } from "./ModalUserManager";
+import axios from "axios";
+import { PROPOSAL_EDIT_POST_ENDPOINT } from "../connections/helpers/endpoints";
+
 
 export const ProjectInformation = () => {
   const [showModalManager, setShowModalManager] = useState(false);
-  const project = useProjectData();
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const location = useLocation();
+
   const [formErrors, setFormErrors] = useState({
     projectName: "",
   });
   const [formData, setFormData] = useState({
     projectName: "",
   });
-  const [selectedTags, setSelectedTags] = useState([]);
+
+  const sendProjectDataRef = useRef(null);
 
   const [teamproject, setTeamproject] = useState([]);
   const [newTeamProject, setnewTeamProject] = useState([]);
-
-  const handleStudentSelect = (selectedStudents) => {
-    setTeamproject(selectedStudents);
-  };
-
   const [tags, setTags] = useState([]);
 
+  //Bloque para obtener el id de la ruta
+  const project = useProjectData();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const idProject = searchParams.get("id");
+
+  //Funcion para obtener los estudiante y profesorese seleccionados
+  const handleUserTeamSelect = (selectedTeamUser) => {
+    setTeamproject(selectedTeamUser);
+    const UsertsWithIsManager = selectedTeamUser.map((user) => ({
+      email:  user.email,
+      isManager: false,
+    }));
+    setnewTeamProject(UsertsWithIsManager);
+  };
+
+
+  //Funcion para obtener los tags del componente hijo
   const handleTagsSelect = (res) => {
     setTags(res);
   };
 
-  const [selectedDocente, setSelectedDocente] = useState(null);
-
-  const handleDocenteSelect = (docenteManager) => {
-    setSelectedDocente(docenteManager);
-  };
-
-  //Funcion para extraer el email y añadir una propiedad IsManager al equipo seleccionado en conjunto
-  const extractEmailsAndAddProperty = (teamproject) => {
-    if (Array.isArray(teamproject) && teamproject.length > 0) {
-      return teamproject.map((member) => ({
-        email: member.email,
-        isManager: false,
-      }));
-    } else {
-      return [];
-    }
-  };
-
-  //la funcion de extraer el email se ejecutara cada vez que se agregue un nuevo integrante de proyecto al estado "teamproject"
-  useEffect(() => {
-    const modifiedTeamProject = extractEmailsAndAddProperty(teamproject);
-    setnewTeamProject(modifiedTeamProject);
-  }, [teamproject]);
-
-  //recibira el docente encargado y buscara en el equipo de desarrollo cambiando su propiedad isManager a True
-  //De no encontrar el correo igual, le hara un push a ese objeto, agregandolo al array
-  useEffect(() => {
-    if (selectedDocente) {
-      setnewTeamProject((prevTeamProject) => {
-        const updatedTeamProject = prevTeamProject.map((member) => {
-          if (member.email === selectedDocente.email) {
-            return {
-              email: selectedDocente.email,
-              isManager: true,
-            };
-          } else {
-            return member;
-          }
-        });
+  const handleDocenteManagerSelect = (docenteManager) => {
   
-        if (!prevTeamProject.some((member) => member.email === selectedDocente.email)) {
-          updatedTeamProject.push({
-            email: selectedDocente.email,
+    const isDocenteManagerInArray = newTeamProject.some(
+      (member) => member.email === docenteManager.email
+    );
+    // Si el docenteManager ya está en el array, actualizar su propiedad isManager a true
+    // Si no está en el array, agregarlo con isManager igual a true
+    setnewTeamProject((prevTeamProject) => {
+      if (isDocenteManagerInArray) {
+        return prevTeamProject.map((member) =>
+          member.email === docenteManager.email
+            ? { ...member, isManager: true }
+            : member
+        );
+      } else {
+        return [
+          ...prevTeamProject,
+          {
+            email: docenteManager.email,
             isManager: true,
-          });
-        }
-  
-        return updatedTeamProject;
-      });
+          },
+        ];
+      }
+    });
+    sendProjectDataRef.current = true;
+  };
+
+  useEffect(() => {
+    if (sendProjectDataRef.current) {
+      sendProjectDataToBackend();
+      sendProjectDataRef.current = false;
     }
-  }, [selectedDocente]);
+  }, [newTeamProject]);
+  const sendProjectDataToBackend = async () => {
 
+    const projectDataToSend = {projectName: formData.projectName,
+      identificator: idProject,
+      userToProject: newTeamProject,
+      tagsToProject: tags}
+
+      console.log(projectDataToSend)
+
+    axios
+        .post(PROPOSAL_EDIT_POST_ENDPOINT, projectDataToSend)
+        .then((response) => {
+          console.log("Respuesta del servidor:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error al enviar datos al servidor:", error);
+        }); 
+    
+  };
+
+
+  //Funcion que cumple el boton de Validar cuando el estado pendiente
   const handleButtonClick = () => {
-    const searchParams = new URLSearchParams(location.search);
-    const idProject = searchParams.get("id");
-
     const docenteUsers = teamproject.filter((user) => user.rol === "DOCENTE");
     if (docenteUsers.length > 0) {
       setShowModalManager(true);
     } else {
       console.log("No hay usuarios con el rol DOCENTE");
     }
-
-    const projectDataToSend = {
-      identificator: idProject,
-      projectName: formData.projectName,
-      tagsToProject: tags,
-      userToProject: newTeamProject,
-    };
-
-    console.log(projectDataToSend);
-
-    /*axios
-      .post("URL_DEL_ENDPOINT", projectDataToSend)
-      .then((response) => {
-        // Manejar la respuesta del servidor si es necesario
-        console.log("Respuesta del servidor:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error al enviar datos al servidor:", error);
-      }); */
-  };
-
-  const handleModalClose = () => {
-    setShowModalManager(false);
   };
 
   let name = project.status;
@@ -232,7 +224,7 @@ export const ProjectInformation = () => {
                 className="d-flex flex-column justify-content-between"
               >
                 <h3>Integrantes del equipo</h3>
-                <ListTeamMembers onStudentSelect={handleStudentSelect} />
+                <ListTeamMembers onStudentSelect={handleUserTeamSelect} />
                 <div className="d-flex justify-content-end mt-auto ">
                   {buttonComponent}
                 </div>
@@ -247,7 +239,7 @@ export const ProjectInformation = () => {
           setShowModalManager(false);
         }}
         docenteUsers={teamproject.filter((user) => user.rol === "DOCENTE")}
-        onDocenteSelect={handleDocenteSelect}
+        onDocenteSelect={handleDocenteManagerSelect}
       />
     </>
   );
