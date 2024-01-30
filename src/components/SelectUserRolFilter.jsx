@@ -3,6 +3,7 @@ import axios from "axios";
 import { Dropdown } from "react-bootstrap";
 import { ROL_ALL_GET_ENDPOINT } from "../connections/helpers/endpoints";
 import Form from "react-bootstrap/Form";
+import { Funnel, FunnelFill } from "react-bootstrap-icons";
 
 export const SelectUserRolFilter = ({ onRolesChange }) => {
   const [rols, setrols] = useState([]);
@@ -36,9 +37,9 @@ export const SelectUserRolFilter = ({ onRolesChange }) => {
   }, [selectedRoles, onRolesChange]);
 
   return (
-    <Dropdown >
-      <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{ backgroundColor: '#e30513' }}>
-        Filtrar Roles
+    <Dropdown className="me-2">
+      <Dropdown.Toggle  variant="ligth" id="dropdown-basic" style={{backgroundColor : "#EBEBEB"}}>
+        <Funnel></Funnel>
       </Dropdown.Toggle>
 
       <Dropdown.Menu>

@@ -4,11 +4,11 @@ import { Container, Row } from "react-bootstrap";
 
 export const UserList = () => {
   return (
-    <Container className="my-3 p-3 bg-body rounded shadow-sm">
+    <Container className="my-3">
       <Row>
         <ModalUserDetail />
-        <CardViewUsers />
       </Row>
+      <CardViewUsers />
     </Container>
   );
 };
