@@ -115,9 +115,9 @@ export const CreateUserForm = ({ callback }) => {
 
       <Modal.Body className='px-4 pt-5'>
           <Form onSubmit={sendResponse} className="px-3">
-            <Row>
+            <Row className="mt-4">
               <Col sm="12" md="6">
-                <Form.Group className="mb-5 mt-4" controlId="name">
+                <Form.Group className="mb-4" controlId="name">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -135,7 +135,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5 mt-4" controlId="lastName">
+                <Form.Group className="mb-4" controlId="lastName">
                   <Form.Control
                     size="lg"
                     type="text"
@@ -153,7 +153,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5" controlId="email">
+                <Form.Group className="mb-4" controlId="email">
                   <Form.Control
                     size="lg"
                     type="email"
@@ -171,7 +171,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5" controlId="cellPhone">
+                <Form.Group className="mb-4" controlId="cellPhone">
                   <Form.Control
                     size="lg"
                     type="number"
@@ -189,7 +189,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5" controlId="password">
+                <Form.Group className="mb-4" controlId="password">
                   <Form.Control
                     size="lg"
                     type="password"
@@ -207,7 +207,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5" controlId="repeatPassword">
+                <Form.Group className="mb-4" controlId="repeatPassword">
                   <Form.Control
                     size="lg"
                     type="password"
@@ -225,7 +225,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5" controlId="program">
+                <Form.Group className="mb-4" controlId="program">
                   <SelectProgram onSelect={handleSelectChange} style={{ height: "45px" }} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.program}
@@ -234,7 +234,7 @@ export const CreateUserForm = ({ callback }) => {
               </Col>
 
               <Col sm="12" md="6">
-                <Form.Group className="mb-5" controlId="rol">
+                <Form.Group className="mb-4" controlId="rol">
                   <SelectUserRol onSelect={handleSelectChange} style={{ height: "45px" }} />
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.rol}
