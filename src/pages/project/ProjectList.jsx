@@ -24,7 +24,7 @@ function ProjectList() {
   useEffect(() => {
     axios.get(`${PROPOSAL_LIST_GET_ENDPOINT}?isAll=${!filter ? true : false}`)
     .then(res => setProjects(res.data))
-    .catch(err => setErrorMessage(err.response.data));
+    .catch(err => {});
   }, [filter]);
 
   const createProposal = async (proposal) => {

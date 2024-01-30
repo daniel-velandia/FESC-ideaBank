@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { CreateTaskButton } from '../../components/CreateTaskButton';
 import { TableTasks } from '../../components/TableTasks';
+import { CreateModalTarea } from '../../components/CreateModalTarea';
 
 const TableTask = () => {
     
@@ -9,7 +9,7 @@ const TableTask = () => {
         <Container>
             <div className='d-flex justify-content-between'>
                 <h3 className='fw-bold text-uppercase fs-3 mt-3'>Tareas</h3>
-                <CreateTaskButton />
+                <CreateModalTarea />
             </div>
             <div className='table-container'>
                 <div className='mt-4'>

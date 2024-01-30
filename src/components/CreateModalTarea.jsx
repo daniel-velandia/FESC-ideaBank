@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form, FloatingLabel, Row, Col } from 'react-bootstrap';
+import { Modal, Button, Form, FloatingLabel, Row, Col, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { BsPlus } from 'react-icons/bs';
 
 export const CreateModalTarea = ({ show, onHide, onCrearTarea }) => {
   const [nombre, setNombre] = useState('');
@@ -56,12 +57,30 @@ export const CreateModalTarea = ({ show, onHide, onCrearTarea }) => {
     }
   };
 
+  const styleIcon = {
+    fontSize: "140%"
+  }
+
+  const styleButton = {
+      height: "20%"
+  }
+
+  const renderTooltip = (props) => (
+      <Tooltip id="button-tooltip" {...props}>
+          Haz clic para crear una tarea
+      </Tooltip>
+  )
+
   return (
     <>
 
-                <Button variant="primary" onClick={handleMostrarModal}>
-                    Crear Tarea
-                </Button>
+        <OverlayTrigger
+          placement="left"
+          delay={{ show: 100, hide: 100 }}
+          overlay={renderTooltip}
+        >
+          <Button variant="light" style={styleButton} className='mt-2' onClick={handleMostrarModal}><BsPlus style={styleIcon}/></Button>
+        </OverlayTrigger>
 
                 <Modal show={showModal} 
       onHide={handleOcultarModal} 
