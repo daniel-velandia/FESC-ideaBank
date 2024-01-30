@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, FloatingLabel, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const LoginForm = ({errors, callback}) => {
@@ -26,6 +26,7 @@ const LoginForm = ({errors, callback}) => {
         <Form onSubmit={sendResponse} className="px-3">
 
             <Form.Group className='mt-3 mb-3' controlId='email'>
+                <FloatingLabel label='Correo electronico' name='email' type='email' >
                 <Form.Control
                     size="lg"
                     type='email'
@@ -34,13 +35,14 @@ const LoginForm = ({errors, callback}) => {
                     value={formData.email}
                     onChange={handleChange}
                     isInvalid={errors.email} />
-
+                    </FloatingLabel>
                 <Form.Control.Feedback type='invalid'>
                     {errors.email}
                 </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className='mt-3 mb-3' controlId='password'>
+                <FloatingLabel  label='Contraseña' name='password' type='password'>
                 <Form.Control
                     size="lg"
                     type='password'
@@ -49,7 +51,7 @@ const LoginForm = ({errors, callback}) => {
                     value={formData.password}
                     onChange={handleChange}
                     isInvalid={errors.password} />
-
+                 </FloatingLabel>
                 <Form.Control.Feedback type='invalid'>
                     {errors.password}
                 </Form.Control.Feedback>

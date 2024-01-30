@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Form, Button, Modal } from "react-bootstrap";
+import { Col, Row, Form, Button, Modal, FloatingLabel } from "react-bootstrap";
 
 export const CreateProposalModal = ({ callback }) => {
   const [showModal, setShowModal] = useState(false);
@@ -81,17 +81,19 @@ export const CreateProposalModal = ({ callback }) => {
           <Form onSubmit={sendResponse} className="px-3">
             <Row>
               <Col sm="12">
-                <Form.Group className="mb-4 mt-4" controlId="valueProposal">
+                <Form.Group className="mb-4 mt-5" controlId="valueProposal">
+                  <FloatingLabel label="Valor de la propuesta" className="mb-0">
                   <Form.Control
                     size="lg"
                     type="text"
                     name="valueProposal"
-                    placeholder="Ingrese el valor de la propuesta"
+
                     value={formData.valueProposal}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.valueProposal !== ""}
                   />
-
+                </FloatingLabel>
+                  
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.valueProposal}
                   </Form.Control.Feedback>
@@ -99,18 +101,19 @@ export const CreateProposalModal = ({ callback }) => {
               </Col>
 
               <Col sm="12">
-                <Form.Group className="mb-4" controlId="description">
+                <Form.Group className="mb-5" controlId="description">
+                  <FloatingLabel  label="Descripción del proyecto" className="mb-0">
                   <Form.Control
                     as="textarea"
                     rows={8}
                     size="lg"
                     name="description"
-                    placeholder="Ingrese la descripción"
                     value={formData.description}
                     onChange={handleChange}
                     isInvalid={formSubmitted && formErrors.description !== ""}
+                    style={{height:'200px'}}
                   />
-
+                  </FloatingLabel>
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.description}
                   </Form.Control.Feedback>
