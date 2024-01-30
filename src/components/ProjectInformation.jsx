@@ -21,18 +21,26 @@ export const ProjectInformation = () => {
  
 
   const [teamproject, setTeamproject] = useState([]);
+
   const handleStudentSelect = (selectedStudents) => {
     setTeamproject(selectedStudents);
   };
 
-  const handleButtonClick = (selectedStudents) => {
+  const [tags, setTags] = useState([])
+
+  const handleTagsSelect = (res) => {
+    setTags(res);
+  };
+
+
+  const handleButtonClick = () => {
     const searchParams = new URLSearchParams(location.search);
     const idProject = searchParams.get("id");
 
     const projectDataToSend = {
       identificator: idProject,
       projectName: formData.projectName,
-      tagsToProject: selectedTags,
+      tagsToProject: tags,
       userToProject: teamproject,
     };
 
@@ -50,9 +58,7 @@ export const ProjectInformation = () => {
       });
   };
 
-  const handleTagsSelect = (res) => {
-    console.log(res)
-  };
+
   let name = project.status;
 
   let buttonComponent;
