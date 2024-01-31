@@ -6,6 +6,8 @@ import { logout } from '../connections/userActions';
 import { Container, Nav, NavDropdown, Image } from 'react-bootstrap';
 import logo from '../img/logo-nav.png';
 import { useEffect } from "react";
+import PermissionCheck from '../components/PermissionCheck';
+import { roles } from '../utils/roles';
 
 function Navigation() {
     const connected = useSelector((state) => state.connected);
@@ -66,9 +68,11 @@ function Navigation() {
                     <NavLink to={"/"} className="link p-2 ms-0 mx-3" id="crear-usuario-link">
                         Proyectos
                     </NavLink>
-                    <NavLink to={"/user"} className="link p-2 ms-0 mx-3" id="usuarios-link">
-                        Usuarios
-                    </NavLink>
+                    <PermissionCheck requiredRoles={[roles.ADMIN]}>
+                        <NavLink to={"/user"} className="link p-2 ms-0 mx-3" id="usuarios-link">
+                            Usuarios
+                        </NavLink>
+                    </PermissionCheck>
                 </Nav>
             </div>
         </Container>

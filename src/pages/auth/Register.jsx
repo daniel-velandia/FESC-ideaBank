@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { REGISTER_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import { Alert, Card, Col, Container, Image, Row } from "react-bootstrap";
 import { RegisterForm } from "../../components/RegisterForm";
@@ -8,12 +8,20 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logof from "../../img/logof.png";
 import ToastError from "../../components/ToastError";
+import { useSelector } from "react-redux";
 
 const Register = () => {
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
+  const connected = useSelector((state) => state.connected);
 
   const navigation = useNavigate();
+
+  useEffect(() => {
+    if (connected) {
+      navigation("/");
+    }
+  });
 
   const register = async (user) => {
     setErrorMessage(null);
