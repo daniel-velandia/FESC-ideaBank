@@ -37,7 +37,7 @@ export const ProjectInformation = () => {
     setTeamproject(selectedTeamUser);
     const UsertsWithIsManager = selectedTeamUser.map((user) => ({
       email:  user.email,
-      isManager: false,
+      isManager: "no",
     }));
     setnewTeamProject(UsertsWithIsManager);
   };
@@ -59,7 +59,7 @@ export const ProjectInformation = () => {
       if (isDocenteManagerInArray) {
         return prevTeamProject.map((member) =>
           member.email === docenteManager.email
-            ? { ...member, isManager: true }
+            ? { ...member, isManager: "yes" }
             : member
         );
       } else {
@@ -67,7 +67,7 @@ export const ProjectInformation = () => {
           ...prevTeamProject,
           {
             email: docenteManager.email,
-            isManager: true,
+            isManager: "yes",
           },
         ];
       }

@@ -17,7 +17,7 @@ export const ModalUserManager = ({
     if (selectedDocenteUser) {
       const docenteWithManagerFlag = {
         email: selectedDocenteUser.email,
-        isManager: true,
+        isManager: "yes",
       };
       onDocenteSelect(docenteWithManagerFlag);
     }
