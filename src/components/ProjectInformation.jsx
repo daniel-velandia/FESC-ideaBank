@@ -6,7 +6,7 @@ import { useProjectData } from "../hooks/useProjectData";
 import { useLocation } from "react-router-dom";
 import { ModalUserManager } from "./ModalUserManager";
 import axios from "axios";
-import { PROPOSAL_EDIT_POST_ENDPOINT } from "../connections/helpers/endpoints";
+import { PROPOSAL_EDIT_POST_ENDPOINT, PROPOSAL_UPDATE_STATES_POST_ENDPOINT } from "../connections/helpers/endpoints";
 
 export const ProjectInformation = () => {
   const [showModalManager, setShowModalManager] = useState(false);
@@ -86,15 +86,27 @@ export const ProjectInformation = () => {
       tagsToProject: tags,
     };
 
-    console.log(projectDataToSend);
+    const projectIdDataStatusInProgress = {
+      identificator: idProject
+    }
+
 
     axios
       .post(PROPOSAL_EDIT_POST_ENDPOINT, projectDataToSend)
-      .then((response) => {
-        console.log("Respuesta del servidor:", response.data);
+      .then((res) => {
+        console.log("Respuesta del servidor:", res);
       })
-      .catch((error) => {
-        console.error("Error al enviar datos al servidor:", error);
+      .catch((err) => {
+        console.error("Error al enviar datos al servidor:", err);
+      });
+
+    axios
+      .post(PROPOSAL_UPDATE_STATES_POST_ENDPOINT, projectIdDataStatusInProgress)
+      .then((res) => {
+        console.log("Respuesta del servidor:", res);
+      })
+      .catch((err) => {
+        console.error("Error al enviar datos al servidor:", err);
       });
   };
 
