@@ -8,7 +8,6 @@ import { ModalUserManager } from "./ModalUserManager";
 import axios from "axios";
 import { PROPOSAL_EDIT_POST_ENDPOINT } from "../connections/helpers/endpoints";
 
-
 export const ProjectInformation = () => {
   const [showModalManager, setShowModalManager] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -36,12 +35,11 @@ export const ProjectInformation = () => {
   const handleUserTeamSelect = (selectedTeamUser) => {
     setTeamproject(selectedTeamUser);
     const UsertsWithIsManager = selectedTeamUser.map((user) => ({
-      email:  user.email,
+      email: user.email,
       isManager: "no",
     }));
     setnewTeamProject(UsertsWithIsManager);
   };
-
 
   //Funcion para obtener los tags del componente hijo
   const handleTagsSelect = (res) => {
@@ -49,7 +47,6 @@ export const ProjectInformation = () => {
   };
 
   const handleDocenteManagerSelect = (docenteManager) => {
-  
     const isDocenteManagerInArray = newTeamProject.some(
       (member) => member.email === docenteManager.email
     );
@@ -82,25 +79,24 @@ export const ProjectInformation = () => {
     }
   }, [newTeamProject]);
   const sendProjectDataToBackend = async () => {
-
-    const projectDataToSend = {projectName: formData.projectName,
+    const projectDataToSend = {
+      projectName: formData.projectName,
       identificator: idProject,
       userToProject: newTeamProject,
-      tagsToProject: tags}
+      tagsToProject: tags,
+    };
 
-      console.log(projectDataToSend)
+    console.log(projectDataToSend);
 
     axios
-        .post(PROPOSAL_EDIT_POST_ENDPOINT, projectDataToSend)
-        .then((response) => {
-          console.log("Respuesta del servidor:", response.data);
-        })
-        .catch((error) => {
-          console.error("Error al enviar datos al servidor:", error);
-        }); 
-    
+      .post(PROPOSAL_EDIT_POST_ENDPOINT, projectDataToSend)
+      .then((response) => {
+        console.log("Respuesta del servidor:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error al enviar datos al servidor:", error);
+      });
   };
-
 
   //Funcion que cumple el boton de Validar cuando el estado pendiente
   const handleButtonClick = () => {
@@ -114,67 +110,6 @@ export const ProjectInformation = () => {
 
   let name = project.status;
 
-  let buttonComponent;
-  if (name === "validated") {
-    buttonComponent = (
-      <Button
-        type="submit"
-        variant="warning"
-        style={{
-          color: "#ffff",
-          backgroundColor: "#f9db4a",
-          width: "fit-content",
-        }}
-      >
-        Agregar tarea
-      </Button>
-    );
-  } else if (name === "inprogress") {
-    buttonComponent = (
-      <>
-        <Button
-          type="submit"
-          variant="secondary"
-          style={{
-            color: "black",
-            backgroundColor: "#ffff",
-            width: "fit-content",
-            marginRight: "10px",
-          }}
-        >
-          Terminar proyecto
-        </Button>
-        <Button
-          type="submit"
-          variant="success"
-          style={{ backgroundColor: "#4baf4f", width: "fit-content" }}
-        >
-          Ver tareas
-        </Button>
-      </>
-    );
-  } else if (name === "finalized") {
-    buttonComponent = (
-      <Button
-        type="submit"
-        variant="primary"
-        style={{ backgroundColor: "#03a9f4", width: "fit-content" }}
-      >
-        Ver tareas
-      </Button>
-    );
-  } else {
-    buttonComponent = (
-      <Button
-        type="button"
-        variant="danger"
-        style={{ backgroundColor: "#9c0f06", width: "fit-content" }}
-        onClick={handleButtonClick}
-      >
-        Validar
-      </Button>
-    );
-  }
 
   return (
     <>
@@ -226,7 +161,14 @@ export const ProjectInformation = () => {
                 <h3>Integrantes del equipo</h3>
                 <ListTeamMembers onStudentSelect={handleUserTeamSelect} />
                 <div className="d-flex justify-content-end mt-auto ">
-                  {buttonComponent}
+                  <Button
+                    type="button"
+                    variant="danger"
+                    style={{ backgroundColor: "#9c0f06", width: "fit-content" }}
+                    onClick={handleButtonClick}
+                  >
+                    Validar
+                  </Button>
                 </div>
               </Col>
             </Row>
