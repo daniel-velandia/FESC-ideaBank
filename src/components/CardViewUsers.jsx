@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Button, Col, Row } from "react-bootstrap";
-import { USER_LIST_GET_ENDPOINT } from "../connections/helpers/endpoints";
+import { Alert, Button, Col, Row } from "react-bootstrap";
+import { USER_CREATE_POST_ENDPOINT, USER_LIST_GET_ENDPOINT } from "../connections/helpers/endpoints";
 import { SelectUserRolFilter } from "./SelectUserRolFilter";
 import IconRolAdmin from "../img/icon-roles/IconRolAdmin.png";
 import iconRolDirector from "../img/icon-roles/IconRolDirector.png";
@@ -13,12 +13,18 @@ import IconRolUsuario from "../img/icon-roles/IconRolUsuario.png";
 import IconRolValidador from "../img/icon-roles/IconRolValidador.png";
 import { Plus } from "react-bootstrap-icons";
 import { CreateUserForm } from "./CreateUserForm";
+import validator from "validator";
+import { isEmptyObject } from "../connections/helpers/isEmptyObject";
+import ToastError from "./ToastError";
+import ToastSucces from "./ToastSucces";
 
 export const CardViewUsers = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [selectedRoles, setSelectedRoles] = useState([]);
   const [colWidth, setColWidth] = useState("400px");
-
+  const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [succesMessage, setsuccesMessage] = useState("");
   const handleCheckboxChange = (selectedRoles) => {
     setSelectedRoles(selectedRoles);
   };
@@ -36,11 +42,9 @@ export const CardViewUsers = () => {
 
     const url = USER_LIST_GET_ENDPOINT + rolesQueryString;
 
-    axios
-      .get(url)
-      .then((res) => setUsuarios(res.data))
-      .catch((err) => console.error(err));
+    axios.get(url).then((res) => setUsuarios(res.data)).catch((err) => console.error(err));
   };
+
   useEffect(() => {
     const handleResize = () => {
       setColWidth(window.innerWidth <= 768 ? "100%" : "400px");
@@ -56,6 +60,72 @@ export const CardViewUsers = () => {
     fetchUsers([]);
   }, []);
 
+  const createUser = async (user) => {
+
+    setErrorMessage(null);
+    const error = {};
+
+    if (validator.isEmpty(user.name)) {
+      error.name = "El nombre no puede estar vacio";
+    }
+
+    if (validator.isEmpty(user.lastName)) {
+      error.lastName = "El apellido no puede estar vacio";
+    }
+
+    if (!validator.isEmail(user.email)) {
+      error.email = "El correo electronico es invalido";
+    }
+
+    if (validator.isEmpty(user.cellPhone)) {
+      error.cellPhone = "El telefono no puede estar vacio";
+    }
+
+    if (!validator.isLength(user.password, { min: 6, max: 30 })) {
+      error.password = "La contraseña debe tener entre 6 y 30 caracteres";
+    }
+
+    if (user.password !== user.repeatPassword) {
+      error.password = "Las contraseñas deben coincidir";
+    }
+
+    if (validator.isEmpty(user.program)) {
+      error.program = "Tiene que asignar una carrera";
+    }
+
+    if (validator.isEmpty(user.rol)) {
+      error.rol = "Tiene que asignar un rol";
+    }
+
+    const token = localStorage.getItem("token");
+    axios.post(USER_CREATE_POST_ENDPOINT, user, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        setsuccesMessage("Propuesta creada con exito")
+        fetchUsers([]);
+
+      })
+      .catch((err) => setErrorMessage(err.response.data));
+  };
+
+  const renderToastError = () => {
+    if (errorMessage) {
+      return <ToastError message={errorMessage} />;
+    }
+    return null;
+  };
+
+  const renderToastSucces = () => {
+    if (succesMessage) {
+      return <ToastSucces message={succesMessage} />;
+    }
+    return null;
+  };
   const renderUserIcon = (rol) => {
     const iconMap = {
       admin: IconRolAdmin,
@@ -82,7 +152,7 @@ export const CardViewUsers = () => {
     );
   };
 
- 
+
   return (
     <>
       <Row className="gx-5 mx-2 mt-2 p-2 align-items-center">
@@ -98,7 +168,9 @@ export const CardViewUsers = () => {
             onRolesChange={handleCheckboxChange}
             className="me-2"
           />
-          <CreateUserForm></CreateUserForm>
+          <CreateUserForm errors={errors} callback={createUser} />
+          {renderToastError()}
+          {renderToastSucces()}
         </Col>
       </Row>
 
@@ -106,7 +178,7 @@ export const CardViewUsers = () => {
         {usuarios.map((usuario, index) => (
           <Col
             style={{
-              width: colWidth ,
+              width: colWidth,
             }}
             key={index}
             xs={12}

@@ -20,7 +20,7 @@ import { Register } from "../pages/auth/Register";
 import { Error404 } from "../pages/Error404";
 
 import { UserList } from "../pages/user/UserList";
-import { UserCreate } from "../pages/user/UserCreate";
+
 import { TableTask } from "../pages/user/UserTableTask";
 
 import { ProjectList } from "../pages/project/ProjectList";
@@ -52,7 +52,7 @@ const App = () => {
             <Route element={<PrivateRoute />}>
               <Route path="/" element={<ProjectList />} />
               <Route path="/user" element={<UserList />} />
-              <Route path="/user/create" element={<UserCreate />} />
+              {/* <Route path="/user/create" element={<UserCreate />} /> */}
               <Route path="/project/detail" element={<ProjectDetail />}/>
               <Route path="/tableTask/projects" element={<TableTask />}/>
             </Route>
