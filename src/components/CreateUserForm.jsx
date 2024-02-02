@@ -7,6 +7,7 @@ import { Plus } from "react-bootstrap-icons";
 export const CreateUserForm = ({ callback }) => {
   const [showModal, setShowModal] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+
   const [formErrors, setFormErrors] = useState({
     name: "",
     lastName: "",
@@ -17,6 +18,8 @@ export const CreateUserForm = ({ callback }) => {
     program: "",
     rol: "",
   });
+
+  
 
   const handleModalShow = () => {
     setShowModal(true);
@@ -74,8 +77,8 @@ export const CreateUserForm = ({ callback }) => {
 
     // Si no hay errores, llama al callback
     if (Object.values(errors).every((error) => error === "")) {
-      callback(formData);
       handleModalClose();
+      callback(formData);
     }
   };
 
@@ -291,6 +294,7 @@ export const CreateUserForm = ({ callback }) => {
                 type="submit"
                 variant="danger"
                 className="my-modal-button"
+                onClick={sendResponse}
               >
                 Crear
               </Button>
