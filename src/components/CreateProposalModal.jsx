@@ -1,7 +1,18 @@
 import React, { useState } from "react";
-import { Col, Row, Form, Button, Modal, FloatingLabel, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Col,
+  Row,
+  Form,
+  Button,
+  Modal,
+  FloatingLabel,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import { SelectProjectFilter } from "./SelectProjectFilter";
+import PermissionCheck from "./PermissionCheck";
+import { roles } from "../utils/roles";
 
 export const CreateProposalModal = ({ callback }) => {
   const [showModal, setShowModal] = useState(false);
@@ -70,7 +81,6 @@ export const CreateProposalModal = ({ callback }) => {
     </Tooltip>
   );
 
-
   return (
     <>
       <div className="button-container">
@@ -81,12 +91,11 @@ export const CreateProposalModal = ({ callback }) => {
           delay={{ show: 250, hide: 400 }}
           overlay={renderCreateTooltip}
         >
-          <Button
-            className="my-btn-create-project"
-            onClick={handleModalShow}
-          >
-            <FaPlus className="mr-2" />
-          </Button>
+          <PermissionCheck requiredRoles={[roles.COMPANY]}>
+            <Button className="my-btn-create-project" onClick={handleModalShow}>
+              <FaPlus className="mr-2" />
+            </Button>
+          </PermissionCheck>
         </OverlayTrigger>
       </div>
 
@@ -106,17 +115,18 @@ export const CreateProposalModal = ({ callback }) => {
               <Col sm="12">
                 <Form.Group className="mb-4 mt-5" controlId="valueProposal">
                   <FloatingLabel label="Valor de la propuesta" className="mb-0">
-                  <Form.Control
-                    size="lg"
-                    type="text"
-                    name="valueProposal"
+                    <Form.Control
+                      size="lg"
+                      type="text"
+                      name="valueProposal"
+                      value={formData.valueProposal}
+                      onChange={handleChange}
+                      isInvalid={
+                        formSubmitted && formErrors.valueProposal !== ""
+                      }
+                    />
+                  </FloatingLabel>
 
-                    value={formData.valueProposal}
-                    onChange={handleChange}
-                    isInvalid={formSubmitted && formErrors.valueProposal !== ""}
-                  />
-                </FloatingLabel>
-                  
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.valueProposal}
                   </Form.Control.Feedback>
@@ -125,17 +135,20 @@ export const CreateProposalModal = ({ callback }) => {
 
               <Col sm="12">
                 <Form.Group className="mb-5" controlId="description">
-                  <FloatingLabel  label="Descripción del proyecto" className="mb-0">
-                  <Form.Control
-                    as="textarea"
-                    rows={8}
-                    size="lg"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    isInvalid={formSubmitted && formErrors.description !== ""}
-                    style={{height:'200px'}}
-                  />
+                  <FloatingLabel
+                    label="Descripción del proyecto"
+                    className="mb-0"
+                  >
+                    <Form.Control
+                      as="textarea"
+                      rows={8}
+                      size="lg"
+                      name="description"
+                      value={formData.description}
+                      onChange={handleChange}
+                      isInvalid={formSubmitted && formErrors.description !== ""}
+                      style={{ height: "200px" }}
+                    />
                   </FloatingLabel>
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.description}
