@@ -3,14 +3,19 @@ import { useEffect, useRef, useState } from "react";
 import SelectTypeTags from "./SelectTypeTags";
 import { ListTeamMembers } from "./ListTeamMembers";
 import { useProjectData } from "../hooks/useProjectData";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ModalUserManager } from "./ModalUserManager";
 import axios from "axios";
-import { PROPOSAL_EDIT_POST_ENDPOINT, PROPOSAL_UPDATE_STATES_POST_ENDPOINT } from "../connections/helpers/endpoints";
+import {
+  PROPOSAL_EDIT_POST_ENDPOINT,
+  PROPOSAL_UPDATE_STATES_POST_ENDPOINT,
+} from "../connections/helpers/endpoints";
 
 export const ProjectInformation = () => {
   const [showModalManager, setShowModalManager] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const navigation = useNavigate();
+
 
   const [formErrors, setFormErrors] = useState({
     projectName: "",
@@ -74,11 +79,11 @@ export const ProjectInformation = () => {
 
   useEffect(() => {
     if (sendProjectDataRef.current) {
-      sendProjectDataToBackend();
+      sendProjectDataUpdateToBackend();
       sendProjectDataRef.current = false;
     }
   }, [newTeamProject]);
-  const sendProjectDataToBackend = async () => {
+  const sendProjectDataUpdateToBackend = async () => {
     const projectDataToSend = {
       projectName: formData.projectName,
       identificator: idProject,
@@ -86,24 +91,24 @@ export const ProjectInformation = () => {
       tagsToProject: tags,
     };
 
-    const projectIdDataStatusInProgress = {
-      identificator: idProject
-    }
-
-
     axios
       .post(PROPOSAL_EDIT_POST_ENDPOINT, projectDataToSend)
       .then((res) => {
-        console.log("Respuesta del servidor:", res);
+        sendProjectDataUpdateStatusToBackend();
       })
       .catch((err) => {
         console.error("Error al enviar datos al servidor:", err);
       });
+  };
 
+  const sendProjectDataUpdateStatusToBackend = () => {
+    const projectIdDataStatusInProgress = {
+      identificator: idProject,
+    };
     axios
       .post(PROPOSAL_UPDATE_STATES_POST_ENDPOINT, projectIdDataStatusInProgress)
       .then((res) => {
-        console.log("Respuesta del servidor:", res);
+        navigation("/")
       })
       .catch((err) => {
         console.error("Error al enviar datos al servidor:", err);
@@ -121,7 +126,6 @@ export const ProjectInformation = () => {
   };
 
   let name = project.status;
-
 
   return (
     <>

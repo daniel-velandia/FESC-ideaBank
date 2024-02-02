@@ -12,9 +12,10 @@ export const ProjectDetail = () => {
   return (
     <div className="cards-container">
       <Container className="mt-5">
-        <h1>Validar proyecto RECHAZAR/APROBAR</h1>
+        {isProjectPending && <h1>Validar proyecto pendiente - RECHAZAR/APROBAR</h1>}
+        {isProjectApproved && <h1>Validar proyecto aprobado -  EN PROGRESO</h1>}
         {isProjectPending && <ProjectPendingStatus project={project} />}
-        {isProjectApproved && <ProjectInformation/>}
+        {isProjectApproved && <ProjectInformation />}
       </Container>
     </div>
   );
