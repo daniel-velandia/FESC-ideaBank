@@ -14,6 +14,8 @@ export const USER_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/user/list/project
 
 export const PROPOSAL_LIST_GET_ENDPOINT = API_URL + "/project/list" //Obtener la lista de proyectos o propuestas
 export const PROPOSAL_CREATE_POST_ENDPOINT = API_URL + "/project/create" //Creacion de un propuesta de proyecto
-export const  PROPOSAL_DETAIL_GET_ENDPOINT = API_URL + "/project/detail"
+export const  PROPOSAL_DETAIL_GET_ENDPOINT = API_URL + "/project/detail" //Obtener detalle de proyecto
+export const  PROPOSAL_EDIT_POST_ENDPOINT = API_URL + "/project/edit" //Editar propuesta de proyecto
+export const  PROPOSAL_UPDATE_STATES_POST_ENDPOINT = API_URL + "/project/update/status" //Actualizacion de estado propuesta de proyecto
 
 export const TAGS_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/project/tag/list" //Obtener la lista de tags
