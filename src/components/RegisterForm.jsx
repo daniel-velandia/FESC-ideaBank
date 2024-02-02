@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 
 const RegisterForm = ({errors, callback}) => {
 
+    const externalUser = "Exteno";
+    const invitedUser = "Invitado";
+
     const [formData, setFormData] = useState({
         name: '',
         lastName: '',
@@ -12,7 +15,9 @@ const RegisterForm = ({errors, callback}) => {
         companyName: '',
         password: '',
         repeatPassword: ''
-      });
+    });
+
+    const [isExtenalUser, setExtenalUser] = useState(true);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,6 +25,10 @@ const RegisterForm = ({errors, callback}) => {
           ...prevData,
           [name]: value
         }));
+    };
+
+    const handleRegisterType = (e) => {
+        setExtenalUser(e.target.value === externalUser);
     };
 
     const sendResponse = (e) => {
@@ -65,7 +74,7 @@ const RegisterForm = ({errors, callback}) => {
                     </Form.Group>
                 </Col>
 
-                <Col sm="12">
+                <Col sm="12" md="6">
                     <Form.Group className='mb-3' controlId='email'>
                         <FloatingLabel label='Correo electrónico' className='label'>
                         <Form.Control
@@ -79,6 +88,22 @@ const RegisterForm = ({errors, callback}) => {
                         <Form.Control.Feedback type='invalid'>
                             {errors.email}
                         </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+
+                <Col sm="12" md="6">
+                    <Form.Group className='mb-3' controlId='email'>
+                        <FloatingLabel label='Selecione tipo de registro' className='label'>
+                        <Form.Select style={{height:"45px"}}
+                            value={isExtenalUser ? externalUser : invitedUser}
+                            onChange={handleRegisterType}
+                            name='isExternalUser'
+                            aria-label="Default select example"
+                            >
+                            <option value={externalUser}>{externalUser}</option>
+                            <option value={invitedUser}>{invitedUser}</option>
+                            </Form.Select>
+                        </FloatingLabel>
                     </Form.Group>
                 </Col>
 
@@ -103,10 +128,11 @@ const RegisterForm = ({errors, callback}) => {
                     <Form.Group className='mb-3' controlId='companyName'>
                         <FloatingLabel label='Nombre de la empresa' className='label'>
                         <Form.Control
+                            disabled={!isExtenalUser}
                             size="lg"
                             type='text'
                             name='companyName'
-                            value={formData.companyName}
+                            value={isExtenalUser ? formData.companyName : ""}
                             onChange={handleChange}
                             isInvalid={errors.companyName} />
                         </FloatingLabel>
