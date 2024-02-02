@@ -12,6 +12,7 @@ import IconRolDocente from "../img/icon-roles/IconRolDocente.png";
 import IconRolUsuario from "../img/icon-roles/IconRolUsuario.png";
 import IconRolValidador from "../img/icon-roles/IconRolValidador.png";
 import { Plus } from "react-bootstrap-icons";
+import { CreateUserForm } from "./CreateUserForm";
 
 export const CardViewUsers = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -97,15 +98,7 @@ export const CardViewUsers = () => {
             onRolesChange={handleCheckboxChange}
             className="me-2"
           />
-          <Link to={`/user/create`}>
-            <Button
-              variant="ligth"
-              className=""
-              style={{ backgroundColor: "#EBEBEB" }}
-            >
-              <Plus></Plus>
-            </Button>
-          </Link>
+          <CreateUserForm></CreateUserForm>
         </Col>
       </Row>
 
