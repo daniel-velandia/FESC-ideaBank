@@ -84,19 +84,27 @@ export const CreateProposalModal = ({ callback }) => {
   return (
     <>
       <div className="button-container">
-        <SelectProjectFilter />
+        <PermissionCheck requiredRoles={[
+          roles.COMPANY, 
+          roles.DIRECTOR, 
+          roles.STUDENT, 
+          roles.TEACHER, 
+          roles.VALIDATOR
+        ]}>
+          <SelectProjectFilter />
+        </PermissionCheck>
 
-        <OverlayTrigger
-          placement="top"
-          delay={{ show: 250, hide: 400 }}
-          overlay={renderCreateTooltip}
-        >
-          <PermissionCheck requiredRoles={[roles.COMPANY]}>
-            <Button className="my-btn-create-project" onClick={handleModalShow}>
-              <FaPlus className="mr-2" />
-            </Button>
-          </PermissionCheck>
-        </OverlayTrigger>
+        <PermissionCheck requiredRoles={[roles.COMPANY]}>
+          <OverlayTrigger
+            placement="top"
+            delay={{ show: 250, hide: 400 }}
+            overlay={renderCreateTooltip}
+          >
+             <Button className="my-btn-create-project" onClick={handleModalShow}>
+                <FaPlus className="mr-2" />
+              </Button>
+          </OverlayTrigger>
+        </PermissionCheck>
       </div>
 
       <Modal

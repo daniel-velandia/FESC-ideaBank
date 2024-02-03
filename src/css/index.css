@@ -74,8 +74,8 @@ body {
   color: #fff;
   font-weight: 600;
   background: #da241e !important;
+  border: 1px solid #da241e;
   border-radius: 3px;
-  width: 80px;
 }
 
 .my-badge-pending-state {

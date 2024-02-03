@@ -13,6 +13,7 @@ import {
 import ToastError from "../../components/ToastError";
 import ToastSucces from "../../components/ToastSucces";
 import { useLocation } from "react-router-dom";
+import { ModalProjectDetail } from "../../components/ModalProjectDetail";
 
 function ProjectList() {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -77,11 +78,9 @@ function ProjectList() {
   return (
     <div className="cards-container">
       <Container className="mt-5">
-        <h2 className="titleCard">
-          <strong>Proyectos</strong>
-        </h2>
-          <CreateProposalModal callback={createProposal} />
-
+      <h2 className="titleCard"><strong>Proyectos</strong></h2>
+        <ModalProjectDetail />
+        <CreateProposalModal callback={createProposal} />
         <Row>
           {projects &&
             projects.map((project, index) => (
