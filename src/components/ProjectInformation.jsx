@@ -129,23 +129,14 @@ export const ProjectInformation = () => {
 
   return (
     <>
-      <Card className="w-100">
+      <Card>
         <Card.Header className={`my-header-project-${name}`}>
           <div className={`my-badge-state-${name}`}>{name}</div>
         </Card.Header>
         <Card.Body>
           <Form className="px-3 mt-4">
             <Row>
-              <Col sm="12" md="4" className="border-info-component">
-                <h3>Valor de propuesta</h3>
-                <p>{project.valueProposal}</p>
-                <h3 className="mt-4">Descripcion</h3>
-                <p>{project.description}</p>
-                <h3 className="mt-4">Usuario</h3>
-                <p>{project.nameUserCreator}</p>
-                <p className="mt-4">{project.creationDate}</p>
-              </Col>
-              <Col sm="12" md="4">
+              <Col sm="12" md="6">
                 <h3>Nombre del proyecto</h3>
                 <Form.Group className="mt-4" controlId="projectName">
                   <Form.Control
@@ -171,7 +162,7 @@ export const ProjectInformation = () => {
 
               <Col
                 sm="12"
-                md="4"
+                md="6"
                 className="d-flex flex-column justify-content-between"
               >
                 <h3>Integrantes del equipo</h3>

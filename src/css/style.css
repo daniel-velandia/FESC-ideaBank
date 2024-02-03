@@ -169,12 +169,6 @@ color: red;
 }
 
 /* diseño de las cartas */
-
-.card {
-  width: 300px; 
-  margin: 20px auto; 
-  position: relative;
-}
 .card-project {
   max-width: 250px; 
   margin: auto; 
