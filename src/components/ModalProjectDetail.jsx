@@ -83,6 +83,8 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
             <PermissionCheck requiredRoles={[roles.DIRECTOR, roles.TEACHER, roles.STUDENT]}>
               {project.status === status.IN_PROGRESS && (
                 <Button
+                    as={NavLink}
+                    to={`/task/list/${project.identificator}`}
                     type="submit"
                     variant="danger"
                     className="my-modal-button"
