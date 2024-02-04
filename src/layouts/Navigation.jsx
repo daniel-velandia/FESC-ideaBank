@@ -49,9 +49,6 @@ function Navigation() {
                                 className='my-avatar-dropdown'
                                 >
                                 <React.Fragment>
-                                    <NavDropdown.Item as={NavLink} to={"/"} className='text-black'>
-                                        Resetear contraseña
-                                    </NavDropdown.Item>
                                     <NavDropdown.Divider />
                                 </React.Fragment>
                                 <NavDropdown.Item onClick={() => dispatch(logout())} className='text-black'>

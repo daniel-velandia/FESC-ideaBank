@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 import ToastError from './ToastError';
-import { UserProyectsTable } from './UserProyectsTable';
 
 function MyVerticallyCenteredModal(props) {
 
@@ -67,24 +66,6 @@ function MyVerticallyCenteredModal(props) {
               </Col>
             </>
           }
-          <Col xs="12" className='mt-3 mb-4'>
-            <strong className="h5">Proyectos</strong>
-          </Col>
-          <Col xs="12">
-            <UserProyectsTable 
-              projects={props.user.projects || [
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'},
-                {manager: 'BioHealth Innovations', state: 'EN PROGRESO', creationDate: '12/11/2023'}
-              ]}
-            />
-          </Col>
         </Row>
       </Modal.Body>
     </Modal>
