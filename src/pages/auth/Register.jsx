@@ -76,7 +76,7 @@ const Register = () => {
           sm="12"
           md="8"
           lg="7"
-          className="custom-container shadow p-3 mb-5 bg-white rounded"
+          className="custom-container shadow p-3 mt-3 mb-5 bg-white rounded"
         >
           <div className="d-md-flex align-items-center mt-3 mb-2 px-3 custom-header">
             <div className="text-center mb-3 mb-md-2 mx-auto">

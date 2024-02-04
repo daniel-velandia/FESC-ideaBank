@@ -54,7 +54,7 @@ const App = () => {
               <Route path="/user" element={<UserList />} />
               {/* <Route path="/user/create" element={<UserCreate />} /> */}
               <Route path="/project/detail" element={<ProjectDetail />}/>
-              <Route path="/tableTask/projects" element={<TableTask />}/>
+              <Route path="/table/task/:identificator" element={<TableTask />}/>
             </Route>
           </Route>
           <Route path="*" element={<Error404 />} />

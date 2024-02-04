@@ -48,9 +48,9 @@ function Navigation() {
                                 id="button-dropdown"
                                 className='my-avatar-dropdown'
                                 >
-                                <React.Fragment>
+                                {/* <React.Fragment>
                                     <NavDropdown.Divider />
-                                </React.Fragment>
+                                </React.Fragment> */}
                                 <NavDropdown.Item onClick={() => dispatch(logout())} className='text-black'>
                                     Cerrar sesión
                                 </NavDropdown.Item>

@@ -24,3 +24,4 @@ export const TAGS_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/project/tag/list"
 export const PROJECT_USER_LIST_GET_ENDPOINT = API_URL + "/project/user/list" //Obtener listado  de integrantes del equipo de trabajo
 
 export const TASK_PROJECT_CREATE_POST_ENDPOINT = API_URL + "/task/create"
+export const LISTTASKS_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas
