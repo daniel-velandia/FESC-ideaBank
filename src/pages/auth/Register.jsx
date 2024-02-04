@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { REGISTER_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+import { REGISTER_EXTERNAL_POST_ENDPOINT, REGISTER_INVITED_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import { Alert, Card, Col, Container, Image, Row } from "react-bootstrap";
 import { RegisterForm } from "../../components/RegisterForm";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
@@ -56,7 +56,7 @@ const Register = () => {
       setErrors(error);
     } else {
       axios
-        .post(REGISTER_POST_ENDPOINT, user)
+        .post(user.isExternalUser ? REGISTER_EXTERNAL_POST_ENDPOINT : REGISTER_INVITED_POST_ENDPOINT, user)
         .then((res) => navigation("/login"))
         .catch((err) => setErrorMessage(err.response.data));
     }
