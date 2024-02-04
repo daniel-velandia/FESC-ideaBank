@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Dropdown } from "react-bootstrap";
-import { ROL_ALL_GET_ENDPOINT } from "../connections/helpers/endpoints";
+import { ROL_ALL_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 import Form from "react-bootstrap/Form";
-import { Funnel, FunnelFill } from "react-bootstrap-icons";
+import { Funnel } from "react-bootstrap-icons";
 
 export const SelectUserRolFilter = ({ onRolesChange }) => {
   const [rols, setrols] = useState([]);

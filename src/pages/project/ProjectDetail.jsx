@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useProjectData } from "../../hooks/useProjectData";
-import { ProjectInformation } from "../../components/ProjectInformation";
+import { ProjectInformation } from "../../components/project/ProjectInformation"; 
 import usePermissionCheck from "../../hooks/usePermissionCheck";
 import { roles } from "../../utils/roles";
 import { useNavigate } from "react-router-dom";

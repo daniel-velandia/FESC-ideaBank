@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { REGISTER_EXTERNAL_POST_ENDPOINT, REGISTER_INVITED_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import { Alert, Card, Col, Container, Image, Row } from "react-bootstrap";
-import { RegisterForm } from "../../components/RegisterForm";
+import { RegisterForm } from "../../components/auth/RegisterForm";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from "validator";
 import axios from "axios";

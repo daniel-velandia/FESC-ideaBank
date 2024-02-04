@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { USER_DETAIL_POST_ENDPOINT } from '../connections/helpers/endpoints';
+import { USER_DETAIL_POST_ENDPOINT } from '../../connections/helpers/endpoints';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
-import ToastError from './ToastError';
+import ToastError from '../ToastError';
 
 function MyVerticallyCenteredModal(props) {
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import CardProject from "../../components/CardProject";
+import CardProject from "../../components/project/CardProject";
 import "../../css/style.css";
 import { Container, Row, Col } from "react-bootstrap";
-import { CreateProposalModal } from "../../components/CreateProposalModal";
+import { CreateProposalModal } from "../../components/project/CreateProposalModal";  
 import axios from "axios";
 import validator from "validator";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
@@ -13,9 +13,9 @@ import {
 import ToastError from "../../components/ToastError";
 import ToastSucces from "../../components/ToastSucces";
 import { useLocation } from "react-router-dom";
-import { ModalProjectDetail } from "../../components/ModalProjectDetail";
+import { ModalProjectDetail } from "../../components/project/ModalProjectDetail";
 import { useSelector } from "react-redux";
-import { ModalProjectApproved } from "../../components/ModalProjectApproved";
+import { ModalProjectApproved } from "../../components/project/ModalProjectApproved";
 
 function ProjectList() {
   const isNeededRefresh = useSelector(state => state.project.isNeededRefresh);

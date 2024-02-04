@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { PROPOSAL_DETAIL_GET_ENDPOINT } from '../connections/helpers/endpoints';
+import { PROPOSAL_DETAIL_GET_ENDPOINT } from '../../connections/helpers/endpoints';
 import axios from 'axios';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Col, Row } from 'react-bootstrap';
-import PermissionCheck from './PermissionCheck';
-import { roles } from '../utils/roles';
-import { status } from '../utils/status';
+import PermissionCheck from '../PermissionCheck';
+import { roles } from '../../utils/roles';
+import { status } from '../../utils/status';
 import { ButtonProjectReject } from './ButtonProjectReject';
 
 function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {

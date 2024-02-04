@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { ListGroup } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { USER_LIST_TEAM_PROJECT_GET_ENDPOINT } from "../connections/helpers/endpoints";
+import { USER_LIST_TEAM_PROJECT_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 
 export const ListTeamMembers = ({  onStudentSelect }) => {
   const [selectedStudents, setSelectedStudents] = useState([]);

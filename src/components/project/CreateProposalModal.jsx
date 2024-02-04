@@ -10,8 +10,8 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { SelectProjectFilter } from "./SelectProjectFilter";
-import PermissionCheck from "./PermissionCheck";
-import { roles } from "../utils/roles";
+import PermissionCheck from "../PermissionCheck";
+import { roles } from "../../utils/roles";
 import { Plus } from "react-bootstrap-icons";
 
 export const CreateProposalModal = ({ callback }) => {

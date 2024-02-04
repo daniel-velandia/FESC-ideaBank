@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Alert, Button, Col, Row } from "react-bootstrap";
-import { USER_CREATE_POST_ENDPOINT, USER_LIST_GET_ENDPOINT } from "../connections/helpers/endpoints";
-import { SelectUserRolFilter } from "./SelectUserRolFilter";
-import IconRolAdmin from "../img/icon-roles/IconRolAdmin.png";
-import iconRolDirector from "../img/icon-roles/IconRolDirector.png";
-import IconRolEstudiante from "../img/icon-roles/IconRolEstudiante.png";
-import IconRolEmpresa from "../img/icon-roles/IconRolEmpresa.png";
-import IconRolDocente from "../img/icon-roles/IconRolDocente.png";
-import IconRolUsuario from "../img/icon-roles/IconRolUsuario.png";
-import IconRolValidador from "../img/icon-roles/IconRolValidador.png";
-import { Plus } from "react-bootstrap-icons";
+import { Col, Row } from "react-bootstrap";
+import { USER_CREATE_POST_ENDPOINT, USER_LIST_GET_ENDPOINT } from "../../connections/helpers/endpoints";
+import { SelectUserRolFilter } from "./SelectUserRolFilter"; 
+//import IconRolAdmin from "../img/icon-roles/IconRolAdmin.png";
+import IconRolAdmin from "../../img/icon-roles/IconRolAdmin.png";
+import iconRolDirector from "../../img/icon-roles/IconRolDirector.png";
+import IconRolEstudiante from "../../img/icon-roles/IconRolEstudiante.png";
+import IconRolEmpresa from "../../img/icon-roles/IconRolEmpresa.png";
+import IconRolDocente from "../../img/icon-roles/IconRolDocente.png";
+import IconRolUsuario from "../../img/icon-roles/IconRolUsuario.png";
+import IconRolValidador from "../../img/icon-roles/IconRolValidador.png";
 import { CreateUserForm } from "./CreateUserForm";
 import validator from "validator";
-import { isEmptyObject } from "../connections/helpers/isEmptyObject";
-import ToastError from "./ToastError";
-import ToastSucces from "./ToastSucces";
+import ToastError from "../ToastError";
+import ToastSucces from "../ToastSucces";
 
 export const CardViewUsers = () => {
   const [usuarios, setUsuarios] = useState([]);

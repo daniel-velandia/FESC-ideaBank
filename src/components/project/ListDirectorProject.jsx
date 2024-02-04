@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { ListGroup } from "react-bootstrap";
-import { USER_LIST_GET_ENDPOINT } from "../connections/helpers/endpoints";
+import { USER_LIST_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 
 export const ListDirectorProject = ({ ondirectorselect }) => {
   const [selecteddirectors, setSelecteddirectors] = useState([]);

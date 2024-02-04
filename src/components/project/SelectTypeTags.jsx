@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Badge from "react-bootstrap/Badge";
 import { useLocation } from "react-router-dom";
-import { TAGS_LIST_TEAM_PROJECT_GET_ENDPOINT } from "../connections/helpers/endpoints";
+import { TAGS_LIST_TEAM_PROJECT_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 
 const SelectTypeTags = ({ onTagsSelect }) => {
   const location = useLocation();

@@ -2,20 +2,19 @@ import { Form, Button, Row, Col, Card } from "react-bootstrap";
 import { useEffect, useRef, useState } from "react";
 import SelectTypeTags from "./SelectTypeTags";
 import { ListTeamMembers } from "./ListTeamMembers";
-import { useProjectData } from "../hooks/useProjectData";
+import { useProjectData } from "../../hooks/useProjectData";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ModalUserManager } from "./ModalUserManager";
 import axios from "axios";
 import {
   PROPOSAL_EDIT_POST_ENDPOINT,
   PROPOSAL_UPDATE_STATES_POST_ENDPOINT,
-} from "../connections/helpers/endpoints";
+} from "../../connections/helpers/endpoints";
 
 export const ProjectInformation = () => {
   const [showModalManager, setShowModalManager] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const navigation = useNavigate();
-
 
   const [formErrors, setFormErrors] = useState({
     projectName: "",
@@ -108,7 +107,7 @@ export const ProjectInformation = () => {
     axios
       .post(PROPOSAL_UPDATE_STATES_POST_ENDPOINT, projectIdDataStatusInProgress)
       .then((res) => {
-        navigation("/")
+        navigation("/");
       })
       .catch((err) => {
         console.error("Error al enviar datos al servidor:", err);

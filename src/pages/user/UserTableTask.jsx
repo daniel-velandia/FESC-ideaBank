@@ -3,8 +3,8 @@ import { Col, Container, Row, Table } from "react-bootstrap";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { LISTTASKS_GET_ENDPOINT } from "../../connections/helpers/endpoints";
-import { TableTasks } from "../../components/TableTasks";
-import { CreateModalTarea } from "../../components/CreateModalTarea";
+import { TableTasks } from "../../components/task/TableTasks";
+import { CreateModalTarea } from "../../components/task/CreateModalTarea";
 import PermissionCheck from "../../components/PermissionCheck";
 import { roles } from "../../utils/roles";
 

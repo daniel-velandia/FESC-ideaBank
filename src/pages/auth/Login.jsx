@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, Card, Col, Container, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginForm } from "../../components/LoginForm";
+import { LoginForm } from "../../components/auth/LoginForm";
 import { authentication } from "../../connections/userActions";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
 import validator from "validator";

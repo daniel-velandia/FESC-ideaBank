@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FloatingLabel, Form } from "react-bootstrap";
-import { PROJECT_USER_LIST_GET_ENDPOINT } from "../connections/helpers/endpoints";
+import { PROJECT_USER_LIST_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 
 import axios from "axios";
 
@@ -19,7 +19,7 @@ export const SelectMemberTask = ({ idProject, value, onChange, errores }) => {
   }, []);
 
   const handleSelectChange = (event) => {
-    onChange(event.target.value)
+    onChange(event.target.value);
   };
 
   return (
@@ -34,7 +34,8 @@ export const SelectMemberTask = ({ idProject, value, onChange, errores }) => {
           <option value="">Seleccione un cargo</option>
           {MembersProject.map((member) => (
             <option key={member.email} value={member.email}>
-              {member.name}{member.lastName}
+              {member.name}
+              {member.lastName}
             </option>
           ))}
         </Form.Select>

@@ -10,9 +10,9 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { SelectMemberTask } from "./SelectMemberTask";
-import { TASK_PROJECT_CREATE_POST_ENDPOINT } from "../connections/helpers/endpoints";
+import { TASK_PROJECT_CREATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import axios from "axios";
-import { formatDate } from "../utils/dateFormat";
+import { formatDate } from "../../utils/dateFormat";
 import { Plus } from "react-bootstrap-icons";
 import { useParams } from "react-router-dom";
 
@@ -23,7 +23,6 @@ export const CreateModalTarea = () => {
   const [cargo, setCargo] = useState("");
   const [errores, setErrores] = useState({});
   const { identificator } = useParams();
-
 
   const [showModal, setShowModal] = useState(false);
 
@@ -90,8 +89,6 @@ export const CreateModalTarea = () => {
         });
     }
   };
-
-  
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>

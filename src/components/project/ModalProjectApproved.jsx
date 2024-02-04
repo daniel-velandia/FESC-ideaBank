@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { PROPOSAL_UPDATE_STATES_POST_ENDPOINT } from '../connections/helpers/endpoints';
+import { PROPOSAL_UPDATE_STATES_POST_ENDPOINT } from '../../connections/helpers/endpoints';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Col, Row } from 'react-bootstrap';
-import { refresh } from '../states/projectReducer';
+import { refresh } from '../../states/projectReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListDirectorProject } from './ListDirectorProject';
-import ToastError from './ToastError';
+import ToastError from '../ToastError';
 
 function MyVerticallyCenteredModal({ show, onHide, setDirector, onClickApproved }) {
   
