@@ -9,10 +9,10 @@ import {
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa";
 import { SelectProjectFilter } from "./SelectProjectFilter";
 import PermissionCheck from "./PermissionCheck";
 import { roles } from "../utils/roles";
+import { Plus } from "react-bootstrap-icons";
 
 export const CreateProposalModal = ({ callback }) => {
   const [showModal, setShowModal] = useState(false);
@@ -100,8 +100,12 @@ export const CreateProposalModal = ({ callback }) => {
             delay={{ show: 250, hide: 400 }}
             overlay={renderCreateTooltip}
           >
-             <Button className="my-btn-create-project" onClick={handleModalShow}>
-                <FaPlus className="mr-2" />
+              <Button
+                variant="ligth"
+                style={{ backgroundColor: "#EBEBEB" }}
+                onClick={handleModalShow}
+              >
+                <Plus/>
               </Button>
           </OverlayTrigger>
         </PermissionCheck>

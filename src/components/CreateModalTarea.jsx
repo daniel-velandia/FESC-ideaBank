@@ -9,11 +9,12 @@ import {
   OverlayTrigger,
   Tooltip,
 } from "react-bootstrap";
-import { BsPlus } from "react-icons/bs";
 import { SelectMemberTask } from "./SelectMemberTask";
 import { TASK_PROJECT_CREATE_POST_ENDPOINT } from "../connections/helpers/endpoints";
 import axios from "axios";
 import { formatDate } from "../utils/dateFormat";
+import { Plus } from "react-bootstrap-icons";
+import { useParams } from "react-router-dom";
 
 export const CreateModalTarea = () => {
   const [nombre, setNombre] = useState("");
@@ -21,6 +22,8 @@ export const CreateModalTarea = () => {
   const [descripcion, setDescripcion] = useState("");
   const [cargo, setCargo] = useState("");
   const [errores, setErrores] = useState({});
+  const { identificator } = useParams();
+
 
   const [showModal, setShowModal] = useState(false);
 
@@ -64,7 +67,7 @@ export const CreateModalTarea = () => {
     if (validarCampos()) {
       const fechaFormateada = formatDate(fecha);
       const dataCreateTask = {
-        identificator: "cf5114d6-25bd-4faa-8190-2b73e387f69f",
+        identificator: identificator,
         title: nombre,
         description: descripcion,
         assignedUser: cargo,
@@ -88,13 +91,7 @@ export const CreateModalTarea = () => {
     }
   };
 
-  const styleIcon = {
-    fontSize: "140%",
-  };
-
-  const styleButton = {
-    height: "20%",
-  };
+  
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -106,16 +103,15 @@ export const CreateModalTarea = () => {
     <>
       <OverlayTrigger
         placement="left"
-        delay={{ show: 100, hide: 100 }}
+        delay={{ show: 250, hide: 400 }}
         overlay={renderTooltip}
       >
         <Button
-          variant="light"
-          style={styleButton}
-          className="mt-2"
+          variant="ligth"
+          style={{ backgroundColor: "#EBEBEB" }}
           onClick={handleMostrarModal}
         >
-          <BsPlus style={styleIcon} />
+          <Plus />
         </Button>
       </OverlayTrigger>
 

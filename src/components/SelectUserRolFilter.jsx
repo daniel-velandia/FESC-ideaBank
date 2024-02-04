@@ -39,7 +39,7 @@ export const SelectUserRolFilter = ({ onRolesChange }) => {
   return (
     <Dropdown className="me-2">
       <Dropdown.Toggle  variant="ligth" id="dropdown-basic" style={{backgroundColor : "#EBEBEB"}}>
-        <Funnel></Funnel>
+        <Funnel/>
       </Dropdown.Toggle>
 
       <Dropdown.Menu>

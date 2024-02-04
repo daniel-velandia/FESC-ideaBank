@@ -1,5 +1,5 @@
 import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { FaFilter } from "react-icons/fa";
+import { Funnel } from "react-bootstrap-icons";
 import { NavLink, useLocation } from "react-router-dom";
 
 const SelectProjectFilter = () => {
@@ -21,9 +21,10 @@ const SelectProjectFilter = () => {
           overlay={renderFilterTooltip}
         >
       <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic" className="my-dropdown-project-filter">
-            <FaFilter className="mr-2" />
-        </Dropdown.Toggle>
+      <Dropdown.Toggle  variant="ligth" id="dropdown-basic" style={{backgroundColor : "#EBEBEB"}}>
+        <Funnel/>
+      </Dropdown.Toggle>
+        
 
         <Dropdown.Menu>
             <Dropdown.Item 
