@@ -84,7 +84,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
               {project.status === status.IN_PROGRESS && (
                 <Button
                     as={NavLink}
-                    to={`/task/list/${project.identificator}`}
+                    to={`/table/task/${project.identificator}`}
                     type="submit"
                     variant="danger"
                     className="my-modal-button"

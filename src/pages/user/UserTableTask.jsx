@@ -13,6 +13,7 @@ const TableTask = () => {
     const { identificator } = useParams();
     const [tasks, setTasks] = useState([]);
     const [found, setFound] = useState(true);
+    console.log(identificator)
   
     useEffect(() => {
       axios.get(`${LISTTASKS_GET_ENDPOINT}?identificator=${identificator}`)
