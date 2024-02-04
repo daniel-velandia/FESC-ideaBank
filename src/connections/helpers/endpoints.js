@@ -20,3 +20,7 @@ export const  PROPOSAL_EDIT_POST_ENDPOINT = API_URL + "/project/edit" //Editar p
 export const  PROPOSAL_UPDATE_STATES_POST_ENDPOINT = API_URL + "/project/update/status" //Actualizacion de estado propuesta de proyecto
 
 export const TAGS_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/project/tag/list" //Obtener la lista de tags
+
+export const PROJECT_USER_LIST_GET_ENDPOINT = API_URL + "/project/user/list" //Obtener listado  de integrantes del equipo de trabajo
+
+export const TASK_PROJECT_CREATE_POST_ENDPOINT = API_URL + "/task/create"
