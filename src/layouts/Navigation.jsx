@@ -10,8 +10,8 @@ import PermissionCheck from '../components/PermissionCheck';
 import { roles } from '../utils/roles';
 
 function Navigation() {
-    const connected = useSelector((state) => state.connected);
-    const user = useSelector((state) => state.user);
+    const connected = useSelector((state) => state.user.connected);
+    const user = useSelector((state) => state.user.user);
     const dispatch = useDispatch();
 
     useEffect(() => {

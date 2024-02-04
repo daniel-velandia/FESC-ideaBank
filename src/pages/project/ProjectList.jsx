@@ -14,8 +14,11 @@ import ToastError from "../../components/ToastError";
 import ToastSucces from "../../components/ToastSucces";
 import { useLocation } from "react-router-dom";
 import { ModalProjectDetail } from "../../components/ModalProjectDetail";
+import { useSelector } from "react-redux";
+import { ModalProjectApproved } from "../../components/ModalProjectApproved";
 
 function ProjectList() {
+  const isNeededRefresh = useSelector(state => state.project.isNeededRefresh);
   const [errorMessage, setErrorMessage] = useState(null);
   const [succesMessage, setsuccesMessage] = useState("");
   const [projects, setProjects] = useState();
@@ -28,7 +31,7 @@ function ProjectList() {
       .get(`${PROPOSAL_LIST_GET_ENDPOINT}?isAll=${!filter ? true : false}`)
       .then((res) => setProjects(res.data))
       .catch((err) => {});
-  }, [filter]);
+  }, [filter, isNeededRefresh]);
 
   const createProposal = async (proposal) => {
     setErrorMessage(null);
@@ -79,6 +82,7 @@ function ProjectList() {
     <div className="cards-container">
       <Container className="mt-5">
       <h2 className="titleCard"><strong>Proyectos</strong></h2>
+        <ModalProjectApproved />
         <ModalProjectDetail />
         <CreateProposalModal callback={createProposal} />
         <Row>

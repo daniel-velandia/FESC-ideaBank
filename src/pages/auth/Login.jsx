@@ -14,7 +14,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const connected = useSelector((state) => state.connected);
+  const connected = useSelector((state) => state.user.connected);
   const navigation = useNavigate();
   const dispatch = useDispatch();
 

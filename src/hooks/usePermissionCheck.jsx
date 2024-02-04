@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const usePermissionCheck = (requiredRoles) => {
-  const user = useSelector(state => state.user);
+  const user = useSelector(state => state.user.user);
   const navigation = useNavigate();
 
   useEffect(() => {

@@ -4,12 +4,12 @@ import { PROPOSAL_DETAIL_GET_ENDPOINT } from '../connections/helpers/endpoints';
 import axios from 'axios';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Col, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import PermissionCheck from './PermissionCheck';
 import { roles } from '../utils/roles';
 import { status } from '../utils/status';
+import { ButtonProjectReject } from './ButtonProjectReject';
 
-function MyVerticallyCenteredModal({ project, show, onHide }) {
+function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
   
   return (
     <Modal
@@ -55,17 +55,12 @@ function MyVerticallyCenteredModal({ project, show, onHide }) {
             <PermissionCheck requiredRoles={[roles.VALIDATOR]}>
               {project.status === status.PENDING && (
                 <>
-                  <Button
-                      type="submit"
-                      variant="danger"
-                      className="my-modal-button me-2"
-                    >
-                      Rechazar
-                  </Button>
+                  <ButtonProjectReject project={project} onHide={onHide} />
                   <Button
                       type="submit"
                       variant="danger"
                       className="my-modal-button"
+                      onClick={onClickApproved}
                     >
                       Aprobar
                   </Button>
@@ -132,7 +127,14 @@ function ModalProjectDetail() {
     searchParams.delete('q');
     const newSearch = searchParams.toString();
     const newPath = newSearch ? `${location.pathname}?${newSearch}` : location.pathname;
-    console.log(newPath)
+    navigate(newPath);
+  };
+
+  const showModalApproved = () => {
+    hideModal();
+    searchParams.set('approved', project.identificator);
+    const newSearch = searchParams.toString();
+    const newPath = newSearch ? `${location.pathname}?${newSearch}` : location.pathname;
     navigate(newPath);
   };
 
@@ -141,6 +143,7 @@ function ModalProjectDetail() {
         project={project}
         show={modalShow}
         onHide={() => hideModal()}
+        onClickApproved={() => showModalApproved()}
       />
   );
 }

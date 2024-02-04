@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import logo from "../img/FescLogo.jpg";
 
 const Footer = () => {
-  const connected = useSelector((state) => state.connected);
+  const connected = useSelector((state) => state.user.connected);
 
   const EstiloIcono = {
     backgroundColor: 'white',

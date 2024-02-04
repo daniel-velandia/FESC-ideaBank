@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 
 const PrivateRoute = () => {
-    const connected = useSelector(state => state.connected);
+    const connected = useSelector(state => state.user.connected);
     return (connected) ? <Outlet /> : <Navigate to={'/login'} replace />;
 }
 
