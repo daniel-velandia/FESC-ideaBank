@@ -6,10 +6,7 @@ import { CreateProposalModal } from "../../components/project/CreateProposalModa
 import axios from "axios";
 import validator from "validator";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
-import {
-  PROPOSAL_CREATE_POST_ENDPOINT,
-  PROPOSAL_LIST_GET_ENDPOINT,
-} from "../../connections/helpers/endpoints";
+import { PROPOSAL_CREATE_POST_ENDPOINT, PROPOSAL_LIST_GET_ENDPOINT, PROPOSAL_LIST_STATUS_APPROVED_REJECTED_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 import ToastError from "../../components/ToastError";
 import ToastSucces from "../../components/ToastSucces";
 import { useLocation } from "react-router-dom";
@@ -24,7 +21,8 @@ function ProjectList() {
   const [projects, setProjects] = useState();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const filter = searchParams.get("filter");
+  const filter = searchParams.get('filter');
+  const filterStatus = searchParams.get('filterStatus');
 
   useEffect(() => {
     axios
@@ -32,6 +30,12 @@ function ProjectList() {
       .then((res) => setProjects(res.data))
       .catch((err) => {});
   }, [filter, isNeededRefresh]);
+
+  useEffect(() => {
+    axios.get(`${PROPOSAL_LIST_STATUS_APPROVED_REJECTED_GET_ENDPOINT}?approved=${filterStatus==="approved" ? true : false}`)
+    .then(res => setProjects(res.data))
+    .catch(err => {});
+  }, [filterStatus]);
 
   const createProposal = async (proposal) => {
     setErrorMessage(null);

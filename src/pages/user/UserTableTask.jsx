@@ -47,10 +47,9 @@ const TableTask = () => {
         <thead>
           <tr>
             <th>Título</th>
-            <th>Descripción</th>
             <th>Usuario asignado</th>
-            <th>Fecha de creación</th>
             <th>Fecha de finalización</th>
+            <th>Estado</th>
           </tr>
         </thead>
         <tbody>
@@ -77,4 +76,4 @@ const TableTask = () => {
   );
 };
 
-export { TableTask };
+export { TableTask }
