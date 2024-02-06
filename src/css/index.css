@@ -90,6 +90,10 @@ body {
   background-color: #4baf4f !important;
 }
 
+.my-badge-rejected-state {
+  background-color: #e4dcd7 !important;
+}
+
 .my-badge-done-state {
   background-color: #03a9f4 !important;
 }
