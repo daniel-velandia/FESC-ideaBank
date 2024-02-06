@@ -1,8 +1,8 @@
 import { Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Funnel } from "react-bootstrap-icons";
 import { NavLink, useLocation } from "react-router-dom";
-import PermissionCheck from "./PermissionCheck";
-import { roles } from "../utils/roles";
+import PermissionCheck from "../PermissionCheck";
+import { roles } from "../../utils/roles";
 
 const SelectProjectFilter = () => {
   const location = useLocation();
