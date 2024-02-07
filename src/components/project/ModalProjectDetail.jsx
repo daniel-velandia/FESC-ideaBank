@@ -58,8 +58,8 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                   <ButtonProjectReject project={project} onHide={onHide} />
                   <Button
                       type="submit"
-                      variant="danger"
-                      className="my-modal-button"
+                      variant="success"
+                      className="my-modal-button-approve"
                       onClick={onClickApproved}
                     >
                       Aprobar
