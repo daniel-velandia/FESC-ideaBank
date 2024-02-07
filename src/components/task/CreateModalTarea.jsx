@@ -167,7 +167,7 @@ export const CreateModalTarea = () => {
             </Row>
 
             <SelectMemberTask
-              idProject={"cf5114d6-25bd-4faa-8190-2b73e387f69f"}
+              idProject={identificator}
               value={cargo}
               errores={errores.cargo}
               onChange={handleSelectChange}
