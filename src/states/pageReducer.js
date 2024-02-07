@@ -4,7 +4,7 @@ const initialState = {
     isNeededRefresh: false,
 }
 
-const projectReducer = createSlice({
+const pageReducer = createSlice({
     name: 'projectPage',
     initialState,
     reducers: {
@@ -14,5 +14,5 @@ const projectReducer = createSlice({
     }
 });
 
-export const { refresh } = projectReducer.actions;
-export default projectReducer.reducer;
+export const { refresh } = pageReducer.actions;
+export default pageReducer.reducer;

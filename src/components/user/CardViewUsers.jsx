@@ -16,6 +16,8 @@ import { CreateUserForm } from "./CreateUserForm";
 import validator from "validator";
 import ToastError from "../ToastError";
 import ToastSucces from "../ToastSucces";
+import { refresh } from "../../states/pageReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 export const CardViewUsers = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -24,6 +26,10 @@ export const CardViewUsers = () => {
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [succesMessage, setsuccesMessage] = useState("");
+  
+  const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
+  const dispatch = useDispatch();
+
   const handleCheckboxChange = (selectedRoles) => {
     setSelectedRoles(selectedRoles);
   };
@@ -107,7 +113,7 @@ export const CardViewUsers = () => {
       .then((res) => {
         setsuccesMessage("Propuesta creada con exito")
         fetchUsers([]);
-
+        dispatch(refresh({ isNeededRefresh: !isNeededRefresh }));
       })
       .catch((err) => setErrorMessage(err.response.data));
   };

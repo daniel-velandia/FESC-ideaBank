@@ -15,6 +15,8 @@ import axios from "axios";
 import { formatDate } from "../../utils/dateFormat";
 import { Plus } from "react-bootstrap-icons";
 import { useParams } from "react-router-dom";
+import { refresh } from "../../states/pageReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 export const CreateModalTarea = () => {
   const [nombre, setNombre] = useState("");
@@ -23,6 +25,9 @@ export const CreateModalTarea = () => {
   const [cargo, setCargo] = useState("");
   const [errores, setErrores] = useState({});
   const { identificator } = useParams();
+  
+  const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
+  const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
 
@@ -83,6 +88,7 @@ export const CreateModalTarea = () => {
           setCargo("");
           setErrores({});
           handleOcultarModal();
+          dispatch(refresh({ isNeededRefresh: !isNeededRefresh }));
         })
         .catch((err) => {
           console.error(err);

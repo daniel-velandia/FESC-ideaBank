@@ -2,11 +2,11 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import { PROPOSAL_UPDATE_STATES_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import { useDispatch, useSelector } from "react-redux";
-import { refresh } from "../../states/projectReducer";
+import { refresh } from "../../states/pageReducer";
 
 export const ButtonProjectReject = ({ project, onHide }) => {
 
-  const isNeededRefresh = useSelector(state => state.project.isNeededRefresh);
+  const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
   const dispatch = useDispatch();
 
   const handleButtonClickReject = () => {

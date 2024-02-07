@@ -11,15 +11,17 @@ import ToastError from "../../components/ToastError";
 import ToastSucces from "../../components/ToastSucces";
 import { useLocation } from "react-router-dom";
 import { ModalProjectDetail } from "../../components/project/ModalProjectDetail";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ModalProjectApproved } from "../../components/project/ModalProjectApproved";
+import { refresh } from "../../states/pageReducer";
 
 function ProjectList() {
-  const isNeededRefresh = useSelector(state => state.project.isNeededRefresh);
+  const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
   const [errorMessage, setErrorMessage] = useState(null);
   const [succesMessage, setsuccesMessage] = useState("");
   const [projects, setProjects] = useState();
   const location = useLocation();
+  const dispatch = useDispatch();
   const searchParams = new URLSearchParams(location.search);
   const filter = searchParams.get('filter');
   const filterStatus = searchParams.get('filterStatus');
@@ -64,6 +66,7 @@ function ProjectList() {
         })
         .then((res) => {
           setsuccesMessage("Propuesta creada con exito");
+          dispatch(refresh({ isNeededRefresh: !isNeededRefresh }));
         })
         .catch((err) => setErrorMessage(err.response.data));
     }

@@ -7,11 +7,14 @@ import { TableTasks } from "../../components/task/TableTasks";
 import { CreateModalTarea } from "../../components/task/CreateModalTarea";
 import PermissionCheck from "../../components/PermissionCheck";
 import { roles } from "../../utils/roles";
+import { useSelector } from "react-redux";
 
 const TableTask = () => {
   const { identificator } = useParams();
   const [tasks, setTasks] = useState([]);
   const [found, setFound] = useState(true);
+
+  const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
 
   useEffect(() => {
     axios
@@ -24,7 +27,7 @@ const TableTask = () => {
         console.error("Error al traer las tareas ", err);
         setFound(false);
       });
-  }, [identificator]);
+  }, [identificator, isNeededRefresh]);
 
   return (
     <Container>

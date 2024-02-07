@@ -4,7 +4,7 @@ import { PROPOSAL_UPDATE_STATES_POST_ENDPOINT } from '../../connections/helpers/
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Col, Row } from 'react-bootstrap';
-import { refresh } from '../../states/projectReducer';
+import { refresh } from '../../states/pageReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListDirectorProject } from './ListDirectorProject';
 import ToastError from '../ToastError';
@@ -47,7 +47,7 @@ function ModalProjectApproved() {
   const [modalShow, setModalShow] = useState(false);
   const [selectDirector, setselectDirector] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
-  const isNeededRefresh = useSelector(state => state.project.isNeededRefresh);
+  const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
   const dispatch = useDispatch();
 
   const handleDirectorSelect = (selectedDirector) => {
