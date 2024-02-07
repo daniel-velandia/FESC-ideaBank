@@ -7,7 +7,9 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { refresh } from '../../states/pageReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { ListDirectorProject } from './ListDirectorProject';
-import ToastError from '../ToastError';
+import { toast } from 'react-toastify';
+import toastConfig from "../../utils/toastConfig";
+
 
 function MyVerticallyCenteredModal({ show, onHide, setDirector, onClickApproved }) {
   
@@ -46,9 +48,10 @@ function MyVerticallyCenteredModal({ show, onHide, setDirector, onClickApproved 
 function ModalProjectApproved() {
   const [modalShow, setModalShow] = useState(false);
   const [selectDirector, setselectDirector] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
+  //const [errorMessage, setErrorMessage] = useState(null);
   const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
   const dispatch = useDispatch();
+  
 
   const handleDirectorSelect = (selectedDirector) => {
     setselectDirector(selectedDirector);
@@ -77,7 +80,6 @@ function ModalProjectApproved() {
   };
 
   const handleButtonClickApprove = () => {
-    setErrorMessage(null);
     const PojectDataApprove = {
       identificator: approved,
       status: "APROBADO",
@@ -86,7 +88,7 @@ function ModalProjectApproved() {
     
 
     if (PojectDataApprove.directEmail === "") {
-      setErrorMessage("Tiene que seleccionar un director para el proyecto");
+      toast.error("Error: Tienes que seleccionar un director para el proyecto", toastConfig);
     } else {
         axios
       .post(PROPOSAL_UPDATE_STATES_POST_ENDPOINT, PojectDataApprove )
@@ -100,12 +102,7 @@ function ModalProjectApproved() {
     }
   };
 
-  const renderToastError = () => {
-    if (errorMessage) {
-      return <ToastError message={errorMessage} />;
-    }
-    return null;
-  };
+
   
   return (
       <MyVerticallyCenteredModal

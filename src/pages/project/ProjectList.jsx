@@ -2,29 +2,31 @@ import React, { useEffect, useState } from "react";
 import CardProject from "../../components/project/CardProject";
 import "../../css/style.css";
 import { Container, Row, Col } from "react-bootstrap";
-import { CreateProposalModal } from "../../components/project/CreateProposalModal";  
+import { CreateProposalModal } from "../../components/project/CreateProposalModal";
 import axios from "axios";
 import validator from "validator";
 import { isEmptyObject } from "../../connections/helpers/isEmptyObject";
-import { PROPOSAL_CREATE_POST_ENDPOINT, PROPOSAL_LIST_GET_ENDPOINT, PROPOSAL_LIST_STATUS_APPROVED_REJECTED_GET_ENDPOINT } from "../../connections/helpers/endpoints";
-import ToastError from "../../components/ToastError";
-import ToastSucces from "../../components/ToastSucces";
+import {
+  PROPOSAL_CREATE_POST_ENDPOINT,
+  PROPOSAL_LIST_GET_ENDPOINT,
+  PROPOSAL_LIST_STATUS_APPROVED_REJECTED_GET_ENDPOINT,
+} from "../../connections/helpers/endpoints";
 import { useLocation } from "react-router-dom";
 import { ModalProjectDetail } from "../../components/project/ModalProjectDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalProjectApproved } from "../../components/project/ModalProjectApproved";
 import { refresh } from "../../states/pageReducer";
+import { toast } from "react-toastify";
+import toastConfig from "../../utils/toastConfig";
 
 function ProjectList() {
-  const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [succesMessage, setsuccesMessage] = useState("");
+  const isNeededRefresh = useSelector((state) => state.page.isNeededRefresh);
   const [projects, setProjects] = useState();
   const location = useLocation();
   const dispatch = useDispatch();
   const searchParams = new URLSearchParams(location.search);
-  const filter = searchParams.get('filter');
-  const filterStatus = searchParams.get('filterStatus');
+  const filter = searchParams.get("filter");
+  const filterStatus = searchParams.get("filterStatus");
 
   useEffect(() => {
     axios
@@ -34,14 +36,25 @@ function ProjectList() {
   }, [filter, isNeededRefresh]);
 
   useEffect(() => {
-    axios.get(`${PROPOSAL_LIST_STATUS_APPROVED_REJECTED_GET_ENDPOINT}?approved=${filterStatus==="approved" ? true : false}`)
-    .then(res => setProjects(res.data))
-    .catch(err => {});
-  }, [filterStatus]);
+    if (filterStatus !== null) {
+      let isApproved;
+  
+      if (filterStatus === "rejected") {
+        isApproved = false;
+      } else if (filterStatus === "approved") {
+        isApproved = true;
+      } 
+  
+      axios
+        .get(
+          `${PROPOSAL_LIST_STATUS_APPROVED_REJECTED_GET_ENDPOINT}?approved=${isApproved}`
+        )
+        .then((res) => setProjects(res.data))
+        .catch((err) => {});
+    }
+  }, [filterStatus, isNeededRefresh]);
 
   const createProposal = async (proposal) => {
-    setErrorMessage(null);
-    setsuccesMessage("");
     const error = {};
 
     if (validator.isEmpty(proposal.valueProposal)) {
@@ -53,7 +66,7 @@ function ProjectList() {
     }
 
     if (!isEmptyObject(error)) {
-      setErrorMessage(error);
+      toast.error(`Error: ${error}`, toastConfig);
     } else {
       const token = localStorage.getItem("token");
       axios
@@ -65,30 +78,24 @@ function ProjectList() {
           },
         })
         .then((res) => {
-          setsuccesMessage("Propuesta creada con exito");
+          toast.success("Propuesta creada con exito", toastConfig);
+
           dispatch(refresh({ isNeededRefresh: !isNeededRefresh }));
         })
-        .catch((err) => setErrorMessage(err.response.data));
+        .catch((err) => {
+          toast.error(`Error: ${err.response.data}`, toastConfig);
+        });
     }
   };
 
-  const renderToastError = () => {
-    if (errorMessage) {
-      return <ToastError message={errorMessage} />;
-    }
-    return null;
-  };
-  const renderToastSucces = () => {
-    if (succesMessage) {
-      return <ToastSucces message={succesMessage} />;
-    }
-    return null;
-  };
+
 
   return (
     <div className="cards-container">
       <Container className="mt-5">
-      <h2 className="titleCard"><strong>Proyectos</strong></h2>
+        <h2 className="titleCard">
+          <strong>Proyectos</strong>
+        </h2>
         <ModalProjectApproved />
         <ModalProjectDetail />
         <CreateProposalModal callback={createProposal} />
@@ -108,8 +115,6 @@ function ProjectList() {
               </Col>
             ))}
         </Row>
-        {renderToastError()}
-        {renderToastSucces()}
       </Container>
     </div>
   );

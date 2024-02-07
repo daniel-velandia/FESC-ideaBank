@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import { USER_CREATE_POST_ENDPOINT, USER_LIST_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 import { SelectUserRolFilter } from "./SelectUserRolFilter"; 
-//import IconRolAdmin from "../img/icon-roles/IconRolAdmin.png";
 import IconRolAdmin from "../../img/icon-roles/IconRolAdmin.png";
 import iconRolDirector from "../../img/icon-roles/IconRolDirector.png";
 import IconRolEstudiante from "../../img/icon-roles/IconRolEstudiante.png";
@@ -14,10 +13,10 @@ import IconRolUsuario from "../../img/icon-roles/IconRolUsuario.png";
 import IconRolValidador from "../../img/icon-roles/IconRolValidador.png";
 import { CreateUserForm } from "./CreateUserForm";
 import validator from "validator";
-import ToastError from "../ToastError";
-import ToastSucces from "../ToastSucces";
 import { refresh } from "../../states/pageReducer";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import toastConfig from "../../utils/toastConfig";
 
 export const CardViewUsers = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -25,7 +24,6 @@ export const CardViewUsers = () => {
   const [colWidth, setColWidth] = useState("400px");
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
-  const [succesMessage, setsuccesMessage] = useState("");
   
   const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
   const dispatch = useDispatch();
@@ -111,26 +109,16 @@ export const CardViewUsers = () => {
       },
     })
       .then((res) => {
-        setsuccesMessage("Propuesta creada con exito")
+        toast.success("Usuario creado con exito", toastConfig);
         fetchUsers([]);
         dispatch(refresh({ isNeededRefresh: !isNeededRefresh }));
       })
-      .catch((err) => setErrorMessage(err.response.data));
+      .catch((err) => {
+        toast.error(err.response.data, toastConfig);
+        setErrorMessage(err.response.data) });
   };
 
-  const renderToastError = () => {
-    if (errorMessage) {
-      return <ToastError message={errorMessage} />;
-    }
-    return null;
-  };
-
-  const renderToastSucces = () => {
-    if (succesMessage) {
-      return <ToastSucces message={succesMessage} />;
-    }
-    return null;
-  };
+ 
   const renderUserIcon = (rol) => {
     const iconMap = {
       admin: IconRolAdmin,
@@ -174,8 +162,7 @@ export const CardViewUsers = () => {
             className="me-2"
           />
           <CreateUserForm errors={errors} callback={createUser} />
-          {renderToastError()}
-          {renderToastSucces()}
+        
         </Col>
       </Row>
 

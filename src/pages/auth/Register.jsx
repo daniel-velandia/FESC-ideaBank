@@ -7,12 +7,13 @@ import validator from "validator";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logof from "../../img/logof.png";
-import ToastError from "../../components/ToastError";
 import { useSelector } from "react-redux";
+import {  toast } from "react-toastify";
+import toastConfig from "../../utils/toastConfig";
+
 
 const Register = () => {
   const [errors, setErrors] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
   const connected = useSelector((state) => state.user.connected);
 
   const navigation = useNavigate();
@@ -24,7 +25,6 @@ const Register = () => {
   });
 
   const register = async (user) => {
-    setErrorMessage(null);
 
     const error = {};
 
@@ -58,16 +58,14 @@ const Register = () => {
       axios
         .post(user.isExternalUser ? REGISTER_EXTERNAL_POST_ENDPOINT : REGISTER_INVITED_POST_ENDPOINT, user)
         .then((res) => navigation("/login"))
-        .catch((err) => setErrorMessage(err.response.data));
+        .catch((err) => {
+          toast.error(`Error: ${err.response.data}`, toastConfig );
+
+        });
     }
   };
 
-  const renderToastError = () => {
-    if (errorMessage) {
-      return <ToastError message={errorMessage} />;
-    }
-    return null;
-  };
+  
 
   return (
     <Container>
@@ -100,7 +98,6 @@ const Register = () => {
           </Card.Body>
         </Col>
       </Row>
-      {renderToastError()}
     </Container>
   );
 };
