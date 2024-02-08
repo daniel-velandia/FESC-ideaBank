@@ -115,7 +115,6 @@ function ModalProjectDetail() {
       axios.get(`${PROPOSAL_DETAIL_GET_ENDPOINT}?identificator=${q}`)
       .then(res => {
         setProject(res.data);
-        console.log(res.data)
         setModalShow(true);
       })
       .catch(err => {
