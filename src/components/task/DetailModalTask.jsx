@@ -1,10 +1,14 @@
 import React from "react";
-import { Modal, Row, Col } from "react-bootstrap";
+import { Modal, Row, Col, Button } from "react-bootstrap";
+import PermissionCheck from "../PermissionCheck";
+import { roles } from "../../utils/roles";
+import { status } from "../../utils/status";
 
-
-export const DetailModalTask = ({task, onHide, show}) => {
-
+export const DetailModalTask = ({ task, onHide, show }) => {
   
+  const onClickInProgress = () => {
+    
+  };
 
   return (
     <Modal
@@ -15,7 +19,7 @@ export const DetailModalTask = ({task, onHide, show}) => {
       centered
     >
       <Modal.Header className="my-modal-header px-4" closeButton>
-        <div className="my-badge-state">DETALLE  DE TAREA</div>
+        <div className="my-badge-state">DETALLE DE TAREA</div>
       </Modal.Header>
       <Modal.Body className="px-4 pt-5">
         <Row>
@@ -45,6 +49,40 @@ export const DetailModalTask = ({task, onHide, show}) => {
           </Col>
           <Col xs="12" sm="6" className="text-sm-end">
             <p>{task.description}</p>
+          </Col>
+          <Col xs="12" className="d-flex justify-content-end">
+            <PermissionCheck
+              requiredRoles={[roles.DIRECTOR, roles.TEACHER, roles.STUDENT]}
+            >
+              {task.status === status.PENDING && (
+                <>
+                  <Button
+                    type="button"
+                    variant="success"
+                    className="my-modal-button-approve"
+                    onClick={onClickInProgress}
+                  >
+                    En progreso
+                  </Button>
+                </>
+              )}
+            </PermissionCheck>
+            <PermissionCheck
+              requiredRoles={[roles.DIRECTOR, roles.TEACHER, roles.STUDENT]}
+            >
+              {task.status === status.IN_PROGRESS && (
+                <>
+                  <Button
+                    type="button"
+                    variant="success"
+                    className="my-modal-button-approve"
+                    onClick={onClickInProgress}
+                  >
+                    En revision
+                  </Button>
+                </>
+              )}
+            </PermissionCheck>
           </Col>
         </Row>
       </Modal.Body>
