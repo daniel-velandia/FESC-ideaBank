@@ -17,7 +17,6 @@ const TableTask = () => {
   const navigate = useNavigate();
 
   const searchParams = new URLSearchParams(location.search);
-  const idTask = searchParams.get("identificator");
   const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
 
   useEffect(() => {
@@ -25,7 +24,6 @@ const TableTask = () => {
       .get(`${LISTTASKS_GET_ENDPOINT}?identificator=${identificator}`)
       .then((response) => {
         setTasks(response.data);
-        console.log(response.data);
         setFound(false);
       })
       .catch((err) => {
@@ -34,7 +32,7 @@ const TableTask = () => {
       });
   }, [identificator, isNeededRefresh]);
 
-  const handleTaskClick = () => {
+  const handleClick = (idTask) => {
     var url = `/table/task?identificator=${identificator}?taskId=${idTask}`;
     navigate(url);
   };
@@ -83,7 +81,7 @@ const TableTask = () => {
               <TableTasks 
                 key={task.identificator} 
                 task={task} 
-                onClick={() => handleTaskClick(task.id)} 
+                onClick={handleClick}
               />
             ))
           )}

@@ -2,8 +2,13 @@ import React from 'react';
 import { Badge } from 'react-bootstrap';
 
 const TableTasks = ({ task, onClick }) => {
+  const handleClick = () => {
+    // Llamamos a la función onClick y pasamos el ID de la tarea como argumento
+    onClick(task.identificator);
+  };
+
   return (
-    <tr onClick={onClick}>
+    <tr onClick={handleClick}>
       <td>{task.title}</td>
       <td>{task.assignedUser}</td>
       <td>{task.finishDate}</td>
