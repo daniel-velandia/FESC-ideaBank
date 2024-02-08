@@ -99,7 +99,7 @@ color: #d92323;
 }
 
 .bd-rechazado {
-  background-color: #e4dcd7 !important;
+  background-color: #e4d7d7 !important;
 }
 
 /* ESTILOS DE PÁGINA DE TABLA DE TAREAS Y CREAR TAREA*/
@@ -213,24 +213,32 @@ color: red;
   padding: 20px;
 }
 .card-project.card-pendiente .card-header {
-  background-color: #ffc8c8; 
+  background-color: #d2d2d2; 
 }
 
-.card-project.card-validada .card-header {
-  background-color: #f5f6ab; 
+.card-project.card-aprobado .card-header {
+  background-color: #cffac1; 
 }
 
-.card-project.card-terminada .card-header {
-  background-color: #78d5ff; 
+.card-project.card-rechazado .card-header {
+  background-color: #f6b3b3; 
+}
+
+.card-project.card-en.progreso .card-header {
+  background-color: #f6ec96; 
 }
 
 
 .status-indicator__dot.status-pendiente {
-  background-color: #da241e; 
+  background-color: #4b4b4b; 
 }
 
-.status-indicator__dot.status-validada {
-  background-color: #f9db4a;
+.status-indicator__dot.status-rechazado {
+  background-color: #e30513; 
+}
+
+.status-indicator__dot.status-en.progreso {
+  background-color: #d6b635;
 }
 
 .status-indicator__dot.status-terminada {

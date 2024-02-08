@@ -22,18 +22,18 @@ function MyVerticallyCenteredModal({ show, onHide, setDirector, onClickApproved 
       centered
     >
       <Modal.Header className='my-modal-header px-4' closeButton>
-          <div className='my-badge-state'>#</div>
+          <div className='my-badge-state'>DOCENTE A CARGO</div>
       </Modal.Header>
       <Modal.Body className='px-4 pt-5'>
         <Row>
-          <Col xs="12">
+          <Col xs="12" className="mb-4"  >
             <ListDirectorProject ondirectorselect={setDirector} />
           </Col>
-          <Col xs="12" className='d-flex justify-content-end'>
+          <Col xs="12" className='d-flex justify-content-end '>
             <Button
               type="submit"
-              variant="danger"
-              className="my-modal-button"
+              variant="success"
+              className="my-modal-button-approve"
               onClick={onClickApproved}
             >
               Aprobar
