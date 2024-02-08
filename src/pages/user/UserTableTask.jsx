@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { LISTTASKS_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 import { TableTasks } from "../../components/task/TableTasks";
 import { CreateModalTarea } from "../../components/task/CreateModalTarea";
@@ -13,7 +13,11 @@ const TableTask = () => {
   const { identificator } = useParams();
   const [tasks, setTasks] = useState([]);
   const [found, setFound] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  const searchParams = new URLSearchParams(location.search);
+  const idTask = searchParams.get("identificator");
   const isNeededRefresh = useSelector(state => state.page.isNeededRefresh);
 
   useEffect(() => {
@@ -21,6 +25,7 @@ const TableTask = () => {
       .get(`${LISTTASKS_GET_ENDPOINT}?identificator=${identificator}`)
       .then((response) => {
         setTasks(response.data);
+        console.log(response.data);
         setFound(false);
       })
       .catch((err) => {
@@ -28,6 +33,11 @@ const TableTask = () => {
         setFound(false);
       });
   }, [identificator, isNeededRefresh]);
+
+  const handleTaskClick = () => {
+    var url = `/table/task?identificator=${identificator}?taskId=${idTask}`;
+    navigate(url);
+  };
 
   return (
     <Container>
@@ -70,7 +80,11 @@ const TableTask = () => {
             </tr>
           ) : (
             tasks.map((task) => (
-              <TableTasks key={task.identificator} task={task} />
+              <TableTasks 
+                key={task.identificator} 
+                task={task} 
+                onClick={() => handleTaskClick(task.id)} 
+              />
             ))
           )}
         </tbody>

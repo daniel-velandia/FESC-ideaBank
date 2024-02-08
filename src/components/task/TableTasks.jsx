@@ -1,9 +1,9 @@
 import React from 'react';
 import { Badge } from 'react-bootstrap';
 
-const TableTasks = ({ task }) => {
+const TableTasks = ({ task, onClick }) => {
   return (
-    <tr>
+    <tr onClick={onClick}>
       <td>{task.title}</td>
       <td>{task.assignedUser}</td>
       <td>{task.finishDate}</td>
