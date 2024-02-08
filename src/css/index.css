@@ -78,6 +78,17 @@ body {
   border-radius: 3px;
 }
 
+.my-modal-button-approve {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #05a615 !important;
+  border: 1px solid #05a615;
+  border-radius: 3px;
+}
+
+
+
 .my-badge-pending-state {
   background-color: #da241e !important;
 }
@@ -171,7 +182,7 @@ body {
 }
 .my-header-project-inprogress  {
   border-bottom: none !important;
-  background-color: #d3ffc8;
+  background-color: #ffff56;
 }
 .my-header-project-finalized  {
   border-bottom: none !important;
@@ -182,7 +193,7 @@ body {
   padding: 12px;
   color: #fff;
   font-weight: 600;
-  background: #da241e !important;
+  background: #767676 !important;
   border-radius: 3px;
   position: absolute;
   top: 15px;
@@ -200,7 +211,7 @@ body {
   padding: 12px;
   color: #fff;
   font-weight: 600;
-  background: #4baf4f !important;
+  background: #c5d845 !important;
   border-radius: 3px;
   position: absolute;
   top: 15px;

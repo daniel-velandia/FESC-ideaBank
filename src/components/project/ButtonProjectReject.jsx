@@ -36,5 +36,7 @@ export const ButtonProjectReject = ({ project, onHide }) => {
     >
       Rechazar
     </Button>
+
+    
   );
 };

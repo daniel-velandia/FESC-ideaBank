@@ -60,7 +60,7 @@ export const ModalUserManager = ({
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleConfirm}>
+          <Button variant="success" onClick={handleConfirm} className="my-modal-button-approve">
             Confirmar
           </Button>
         </Modal.Footer>
