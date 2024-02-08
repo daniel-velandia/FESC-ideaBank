@@ -45,6 +45,8 @@ const TableTask = () => {
     var url = `?taskId=${idTask}`;
     navigate(url);
     setidTask(idTask);
+    setmodalShowDetailTask(true);
+
   };
 
   const hideModal = () => {
@@ -53,7 +55,6 @@ const TableTask = () => {
     const newSearch = searchParams.toString();
     navigate(newSearch);
   };
-
   useEffect(() => {
     if (idTask) {
       axios
