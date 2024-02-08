@@ -19,8 +19,8 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header className='my-modal-header px-4' closeButton>
-          <div className='my-badge-state'>{project.status}</div>
+      <Modal.Header className={`my-modal-header-${project.status} px-4`} closeButton>
+          <div className={`my-badge-state-${project.status}`}>{project.status}</div>
       </Modal.Header>
       <Modal.Body className='px-4 pt-5'>
         <Row>
@@ -74,7 +74,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     to={`/project/detail?id=${project.identificator}`}
                     type="submit"
                     variant="danger"
-                    className="my-modal-button"
+                    className="my-modal-button-approve"
                   >
                     Editar
                 </Button>
@@ -87,7 +87,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     to={`/table/task/${project.identificator}`}
                     type="submit"
                     variant="danger"
-                    className="my-modal-button"
+                    className="my-modal-button-task"
                   >
                     Tareas
                 </Button>
