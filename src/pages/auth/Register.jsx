@@ -56,7 +56,7 @@ const Register = () => {
       setErrors(error);
     } else {
       axios
-        .post(user.isExternalUser ? REGISTER_EXTERNAL_POST_ENDPOINT : REGISTER_INVITED_POST_ENDPOINT, user)
+        .post(user.type == "external" ? REGISTER_EXTERNAL_POST_ENDPOINT : REGISTER_INVITED_POST_ENDPOINT, user)
         .then((res) => navigation("/login"))
         .catch((err) => {
           toast.error(`Error: ${err.response.data}`, toastConfig );
