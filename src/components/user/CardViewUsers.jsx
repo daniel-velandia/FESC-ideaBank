@@ -166,7 +166,7 @@ export const CardViewUsers = () => {
         </Col>
       </Row>
 
-      <Row>
+      <Row className=" d-flex justify-content-center">
         {usuarios.map((usuario, index) => (
           <Col
             style={{
@@ -176,7 +176,7 @@ export const CardViewUsers = () => {
             xs={12}
             md={6}
             lg={4}
-            className="bg-body rounded border mt-2 me-1"
+            className="bg-body rounded border mt-2 me-1 mb-2"
           >
             <Link
               to={`/user?q=${usuario.email}`}
