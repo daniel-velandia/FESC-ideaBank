@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 
 const RegisterForm = ({errors, callback}) => {
 
-    const externalUser = "Exteno";
-    const invitedUser = "Invitado";
-
     const [formData, setFormData] = useState({
         name: '',
         lastName: '',
@@ -14,10 +11,9 @@ const RegisterForm = ({errors, callback}) => {
         cellPhone: '',
         companyName: '',
         password: '',
-        repeatPassword: ''
+        repeatPassword: '',
+        type: "external"
     });
-
-    const [isExtenalUser, setExtenalUser] = useState(true);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,10 +21,6 @@ const RegisterForm = ({errors, callback}) => {
           ...prevData,
           [name]: value
         }));
-    };
-
-    const handleRegisterType = (e) => {
-        setExtenalUser(e.target.value === externalUser);
     };
 
     const sendResponse = (e) => {
@@ -95,13 +87,13 @@ const RegisterForm = ({errors, callback}) => {
                     <Form.Group className='mb-3' controlId='email'>
                         <FloatingLabel label='Selecione tipo de registro' className='label'>
                         <Form.Select style={{height:"45px"}}
-                            value={isExtenalUser ? externalUser : invitedUser}
-                            onChange={handleRegisterType}
-                            name='isExternalUser'
+                            value={formData.type}
+                            onChange={handleChange}
+                            name='type'
                             aria-label="Default select example"
                             >
-                            <option value={externalUser}>{externalUser}</option>
-                            <option value={invitedUser}>{invitedUser}</option>
+                            <option value={"external"}>{"Empresa"}</option>
+                            <option value={"invited"}>{"Usuario invitado"}</option>
                             </Form.Select>
                         </FloatingLabel>
                     </Form.Group>
@@ -128,11 +120,11 @@ const RegisterForm = ({errors, callback}) => {
                     <Form.Group className='mb-3' controlId='companyName'>
                         <FloatingLabel label='Nombre de la empresa' className='label'>
                         <Form.Control
-                            disabled={!isExtenalUser}
+                            disabled={formData.type == "invited"}
                             size="lg"
                             type='text'
                             name='companyName'
-                            value={isExtenalUser ? formData.companyName : ""}
+                            value={formData.type == "external" ? formData.companyName : ""}
                             onChange={handleChange}
                             isInvalid={errors.companyName} />
                         </FloatingLabel>
