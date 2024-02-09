@@ -126,7 +126,7 @@ export const CreateProposalModal = ({ callback }) => {
             <Row>
               <Col sm="12">
                 <Form.Group className="mb-4 mt-5" controlId="valueProposal">
-                  <FloatingLabel label="Valor de la propuesta" className="mb-0">
+                  <FloatingLabel label="Propuesta de valor (el valor social que aporta su propuesta)" className="mb-0">
                     <Form.Control
                       size="lg"
                       type="text"

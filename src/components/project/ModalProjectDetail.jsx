@@ -35,7 +35,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
 <Col xs="12" className="mb-2">
   <Row>
     <Col xs="12">
-      <strong>Valor de la propuesta</strong>
+      <strong>Propuesta de valor</strong>
       <p>{project.valueProposal}</p>
     </Col>
   </Row>
