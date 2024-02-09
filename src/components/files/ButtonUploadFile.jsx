@@ -1,0 +1,59 @@
+import axios from "axios";
+import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
+import { UPLOAD_FILE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+
+const ButtonUploadFile = ({ identificator, isProject }) => {
+  const [formData, setFormData] = useState({
+    identificator: identificator, // Identificador estático
+    isProject: isProject, // Booleano estático
+    files: [] // Cambiado a un array para almacenar múltiples archivos
+  });
+
+  const handleFileChange = (event) => {
+    setFormData({ ...formData, files: [...formData.files, ...event.target.files] }); // Agregar archivos al array
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formDataToSend = new FormData();
+    formDataToSend.append('identificator', formData.identificator);
+    formDataToSend.append('isProject', formData.isProject);
+
+    // Si isProject es falso, enviar múltiples archivos
+    if (!formData.isProject) {
+      formData.files.forEach(file => {
+        formDataToSend.append('file', file); // Agregar cada archivo al FormData
+      });
+    } else {
+      formDataToSend.append('file', formData.files[0]); // Si es un proyecto, enviar solo el primer archivo
+    }
+
+    axios.post(UPLOAD_FILE_POST_ENDPOINT, formDataToSend, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(response => {
+      console.log('Response:', response.data);
+      // Aquí puedes manejar la respuesta de la petición según tus necesidades
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Aquí puedes manejar el error de la petición según tus necesidades
+    });
+  };
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Form.Group controlId="formFile" className="mb-3">
+        <Form.Label>Default file input example</Form.Label>
+        <Form.Control type="file" onChange={handleFileChange} multiple={true} /> {/* Permitir la selección de múltiples archivos */}
+      </Form.Group>
+      <Button variant="primary" type="submit">Submit</Button>
+    </Form>
+  );
+};
+
+export { ButtonUploadFile };
