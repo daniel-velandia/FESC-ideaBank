@@ -169,7 +169,7 @@ export const ProjectInformation = () => {
                 <div className="d-flex justify-content-end mt-auto">
                   <Button
                     type="button"
-                    variant="danger"
+                    variant="success"
                     className="my-modal-button-approve  mt-4"
                     onClick={handleButtonClick}
                   >

@@ -21,8 +21,8 @@ function MyVerticallyCenteredModal({ show, onHide, setDirector, onClickApproved 
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header className='my-modal-header px-4' closeButton>
-          <div className='my-badge-state'>DIRECTOR A CARGO</div>
+      <Modal.Header className='my-modal-header-PENDIENTE px-4' closeButton>
+          <div className='my-badge-state-PENDIENTE'>DIRECTOR A CARGO</div>
       </Modal.Header>
       <Modal.Body className='px-4 pt-5'>
         <Row>
