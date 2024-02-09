@@ -10,6 +10,7 @@ import { status } from '../../utils/status';
 import { ButtonProjectReject } from './ButtonProjectReject';
 
 function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
+  console.log(project)
   
   return (
     <Modal

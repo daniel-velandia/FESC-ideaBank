@@ -26,6 +26,7 @@ import { TableTask } from "../pages/user/UserTableTask";
 import { ProjectList } from "../pages/project/ProjectList";
 import { ProjectDetail } from "../pages/project/ProjectDetail";
 
+import { TaskEdit } from "../pages/task/TaskEdit";
 
 
 import '../css/style.css';
@@ -55,6 +56,7 @@ const App = () => {
               {/* <Route path="/user/create" element={<UserCreate />} /> */}
               <Route path="/project/detail" element={<ProjectDetail />}/>
               <Route path="/table/task/:identificator" element={<TableTask />}/>
+              <Route path="/table/task/:identificator/taskEdit/:taskId" element={<TaskEdit/>}/>
             </Route>
           </Route>
           <Route path="*" element={<Error404 />} />

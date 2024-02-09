@@ -2,13 +2,10 @@ import React from "react";
 import { Modal, Row, Col, Button } from "react-bootstrap";
 import PermissionCheck from "../PermissionCheck";
 import { roles } from "../../utils/roles";
-import { status } from "../../utils/status";
 
-export const DetailModalTask = ({ task, onHide, show }) => {
+export const DetailModalTask = ({ task, onHide, show, onClickInEditTask }) => {
   
-  const onClickInProgress = () => {
-    
-  };
+  
 
   return (
     <Modal
@@ -54,34 +51,14 @@ export const DetailModalTask = ({ task, onHide, show }) => {
             <PermissionCheck
               requiredRoles={[roles.DIRECTOR, roles.TEACHER, roles.STUDENT]}
             >
-              {task.status === status.PENDING && (
-                <>
                   <Button
                     type="button"
                     variant="success"
                     className="my-modal-button-approve"
-                    onClick={onClickInProgress}
+                    onClick={onClickInEditTask}
                   >
-                    En progreso
+                    Editar
                   </Button>
-                </>
-              )}
-            </PermissionCheck>
-            <PermissionCheck
-              requiredRoles={[roles.DIRECTOR, roles.TEACHER, roles.STUDENT]}
-            >
-              {task.status === status.IN_PROGRESS && (
-                <>
-                  <Button
-                    type="button"
-                    variant="success"
-                    className="my-modal-button-approve"
-                    onClick={onClickInProgress}
-                  >
-                    En revision
-                  </Button>
-                </>
-              )}
             </PermissionCheck>
           </Col>
         </Row>

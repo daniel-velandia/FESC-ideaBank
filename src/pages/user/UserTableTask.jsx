@@ -42,11 +42,17 @@ const TableTask = () => {
   }, [identificator, isNeededRefresh]);
 
   const handleClick = (idTask) => {
-    var url = `?taskId=${idTask}`;
+    let url = `?taskId=${idTask}`;
     navigate(url);
     setidTask(idTask);
     setmodalShowDetailTask(true);
+  };
 
+  const onClickInEditTask = () => {
+    searchParams.delete("taskId");
+    //let url = `?taskEdit=${idTask}`;
+    let url = `${location.pathname}/taskEdit/${idTask}`;
+    navigate(url);
   };
 
   const hideModal = () => {
@@ -61,7 +67,7 @@ const TableTask = () => {
         .get(`${TASK_DETAIL_GET_ENDPOINT}?identificator=${idTask}`)
         .then((res) => {
           settask(res.data);
-          setmodalShowDetailTask(true)
+          setmodalShowDetailTask(true);
         })
         .catch((err) => {
           console.log(err);
@@ -119,7 +125,12 @@ const TableTask = () => {
           )}
         </tbody>
       </Table>
-      <DetailModalTask task={task} show={modalShowDetailTask} onHide={() => hideModal()} />
+      <DetailModalTask
+        task={task}
+        show={modalShowDetailTask}
+        onHide={() => hideModal()}
+        onClickInEditTask={onClickInEditTask}
+      />
     </Container>
   );
 };
