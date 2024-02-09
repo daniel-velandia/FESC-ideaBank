@@ -10,24 +10,17 @@ export const DetailModalTask = ({task, onHide, show}) => {
     <Modal
       show={show}
       onHide={onHide}
-      size="md"
+      size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
       <Modal.Header className="my-modal-header px-4" closeButton>
-        <div className="my-badge-state">Tarea</div>
+        <div className="my-badge-state">DETALLE  DE TAREA</div>
       </Modal.Header>
       <Modal.Body className="px-4 pt-5">
         <Row>
           <Col xs="12" className="mb-4">
             <strong className="h3">{task.title}</strong>
-          </Col>
-          
-          <Col xs="12" sm="6">
-            <strong>Descripción</strong>
-          </Col>
-          <Col xs="12" sm="6" className="text-sm-end">
-            <p>{task.description}</p>
           </Col>
           <Col xs="12" sm="6">
             <strong>Usuario asignado</strong>
@@ -46,6 +39,12 @@ export const DetailModalTask = ({task, onHide, show}) => {
           </Col>
           <Col xs="12" sm="6" className="text-sm-end">
             <p>{task.finishDate}</p>
+          </Col>
+          <Col xs="12" sm="6">
+            <strong>Descripción</strong>
+          </Col>
+          <Col xs="12" sm="6" className="text-sm-end">
+            <p>{task.description}</p>
           </Col>
         </Row>
       </Modal.Body>

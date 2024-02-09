@@ -83,11 +83,11 @@ color: #d92323;
 
 /* ESTILOS DE BADGES DE ESTADOS*/
 .bd-pending {
-  background-color: #da241e !important;
+  background-color: #717171 !important;
 }
 
 .bd-progress {
-  background-color: #4baf4f !important;
+  background-color: #f6f155 !important;
 }
 
 .bd-appoved {
@@ -99,7 +99,7 @@ color: #d92323;
 }
 
 .bd-rechazado {
-  background-color: #e4d7d7 !important;
+  background-color: #eb4141 !important;
 }
 
 /* ESTILOS DE PÁGINA DE TABLA DE TAREAS Y CREAR TAREA*/

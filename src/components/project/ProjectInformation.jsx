@@ -166,11 +166,11 @@ export const ProjectInformation = () => {
               >
                 <h3>Integrantes del equipo</h3>
                 <ListTeamMembers onStudentSelect={handleUserTeamSelect} />
-                <div className="d-flex justify-content-end mt-auto ">
+                <div className="d-flex justify-content-end mt-auto">
                   <Button
                     type="button"
                     variant="danger"
-                    style={{ backgroundColor: "#9c0f06", width: "fit-content" }}
+                    className="my-modal-button-approve  mt-4"
                     onClick={handleButtonClick}
                   >
                     Validar
