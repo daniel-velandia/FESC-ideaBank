@@ -1,10 +1,12 @@
 import React from 'react';
 import { Badge } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-const TableTasks = ({ task, onClick }) => {
+const TableTasks = ({ task }) => {
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    // Llamamos a la función onClick y pasamos el ID de la tarea como argumento
-    onClick(task.identificator);
+    navigate(`?taskId=${task.identificator}`);
   };
 
   return (

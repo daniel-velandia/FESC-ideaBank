@@ -2,8 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { UPLOAD_FILE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+import { toast } from "react-toastify";
+import toastConfig from "../../utils/toastConfig";
 
-const ButtonUploadFile = ({ identificator, isProject }) => {
+const ButtonUploadFile = ({ identificator, isProject, onHide }) => {
   const [formData, setFormData] = useState({
     identificator: identificator, // Identificador estático
     isProject: isProject, // Booleano estático
@@ -37,10 +39,13 @@ const ButtonUploadFile = ({ identificator, isProject }) => {
     })
     .then(response => {
       console.log('Response:', response.data);
+      onHide();
       // Aquí puedes manejar la respuesta de la petición según tus necesidades
     })
     .catch(error => {
       console.error('Error:', error);
+      onHide();
+      toast.error(error.response.data, toastConfig);
       // Aquí puedes manejar el error de la petición según tus necesidades
     });
   };

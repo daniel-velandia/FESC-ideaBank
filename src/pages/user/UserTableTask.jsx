@@ -1,30 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import axios from "axios";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
-import {
-  LISTTASKS_GET_ENDPOINT,
-  TASK_DETAIL_GET_ENDPOINT,
-} from "../../connections/helpers/endpoints";
+import { useParams } from "react-router-dom";
+import { LISTTASKS_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 import { TableTasks } from "../../components/task/TableTasks";
 import { CreateModalTarea } from "../../components/task/CreateModalTarea";
 import PermissionCheck from "../../components/PermissionCheck";
 import { roles } from "../../utils/roles";
 import { useSelector } from "react-redux";
 import { DetailModalTask } from "../../components/task/DetailModalTask";
+import { ModalUploadFile } from "../../components/files/ModalUploadFile";
 
 const TableTask = () => {
   const { identificator } = useParams();
-  const [modalShowDetailTask, setmodalShowDetailTask] = useState(false);
-  const [idTask, setidTask] = useState("");
   const [tasks, setTasks] = useState([]);
   const [found, setFound] = useState(true);
-  const [task, settask] = useState({});
-
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-
-  const navigate = useNavigate();
 
   const isNeededRefresh = useSelector((state) => state.page.isNeededRefresh);
 
@@ -40,34 +30,6 @@ const TableTask = () => {
         setFound(false);
       });
   }, [identificator, isNeededRefresh]);
-
-  const handleClick = (idTask) => {
-    var url = `?taskId=${idTask}`;
-    navigate(url);
-    setidTask(idTask);
-    setmodalShowDetailTask(true);
-
-  };
-
-  const hideModal = () => {
-    setmodalShowDetailTask(false);
-    searchParams.delete("taskId");
-    const newSearch = searchParams.toString();
-    navigate(newSearch);
-  };
-  useEffect(() => {
-    if (idTask) {
-      axios
-        .get(`${TASK_DETAIL_GET_ENDPOINT}?identificator=${idTask}`)
-        .then((res) => {
-          settask(res.data);
-          setmodalShowDetailTask(true)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [idTask]);
 
   return (
     <Container>
@@ -113,13 +75,13 @@ const TableTask = () => {
               <TableTasks
                 key={task.identificator}
                 task={task}
-                onClick={handleClick}
               />
             ))
           )}
         </tbody>
       </Table>
-      <DetailModalTask task={task} show={modalShowDetailTask} onHide={() => hideModal()} />
+      <DetailModalTask />
+      <ModalUploadFile />
     </Container>
   );
 };
