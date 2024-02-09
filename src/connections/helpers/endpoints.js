@@ -26,6 +26,7 @@ export const PROJECT_USER_LIST_GET_ENDPOINT = API_URL + "/project/user/list" //O
 
 export const TASK_PROJECT_CREATE_POST_ENDPOINT = API_URL + "/task/create"
 export const LISTTASKS_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas
+export const TASK_DETAIL_GET_ENDPOINT= API_URL+"/task/detail";
 
 export const UPLOAD_FILE_POST_ENDPOINT = API_URL + "/file/save"
 export const DOWNLOAD_FILE_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas
