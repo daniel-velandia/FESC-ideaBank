@@ -31,3 +31,8 @@ export const TASK_UPDATE_POST_ENDPOINT= API_URL+"/task/update";
 
 export const UPLOAD_FILE_POST_ENDPOINT = API_URL + "/file/save"
 export const DOWNLOAD_FILE_POST_ENDPOINT= API_URL+"/file/download";
+export const DOWNLOAD_FILE_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas
+
+export const FORGOT_PASS_POST_ENDPOINT = API_URL + "/user/pass/forgot-password"
+export const CHANGE_PASS_POST_ENDPOINT = API_URL + "/user/pass/change-password"
+export const VALIDATE_CODE_GET_ENDPOINT = API_URL + "/user/pass/validate-code"
