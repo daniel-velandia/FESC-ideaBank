@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import { PROJECT_USER_LIST_GET_ENDPOINT, PROPOSAL_DETAIL_GET_ENDPOINT } from '../../connections/helpers/endpoints';
 import axios from 'axios';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Button, Col, Row, Badge, ListGroup, Form, FloatingLabel } from 'react-bootstrap';
+import { Button, Col, Row, Badge, ListGroup } from 'react-bootstrap';
 import PermissionCheck from '../PermissionCheck';
 import { roles } from '../../utils/roles';
 import { status } from '../../utils/status';
@@ -52,26 +52,24 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
           {project.status === status.IN_PROGRESS ? (
             <>
             <Row>
-              <Col xs="12" sm="8">
+              <Col xs="12" md="12" lg="8">
                 <Row>
                   <Col xs="12" sm="6">
                     <strong>Nombre del Proyecto</strong>
                     <p>{project.projectName}</p>
-                  </Col>
-                  <Col xs="12" sm="6">
-                    <strong>Valor de la propuesta</strong>
-                    <p>{project.valueProposal}</p>
-                  </Col>
-                </Row>                
-                <Row>
-                <Col xs="12" sm="6">
+
                     <strong>Creado por</strong>
                     <p>{project.nameUserCreator}</p>
 
                     <strong>Fecha</strong>
-                    <p>{project.creationDate}</p>
+                    <p>{project.creationDate}</p>  
+                  </Col>
+                  <Col xs="12" sm="6">
+                    <strong>Valor de la propuesta</strong>
+                    <p>{project.valueProposal}</p>
 
-                    <strong>Tags</strong>     
+                    <strong>Tags</strong>
+                    <div>
                     {project.tags.map((tag, index) => (
                       <Badge
                         key={index}
@@ -84,28 +82,24 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                         {tag.tagName}
                       </Badge>
                     ))}
+                    </div>
                   </Col>
-                  <Col xs="12" sm="6">
+                </Row>                
+                <Row>
+                  <Col xs="12" sm="12">
                     <strong>Descripción</strong>
-                    <FloatingLabel controlId="floatingTextarea2">
-                      <Form.Control
-                        as="textarea"
-                        style={{ width: '90%', height: '200px' }}
-                        defaultValue={project.description}                        
-                      />
-                    </FloatingLabel>
+                    <p style={{ maxHeight: '200px', overflow: "auto" }}>{project.description}</p>
                   </Col>                  
                 </Row>                
               </Col>
-              <Col xs="12" sm="4">
+              <Col xs="12" sm="8" lg="4">
                 <strong>Miembros del equipo</strong>
                 <ListGroup>
                   {students.map((student) => (
                     <ListGroup.Item
                       key={student.email}
-                      style={{
-                        cursor: "pointer",
-                        position: "relative",                      
+                      style={{   
+                        position: "relative",
                       }}                    
                     >
                       {student.name +' '+ student.lastName}
