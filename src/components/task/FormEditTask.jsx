@@ -153,15 +153,15 @@ export const FormEditTask = ({ task, idProject }) => {
         </FloatingLabel>
       </Form.Group>
 
-      <div style={{ textAlign: "center", marginBottom: "10px" }}>
+      <div style={{ textAlign: "right", marginBottom: "10px" }}>
         <PermissionCheck requiredRoles={[roles.DIRECTOR, roles.TEACHER]}>
         <Button
           type="button"
-          variant="danger"
-          className="my-modal-button"
+          variant="success"
+          className="my-modal-button-approve"
           onClick={handleTaskUpdate}
         >
-          Editar Tarea
+          Confirmar
         </Button>
         </PermissionCheck>
       </div>

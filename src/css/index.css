@@ -158,6 +158,23 @@ body {
   border-radius: 3px;
 }
 
+.my-modal-button-pending {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #4b4b4b !important;
+  border: 1px solid #4b4b4b;
+  border-radius: 3px;
+}
+
+.hover-row:hover {
+  background-color: #ffffff;
+  cursor: pointer; /* Cambia el cursor a un puntero al pasar por encima */
+}
+
+.hover-row:hover td {
+  background-color: #cccccc;
+}
 
 .my-badge-pending-state {
   background-color: #4b4b4b !important;
