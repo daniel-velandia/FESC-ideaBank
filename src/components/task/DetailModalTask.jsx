@@ -120,9 +120,9 @@ export const DetailModalTask = () => {
                 </tr>
               </thead>
               <tbody>
-                  {task.files.map(file => {
+                  {task.files.map((file, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <td>{file}</td>
                         <td className="text-end">
                           <ButtonDownloadFile
