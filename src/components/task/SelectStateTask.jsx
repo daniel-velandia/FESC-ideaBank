@@ -23,6 +23,7 @@ export const SelectStateTask = ({ idTask, statusTask, onHide }) => {
     axios
         .post(TASK_UPDATE_STATE_POST_ENDPOINT, taskUpdateData)
         .then((res) => {
+        console.log(res)
           dispatch(refresh({ isNeededRefresh: !isNeededRefresh }));
           onHide()
         })
