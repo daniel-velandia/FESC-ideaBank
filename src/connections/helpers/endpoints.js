@@ -30,4 +30,4 @@ export const TASK_DETAIL_GET_ENDPOINT= API_URL+"/task/detail";
 export const TASK_UPDATE_POST_ENDPOINT= API_URL+"/task/update";
 
 export const UPLOAD_FILE_POST_ENDPOINT = API_URL + "/file/save"
-export const DOWNLOAD_FILE_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas
+export const DOWNLOAD_FILE_POST_ENDPOINT= API_URL+"/file/download";

@@ -1,7 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ButtonUploadFile } from './ButtonUploadFile';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { upload } from '../../states/uploadFileReducer';
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -20,6 +23,7 @@ function MyVerticallyCenteredModal(props) {
         <ButtonUploadFile 
             identificator={props.identificator} 
             isProject={props.isProject}
+            onHide={props.onHide}
         />
       </Modal.Body>
       <Modal.Footer>
@@ -29,22 +33,29 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
-function ModalUploadFile({ identificator, isProject }) {
+function ModalUploadFile() {
   const [modalShow, setModalShow] = useState(false);
+  const id = useSelector(state => state.upload.id);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setModalShow(id ? true : false);
+  }, [id]);
+
+  const handleModalShow = () => {
+    navigate(`?taskId=${id}`);
+    dispatch(upload({ id: "" }));
+  };
 
   return (
-    <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button>
-
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        identificator={identificator}
-        isProject={isProject}
-        onHide={() => setModalShow(false)}
-      />
-    </>
+    <MyVerticallyCenteredModal
+      show={modalShow}
+      identificator={id}
+      isProject={"no"}
+      onHide={() => handleModalShow()}
+    />
   );
 }
 

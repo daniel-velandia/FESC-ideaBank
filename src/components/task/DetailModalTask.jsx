@@ -1,15 +1,69 @@
-import React from "react";
-import { Modal, Row, Col, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Modal, Row, Col, Button, Table, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { upload } from "../../states/uploadFileReducer";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { TASK_DETAIL_GET_ENDPOINT } from "../../connections/helpers/endpoints";
+import ButtonDownloadFile from "../files/ButtonDownloadFile";
+import { Upload } from "react-bootstrap-icons";
 import PermissionCheck from "../PermissionCheck";
 import { roles } from "../../utils/roles";
 
-export const DetailModalTask = ({ task, onHide, show, onClickInEditTask }) => {
-  
-  
+export const DetailModalTask = () => {
+
+  const [modalShow, setModalShow] = useState(false);
+  const [task, setTask] = useState({});
+
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const searchParams = new URLSearchParams(location.search);
+  const id = searchParams.get('taskId');
+
+  const onHide = () => {
+    setModalShow(false);
+    searchParams.delete("taskId");
+    const newSearch = searchParams.toString();
+    navigate(newSearch);
+  };
+
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`${TASK_DETAIL_GET_ENDPOINT}?identificator=${id}`)
+        .then((res) => {
+          setTask(res.data);
+          setModalShow(true)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [id]);
+
+  const handleUploadFile = () => {
+    dispatch(upload({ id: task.identificator }));
+    onHide();
+  }
+
+  const onClickInEditTask = () => {
+    searchParams.delete("taskId");
+    //let url = ?taskEdit=${idTask};
+    let url = `${location.pathname}/taskEdit/${task.identificator}`;
+    navigate(url);
+  };
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Cargar archivo
+    </Tooltip>
+  );
 
   return (
     <Modal
-      show={show}
+      show={modalShow}
       onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
@@ -61,6 +115,52 @@ export const DetailModalTask = ({ task, onHide, show, onClickInEditTask }) => {
                   </Button>
             </PermissionCheck>
           </Col>
+          <Col xs="6" className="mt-4  mb-2">
+            <h4>Archivos</h4>
+          </Col>
+          <Col xs="6" className="text-end mt-4 mb-2">
+            <OverlayTrigger
+              placement="left"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <Button
+                variant="ligth"
+                style={{ backgroundColor: "#EBEBEB" }}
+                onClick={() => handleUploadFile()}
+              >
+                <Upload />
+              </Button>
+            </OverlayTrigger>
+          </Col>
+          {task.files && task.files.length > 0 &&
+          <Col xs="12">
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descargar</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {task.files.map((file, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{file}</td>
+                        <td className="text-end">
+                          <ButtonDownloadFile
+                            identificator={task.identificator}
+                            isProject={"no"}
+                            filename={file}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </Table>
+          </Col>
+          }
         </Row>
       </Modal.Body>
     </Modal>
