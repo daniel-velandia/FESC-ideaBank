@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import {
-  LISTTASKS_GET_ENDPOINT,
-  TASK_DETAIL_GET_ENDPOINT,
-} from "../../connections/helpers/endpoints";
+import { LISTTASKS_GET_ENDPOINT,TASK_DETAIL_GET_ENDPOINT} from "../../connections/helpers/endpoints";
 import { TableTasks } from "../../components/task/TableTasks";
 import { CreateModalTarea } from "../../components/task/CreateModalTarea";
 import PermissionCheck from "../../components/PermissionCheck";
@@ -42,11 +39,17 @@ const TableTask = () => {
   }, [identificator, isNeededRefresh]);
 
   const handleClick = (idTask) => {
-    var url = `?taskId=${idTask}`;
+    let url = `?taskId=${idTask}`;
     navigate(url);
     setidTask(idTask);
     setmodalShowDetailTask(true);
+  };
 
+  const onClickInEditTask = () => {
+    searchParams.delete("taskId");
+    //let url = `?taskEdit=${idTask}`;
+    let url = `${location.pathname}/taskEdit/${idTask}`;
+    navigate(url);
   };
 
   const hideModal = () => {
@@ -61,7 +64,7 @@ const TableTask = () => {
         .get(`${TASK_DETAIL_GET_ENDPOINT}?identificator=${idTask}`)
         .then((res) => {
           settask(res.data);
-          setmodalShowDetailTask(true)
+          setmodalShowDetailTask(true);
         })
         .catch((err) => {
           console.log(err);
@@ -119,7 +122,12 @@ const TableTask = () => {
           )}
         </tbody>
       </Table>
-      <DetailModalTask task={task} show={modalShowDetailTask} onHide={() => hideModal()} />
+      <DetailModalTask
+        task={task}
+        show={modalShowDetailTask}
+        onHide={() => hideModal()}
+        onClickInEditTask={onClickInEditTask}
+      />
     </Container>
   );
 };
