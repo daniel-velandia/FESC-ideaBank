@@ -32,7 +32,6 @@ export const ProjectInformation = () => {
   const [newTeamProject, setnewTeamProject] = useState([]);
   const [tags, setTags] = useState([]);
 
-  // Bloque para obtener los datos del proyecto
   const project = useProjectData();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
