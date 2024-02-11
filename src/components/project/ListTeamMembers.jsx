@@ -17,6 +17,7 @@ export const ListTeamMembers = ({  onStudentSelect }) => {
       .get(`${USER_LIST_TEAM_PROJECT_GET_ENDPOINT}?identificator=${idProject}`)
       .then((res) => {
         setStudents(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.error("Error al obtener datos:", err);

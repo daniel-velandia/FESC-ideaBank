@@ -93,6 +93,19 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                 </Button>
               )}
             </PermissionCheck>
+            <PermissionCheck requiredRoles={[roles.DIRECTOR]}>
+              {project.status === status.IN_PROGRESS && (
+                <Button
+                as={NavLink}
+                to={`/project/detail?id=${project.identificator}`}
+                type="submit"
+                variant="primary"
+                className="my-modal-button-approve ms-4"
+              >
+                Editar proyecto
+            </Button>
+              )}
+            </PermissionCheck>
           </Col>
         </Row>
       </Modal.Body>
@@ -116,6 +129,7 @@ function ModalProjectDetail() {
       .then(res => {
         setProject(res.data);
         setModalShow(true);
+        console.log(res.data);
       })
       .catch(err => {
         setModalShow(false);

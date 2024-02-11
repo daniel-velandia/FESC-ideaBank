@@ -10,7 +10,7 @@ export const ProjectDetail = () => {
   const navigate = useNavigate();
   const project = useProjectData();
 
-  if (project.status !== "APROBADO") {
+  if (project.status !== "APROBADO" && project.status !== "EN PROGRESO") {
     navigate("/");
   }
 

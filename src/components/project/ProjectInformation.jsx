@@ -9,6 +9,8 @@ import axios from "axios";
 import {
   PROPOSAL_EDIT_POST_ENDPOINT,
   PROPOSAL_UPDATE_STATES_POST_ENDPOINT,
+  TAG_PROJECT_DELETE_ENDPOINT,
+  PROJECT_UPDATE_POST_ENDPOINT
 } from "../../connections/helpers/endpoints";
 
 export const ProjectInformation = () => {
