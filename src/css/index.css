@@ -221,6 +221,12 @@ body {
   border-radius: 3px;
 }
 
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+
 .my-modal-button-EN.PROGRESO {
   padding: 12px;
   color: #fff;

@@ -10,6 +10,7 @@ import { Upload } from "react-bootstrap-icons";
 import PermissionCheck from "../PermissionCheck";
 import { roles } from "../../utils/roles";
 import { SelectStateTask } from "./SelectStateTask";
+import { ModalUploadFile } from "../files/ModalUploadFile";
 
 export const DetailModalTask = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -58,6 +59,8 @@ export const DetailModalTask = () => {
     </Tooltip>
   );
 
+  // Obtener el color del estado de la tarea
+  const color = task.status ? task.status: "PENDIENTE";
 
   return (
     <Modal
@@ -67,8 +70,8 @@ export const DetailModalTask = () => {
     aria-labelledby="contained-modal-title-vcenter"
     centered
   >
-    <Modal.Header className={`my-modal-header-${task.status} px-4`} closeButton>
-      <div className={`my-badge-state-${task.status}`}>DETALLE DE TAREA</div>
+    <Modal.Header className={`my-modal-header-${color} px-4`} closeButton> {/* Usamos el color del estado de la tarea */}
+      <div className={`my-badge-state-${color}`}>DETALLE DE TAREA</div>
     </Modal.Header>
     <Modal.Body className="px-4 pt-5 me-2 ms-2">
       <Row>
@@ -114,6 +117,8 @@ export const DetailModalTask = () => {
       </Row>
     </Modal.Body>
     <Modal.Footer className=" d-flex justify-content-between mb-2 mt-2">
+
+      
       <Row className=" d-flex align-items-center justify-content-between">
         <Col xs="auto">
           <h5 className="mb-0">Archivos</h5>
@@ -124,6 +129,7 @@ export const DetailModalTask = () => {
           {/* Validación para mostrar el botón de subir archivos según el estado de la tarea */}
           {task.status !== 'LISTO' && (
             <OverlayTrigger
+              
               placement="left"
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
@@ -139,11 +145,13 @@ export const DetailModalTask = () => {
             </OverlayTrigger>
           )}
         </Col>
+
       </Row>
+      
       {task.files && task.files.length > 0 &&
-        <Row>
+        <Row >
           <Col xs="12">
-            <Table responsive>
+          <Table responsive >
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -173,4 +181,4 @@ export const DetailModalTask = () => {
     </Modal.Footer>
   </Modal>
 );
-    }
+};
