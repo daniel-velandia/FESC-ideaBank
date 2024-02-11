@@ -210,7 +210,7 @@ color: red;
 }
 .my-card-hover:hover {
   /* Cambia el color de fondo y otras propiedades de estilo en hover según sea necesario */
-  background-color: #f0f0f0;
+  background-color: #e4e3e3;
   cursor: pointer;
 }
 

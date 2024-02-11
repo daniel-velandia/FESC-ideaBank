@@ -172,8 +172,8 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     as={NavLink}
                     to={`/project/detail?id=${project.identificator}`}
                     type="submit"
-                    variant="danger"
-                    className="my-modal-button-approve me-2"
+                    variant="success"
+                    className="my-modal-button-approve me-2 mt-4"
                   >
                     Editar
                 </Button>
@@ -186,7 +186,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     to={`/table/task/${project.identificator}`}
                     type="submit"
                     variant="warning"
-                    className="my-modal-button-task"
+                    className="my-modal-button-task me-2 mt-4"
                   >
                     Tareas
                 </Button>
