@@ -36,19 +36,19 @@ export const SelectStateTask = ({ idTask, statusTask, onHide }) => {
 
   if (statusTask === status.PENDING) {
     filteredOptions = Object.entries(status).filter(
-      ([key, value]) => value === "EN PROGRESO"
+      ([key, value]) => value === status.IN_PROGRESS
     );
   } else if (statusTask === status.IN_PROGRESS) {
     filteredOptions = Object.entries(status).filter(
-      ([key, value]) => value === "PENDIENTE DE VALIDAR"
+      ([key, value]) => value === status.PENDING_VALIDATION
     );
   } else if (statusTask === status.PENDING_VALIDATION) {
     filteredOptions = Object.entries(status).filter(
-      ([key, value]) => value === "LISTO" || value === "RECHAZADO"
+      ([key, value]) => value === status.DONE || value === status.REFUSED
     );
   } else if (statusTask === status.REFUSED) {
     filteredOptions = Object.entries(status).filter(
-      ([key, value]) => value === "EN PROGRESO"
+      ([key, value]) => value === status.IN_PROGRESS
     );
   }
 
