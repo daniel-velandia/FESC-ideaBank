@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ChangePasswordForm = ({ errors, callback, step }) => {
 
@@ -100,6 +101,9 @@ const ChangePasswordForm = ({ errors, callback, step }) => {
             <Button type='submit' variant='danger' size="lg" className='mt-3 w-100' style={{ backgroundColor: "#9c0f06", width: "fit-content" }}>
                 Enviar
             </Button>
+            <div className='mt-3 text-center'>
+                <Link to={'/login'}>Regresar</Link>
+            </div>
         </Form>
     )
 }

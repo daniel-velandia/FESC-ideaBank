@@ -1,7 +1,9 @@
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
-import { useEffect, useRef, useState } from "react";
 import SelectTypeTags from "./SelectTypeTags";
+import TypeTags from './TypeTags';
 import { ListTeamMembers } from "./ListTeamMembers";
+import { ListOnlyTeamMembers } from './ListOnlyTeamMembers';
 import { useProjectData } from "../../hooks/useProjectData";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ModalUserManager } from "./ModalUserManager";
@@ -9,20 +11,19 @@ import axios from "axios";
 import {
   PROPOSAL_EDIT_POST_ENDPOINT,
   PROPOSAL_UPDATE_STATES_POST_ENDPOINT,
-  TAG_PROJECT_DELETE_ENDPOINT,
-  PROJECT_UPDATE_POST_ENDPOINT
 } from "../../connections/helpers/endpoints";
 
 export const ProjectInformation = () => {
   const [showModalManager, setShowModalManager] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [projectName, setProjectName] = useState("");
   const navigation = useNavigate();
 
   const [formErrors, setFormErrors] = useState({
     projectName: "",
   });
   const [formData, setFormData] = useState({
-    projectName: "",
+    projectName: projectName,
   });
 
   const sendProjectDataRef = useRef(null);
@@ -31,13 +32,23 @@ export const ProjectInformation = () => {
   const [newTeamProject, setnewTeamProject] = useState([]);
   const [tags, setTags] = useState([]);
 
-  //Bloque para obtener el id de la ruta
+  // Bloque para obtener los datos del proyecto
   const project = useProjectData();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const idProject = searchParams.get("id");
+  const status = project.status;
 
-  //Funcion para obtener los estudiante y profesorese seleccionados
+  useEffect(() => {
+    if (status === 'EN PROGRESO') {
+      setFormData(prevState => ({
+        ...prevState,
+        projectName: project.projectName
+      }));
+    }
+  }, [status, project.projectName]);  
+
+  // Función para manejar la selección de usuarios del equipo
   const handleUserTeamSelect = (selectedTeamUser) => {
     setTeamproject(selectedTeamUser);
     const UsertsWithIsManager = selectedTeamUser.map((user) => ({
@@ -47,17 +58,16 @@ export const ProjectInformation = () => {
     setnewTeamProject(UsertsWithIsManager);
   };
 
-  //Funcion para obtener los tags del componente hijo
+  // Función para manejar la selección de etiquetas
   const handleTagsSelect = (res) => {
     setTags(res);
   };
 
+  // Función para manejar la selección de un docente como manager
   const handleDocenteManagerSelect = (docenteManager) => {
     const isDocenteManagerInArray = newTeamProject.some(
       (member) => member.email === docenteManager.email
     );
-    // Si el docenteManager ya está en el array, actualizar su propiedad isManager a true
-    // Si no está en el array, agregarlo con isManager igual a true
     setnewTeamProject((prevTeamProject) => {
       if (isDocenteManagerInArray) {
         return prevTeamProject.map((member) =>
@@ -84,6 +94,7 @@ export const ProjectInformation = () => {
       sendProjectDataRef.current = false;
     }
   }, [newTeamProject]);
+
   const sendProjectDataUpdateToBackend = async () => {
     const projectDataToSend = {
       projectName: formData.projectName,
@@ -105,6 +116,7 @@ export const ProjectInformation = () => {
   const sendProjectDataUpdateStatusToBackend = () => {
     const projectIdDataStatusInProgress = {
       identificator: idProject,
+      state: status
     };
     axios
       .post(PROPOSAL_UPDATE_STATES_POST_ENDPOINT, projectIdDataStatusInProgress)
@@ -112,11 +124,11 @@ export const ProjectInformation = () => {
         navigation("/");
       })
       .catch((err) => {
-        console.error("Error al enviar datos al servidor:", err);
+        navigation("/");
       });
   };
 
-  //Funcion que cumple el boton de Validar cuando el estado pendiente
+  // Función para manejar el clic en el botón de Validar
   const handleButtonClick = () => {
     const docenteUsers = teamproject.filter((user) => user.rol === "DOCENTE");
     if (docenteUsers.length > 0) {
@@ -126,13 +138,79 @@ export const ProjectInformation = () => {
     }
   };
 
-  let name = project.status;
+  // Función para manejar el clic en el botón de Confirmar (solo cuando el estado es "EN PROGRESO")
+  const handleButtonClickEdit = () => {
+    const users = teamproject.filter((user) => user.rol === "DOCENTE" || user.rol === "ESTUDIANTE");
+    if (users.length >= 0) {
+      setShowModalManager(true);
+    }
+  };
 
   return (
     <>
       <Card>
-        <Card.Header className={`my-header-project-${name}`}>
-          <div className={`my-badge-state-${name}`}>{name}</div>
+        {status === 'EN PROGRESO' ? (
+          <>
+          <Card.Header className={`my-header-project-${status}`}>
+            <div className={`my-badge-state-${status}`}>{status}</div>
+          </Card.Header>
+          <Card.Body>
+          <Form className="px-3 mt-4">
+            <Row>
+              <Col sm="12" md="6">
+                <h3>Nombre del proyecto</h3>
+                <Form.Group className="mt-4" controlId="projectName">
+                  <Form.Control
+                    size="lg"
+                    type="text"
+                    name="projectName"
+                    placeholder="Ingrese el nombre del proyecto"
+                    value={formData.projectName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, projectName: e.target.value })
+                    }
+                    isInvalid={formSubmitted && formErrors.projectName !== ""}
+                    style={{ width: "90%" }}
+                  />
+
+                  <Form.Control.Feedback type="invalid">
+                    {formSubmitted && formErrors.projectName}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <h3 className="mt-4">Tags del proyecto</h3>
+                <TypeTags onTagsSelect={handleTagsSelect} />
+                <h3 className="mt-5">Agregar más tags</h3>
+                <SelectTypeTags onTagsSelect={handleTagsSelect} />
+              </Col>
+
+              <Col
+                sm="12"
+                md="6"
+                className="d-flex flex-column justify-content-between"
+              >
+                <h3>Integrantes del equipo</h3>
+                <ListOnlyTeamMembers onStudentSelect={handleUserTeamSelect} />
+                <h3 className="mt-5">Agregar miembros</h3>
+                <ListTeamMembers onStudentSelect={handleUserTeamSelect} />
+                <div className="d-flex justify-content-end mt-auto">
+                  <Button
+                    type="button"
+                    variant="danger"
+                    className="my-modal-button-approve  mt-4"
+                    onClick={handleButtonClickEdit}
+                  >
+                    Confirmar
+                  </Button>
+                </div>
+              </Col>
+            </Row>
+          </Form>
+        </Card.Body>
+        </> 
+        ) :
+        <>
+          <Card.Header className={`my-header-project-${status}`}>
+          <div className={`my-badge-state-${status}`}>{status}</div>
         </Card.Header>
         <Card.Body>
           <Form className="px-3 mt-4">
@@ -171,7 +249,7 @@ export const ProjectInformation = () => {
                 <div className="d-flex justify-content-end mt-auto">
                   <Button
                     type="button"
-                    variant="success"
+                    variant="danger"
                     className="my-modal-button-approve  mt-4"
                     onClick={handleButtonClick}
                   >
@@ -182,6 +260,7 @@ export const ProjectInformation = () => {
             </Row>
           </Form>
         </Card.Body>
+        </> }
       </Card>
       <ModalUserManager
         isOpen={showModalManager}
