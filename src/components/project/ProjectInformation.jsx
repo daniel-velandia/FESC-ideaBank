@@ -46,7 +46,7 @@ export const ProjectInformation = () => {
         projectName: project.projectName
       }));
     }
-  }, [status, project.projectName]);  
+  }, [status, project.projectName]);
 
   // Función para manejar la selección de usuarios del equipo
   const handleUserTeamSelect = (selectedTeamUser) => {
