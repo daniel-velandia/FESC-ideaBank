@@ -1,7 +1,6 @@
-// CardProject.js
 import React from "react";
 import PropTypes from "prop-types";
-import "../../css/style.css";
+import "../../css/style.css"; // Asegúrate de importar tu archivo de estilos aquí
 import { useLocation, useNavigate } from "react-router-dom";
 
 function CardProject({ project }) {
@@ -16,7 +15,10 @@ function CardProject({ project }) {
   };
 
   return (
-    <div className={`card card-project card-${project.status.toLowerCase()}`} onClick={sendIdToUrl}>
+    <div 
+      className={`card card-project card-${project.status.toLowerCase()} my-card-hover`} 
+      onClick={sendIdToUrl}
+    >
         <div className="card-header border-0"></div>
         <div className="status-indicator">
           <div className={`status-indicator__dot status-${project.status.toLowerCase()}`}>
