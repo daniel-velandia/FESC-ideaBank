@@ -34,8 +34,8 @@ export const ModalUserManager = ({
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header className="my-modal-header px-4" closeButton>
-          <div className="my-badge-state">Escoger Encargado</div>
+        <Modal.Header className="my-modal-header-APROBADO px-4" closeButton>
+          <div className="my-badge-state-APROBADO">Escoger Encargado</div>
         </Modal.Header>
         <Modal.Body>
           <div
