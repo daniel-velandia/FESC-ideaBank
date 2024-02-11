@@ -18,6 +18,7 @@ import { ModalProjectApproved } from "../../components/project/ModalProjectAppro
 import { refresh } from "../../states/pageReducer";
 import { toast } from "react-toastify";
 import toastConfig from "../../utils/toastConfig";
+import { ModalUploadFile } from "../../components/files/ModalUploadFile";
 
 function ProjectList() {
   const isNeededRefresh = useSelector((state) => state.page.isNeededRefresh);
@@ -115,6 +116,7 @@ function ProjectList() {
               </Col>
             ))}
         </Row>
+        <ModalUploadFile/>
       </Container>
     </div>
   );

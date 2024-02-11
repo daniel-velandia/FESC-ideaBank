@@ -17,7 +17,6 @@ export const DetailModalTask = () => {
   const [modalShow, setModalShow] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [task, setTask] = useState({});
-
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ export const DetailModalTask = () => {
   }, [id, refresh]);
 
   const handleUploadFile = () => {
-    dispatch(upload({ id: task.identificator }));
+    dispatch(upload({ id: task.identificator, isproject: "no" }));
     onHide();
   }
 
