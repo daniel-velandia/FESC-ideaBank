@@ -35,10 +35,11 @@ const LoginForm = ({errors, callback}) => {
                     value={formData.email}
                     onChange={handleChange}
                     isInvalid={errors.email} />
-                    </FloatingLabel>
                 <Form.Control.Feedback type='invalid'>
                     {errors.email}
                 </Form.Control.Feedback>
+                    </FloatingLabel>
+
             </Form.Group>
 
             <Form.Group className='mt-3 mb-3' controlId='password'>
@@ -51,20 +52,20 @@ const LoginForm = ({errors, callback}) => {
                     value={formData.password}
                     onChange={handleChange}
                     isInvalid={errors.password} />
-                    <Form.Text id="passwordHelpBlock" muted>
-                        <Link to={'/changePassword'}>Cambiar contraseña</Link>
-                    </Form.Text>
-                 </FloatingLabel>
                 <Form.Control.Feedback type='invalid'>
                     {errors.password}
                 </Form.Control.Feedback>
+                    </FloatingLabel>
+                    <Form.Text id="passwordHelpBlock" className=" d-flex justify-content-center" muted>
+                <Link to={'/changePassword'}>Cambiar contraseña</Link>
+            </Form.Text>
             </Form.Group>
 
             <Button type='submit' variant='danger' size="lg" className='mt-3 w-100' style={{ backgroundColor: "#9c0f06", width: "fit-content" }}>
                 Iniciar sesion
             </Button>
 
-            <div className='mt-3 small text-start'>
+            <div className='mt-3 small text-center'>
                 <p>¿No tienes una cuenta?, <Link to={'/register'}>registrate aquí</Link></p>
             </div>
             

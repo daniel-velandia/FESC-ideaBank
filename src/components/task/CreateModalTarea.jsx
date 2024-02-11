@@ -48,7 +48,14 @@ export const CreateModalTarea = () => {
 
     if (!fecha.trim()) {
       errores.fecha = "La fecha es obligatoria";
-    }
+  } else {
+      const fechaSeleccionada = new Date(fecha);
+      const fechaActual = new Date();
+      fechaActual.setHours(0, 0, 0, 0); // Establecer la hora a las 00:00:00 para comparar solo la fecha
+      if (fechaSeleccionada.getTime() < fechaActual.getTime()) {
+          errores.fecha = "La fecha debe ser posterior a la actual";
+      }
+  }
 
     if (!descripcion.trim()) {
       errores.descripcion = "La descripción es obligatoria";
@@ -69,7 +76,8 @@ export const CreateModalTarea = () => {
 
   const handleCrearTarea = () => {
     if (validarCampos()) {
-      const fechaFormateada = formatDate(fecha);
+      // Ajustar la fecha sumando un día
+      const fechaFormateada = formatDate(new Date(new Date(fecha).getTime() + 86400000)); // Sumar 86400000 milisegundos (un día)
       const dataCreateTask = {
         identificator: identificator,
         title: nombre,
@@ -142,12 +150,11 @@ export const CreateModalTarea = () => {
                       value={nombre}
                       onChange={(e) => setNombre(e.target.value)}
                       style={{ height: "50px" }}
+                      isInvalid={errores.nombre}
                     />
-                    {errores.nombre && (
-                      <Form.Text className="text-danger">
-                        {errores.nombre}
-                      </Form.Text>
-                    )}
+                    <Form.Control.Feedback type="invalid">
+                      {errores.nombre}
+                    </Form.Control.Feedback>
                   </FloatingLabel>
                 </Form.Group>
 
@@ -158,15 +165,15 @@ export const CreateModalTarea = () => {
                   >
                     <Form.Control
                       type="date"
+                      min={formatDate(new Date())} // Establecer la fecha mínima como la actual
                       value={fecha}
                       onChange={(e) => setFecha(e.target.value)}
                       style={{ height: "50px" }}
+                      isInvalid={errores.fecha}
                     />
-                    {errores.fecha && (
-                      <Form.Text className="text-danger">
-                        {errores.fecha}
-                      </Form.Text>
-                    )}
+                    <Form.Control.Feedback type="invalid">
+                      {errores.fecha}
+                    </Form.Control.Feedback>
                   </FloatingLabel>
                 </Form.Group>
               </Col>
@@ -190,12 +197,11 @@ export const CreateModalTarea = () => {
                   value={descripcion}
                   onChange={(e) => setDescripcion(e.target.value)}
                   style={{ height: "150px" }}
+                  isInvalid={errores.descripcion}
                 />
-                {errores.descripcion && (
-                  <Form.Text className="text-danger">
-                    {errores.descripcion}
-                  </Form.Text>
-                )}
+                <Form.Control.Feedback type="invalid">
+                  {errores.descripcion}
+                </Form.Control.Feedback>
               </FloatingLabel>
             </Form.Group>
 

@@ -28,12 +28,6 @@ const RegisterForm = ({ errors, callback }) => {
         callback(formData);
     }
 
-    const isValidPhoneNumber = (phone) => {
-        // Expresión regular para validar un número de teléfono con un máximo de 10 dígitos
-        const phoneRegex = /^\d{0,10}$/;
-        return phoneRegex.test(phone);
-    };
-
     return (
         <Form onSubmit={sendResponse} className="px-3">
 
@@ -48,10 +42,11 @@ const RegisterForm = ({ errors, callback }) => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 isInvalid={errors.name} />
-                        </FloatingLabel>
-                        <Form.Control.Feedback type='invalid'>
+                                                        <Form.Control.Feedback type='invalid'>
                             {errors.name}
                         </Form.Control.Feedback>
+                        </FloatingLabel>
+
                     </Form.Group>
                 </Col>
 
@@ -65,10 +60,10 @@ const RegisterForm = ({ errors, callback }) => {
                                 value={formData.lastName}
                                 onChange={handleChange}
                                 isInvalid={errors.lastName} />
-                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.lastName}
                         </Form.Control.Feedback>
+                        </FloatingLabel>
                     </Form.Group>
                 </Col>
 
@@ -82,21 +77,23 @@ const RegisterForm = ({ errors, callback }) => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 isInvalid={errors.email} />
-                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.email}
                         </Form.Control.Feedback>
+                        </FloatingLabel>
+
                     </Form.Group>
                 </Col>
 
                 <Col sm="12" md="6">
-                    <Form.Group className='mb-3' controlId='email'>
+                    <Form.Group className='mb-3' controlId='type'>
                         <FloatingLabel label='Seleccione tipo de registro' className='label'>
                             <Form.Select style={{ height: "45px" }}
                                 value={formData.type}
                                 onChange={handleChange}
                                 name='type'
                                 aria-label="Default select example"
+                                
                             >
                                 <option value={"external"}>{"Empresa"}</option>
                                 <option value={"invited"}>{"Usuario invitado"}</option>
@@ -106,21 +103,21 @@ const RegisterForm = ({ errors, callback }) => {
                 </Col>
 
                 <Col sm="12" md="6">
-                    <Form.Group className='mb-3' controlId='cellPhone'>
-                        <FloatingLabel label='Teléfono celular' className='label'>
-                            <Form.Control
-                                size="lg"
-                                type="tel"
-                                name='cellPhone'
-                                value={formData.cellPhone}
-                                onChange={handleChange}
-                                isInvalid={!isValidPhoneNumber(formData.cellPhone)} />
-                        </FloatingLabel>
+                <Form.Group className='mb-3' controlId='cellPhone'>
+                    <FloatingLabel label='Teléfono celular' className='label'>
+                        <Form.Control
+                            size="lg"
+                            type="tel"
+                            name='cellPhone'
+                            value={formData.cellPhone}
+                            onChange={handleChange}
+                            isInvalid={errors.cellPhone} />
                         <Form.Control.Feedback type='invalid'>
-                            {!isValidPhoneNumber(formData.cellPhone) && "El teléfono debe tener máximo 10 dígitos"}
+                            {errors.cellPhone}
                         </Form.Control.Feedback>
-                    </Form.Group>
-                </Col>
+                    </FloatingLabel>
+                </Form.Group>
+            </Col>
 
                 <Col sm="12" md="6">
                     <Form.Group className='mb-3' controlId='companyName'>
@@ -133,10 +130,11 @@ const RegisterForm = ({ errors, callback }) => {
                                 value={formData.type === "external" ? formData.companyName : ""}
                                 onChange={handleChange}
                                 isInvalid={errors.companyName} />
-                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.companyName}
                         </Form.Control.Feedback>
+                        </FloatingLabel>
+
                     </Form.Group>
                 </Col>
 
@@ -150,10 +148,10 @@ const RegisterForm = ({ errors, callback }) => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 isInvalid={errors.password} />
-                        </FloatingLabel>
-                        <Form.Control.Feedback type='invalid'>
+                                <Form.Control.Feedback type='invalid'>
                             {errors.password}
                         </Form.Control.Feedback>
+                        </FloatingLabel>
                     </Form.Group>
                 </Col>
 
@@ -167,10 +165,10 @@ const RegisterForm = ({ errors, callback }) => {
                                 value={formData.repeatPassword}
                                 onChange={handleChange}
                                 isInvalid={errors.password} />
-                        </FloatingLabel>
                         <Form.Control.Feedback type='invalid'>
                             {errors.password}
                         </Form.Control.Feedback>
+                        </FloatingLabel>
                     </Form.Group>
                 </Col>
 

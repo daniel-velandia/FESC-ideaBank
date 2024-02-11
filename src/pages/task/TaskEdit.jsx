@@ -30,8 +30,8 @@ export const TaskEdit = () => {
         <Row>
           <Col xs="12" md="8" className="mt-1 mx-auto">
             <Card>
-              <Card.Header>
-                <div>Editar Tarea</div>
+              <Card.Header className="my-header-project-PENDIENTE mb-4">
+              <div className="my-badge-state-PENDIENTE">EDITAR TAREA</div>
               </Card.Header>
               <Card.Body>
                 <FormEditTask idProject={identificator} task={task} />

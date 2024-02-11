@@ -131,7 +131,7 @@ export const CreateUserForm = ({ callback }) => {
     }
 
     if (data.password !== data.repeatPassword) {
-      errors.password = "Las contraseñas deben coincidir";
+      errors.repeatPassword = "Las contraseñas deben coincidir";
     }
 
     return errors;
@@ -188,10 +188,10 @@ export const CreateUserForm = ({ callback }) => {
                       isInvalid={formSubmitted && formErrors.name !== ""}
                       style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {formSubmitted && formErrors.name}
+                    </Form.Control.Feedback>
                   </FloatingLabel>
-                  <Form.Control.Feedback type="invalid">
-                    {formSubmitted && formErrors.name}
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
 
@@ -211,10 +211,10 @@ export const CreateUserForm = ({ callback }) => {
                       isInvalid={formSubmitted && formErrors.lastName !== ""}
                       style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {formSubmitted && formErrors.lastName}
+                    </Form.Control.Feedback>
                   </FloatingLabel>
-                  <Form.Control.Feedback type="invalid">
-                    {formSubmitted && formErrors.lastName}
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
 
@@ -230,10 +230,10 @@ export const CreateUserForm = ({ callback }) => {
                       isInvalid={formSubmitted && formErrors.email !== ""}
                       style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {formSubmitted && formErrors.email}
+                    </Form.Control.Feedback>
                   </FloatingLabel>
-                  <Form.Control.Feedback type="invalid">
-                    {formSubmitted && formErrors.email}
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
 
@@ -249,10 +249,10 @@ export const CreateUserForm = ({ callback }) => {
                       isInvalid={formSubmitted && formErrors.cellPhone !== ""}
                       style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {formSubmitted && formErrors.cellPhone}
+                    </Form.Control.Feedback>
                   </FloatingLabel>
-                  <Form.Control.Feedback type="invalid">
-                    {formSubmitted && formErrors.cellPhone}
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
 
@@ -268,10 +268,10 @@ export const CreateUserForm = ({ callback }) => {
                       isInvalid={formSubmitted && formErrors.password !== ""}
                       style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {formSubmitted && formErrors.password}
+                    </Form.Control.Feedback>
                   </FloatingLabel>
-                  <Form.Control.Feedback type="invalid">
-                    {formSubmitted && formErrors.password}
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
 
@@ -292,10 +292,10 @@ export const CreateUserForm = ({ callback }) => {
                       }
                       style={{ height: "45px" }} // Establecer la misma altura para todos los campos
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {formSubmitted && formErrors.repeatPassword}
+                    </Form.Control.Feedback>
                   </FloatingLabel>
-                  <Form.Control.Feedback type="invalid">
-                    {formSubmitted && formErrors.repeatPassword}
-                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
 
@@ -304,6 +304,7 @@ export const CreateUserForm = ({ callback }) => {
                   <FloatingLabel label="Programa">
                     <SelectProgram
                       onSelect={handleSelectChange}
+                      errores={formErrors.program} // Pasar errores a SelectProgram
                       style={{ height: "45px" }}
                     />
                     <Form.Control.Feedback type="invalid">
@@ -318,6 +319,7 @@ export const CreateUserForm = ({ callback }) => {
                   <FloatingLabel label="Rol de Usuario">
                     <SelectUserRol
                       onSelect={handleSelectChange}
+                      errores={formErrors.rol} // Pasar errores a SelectUserRol
                       style={{ height: "45px" }}
                     />
                     <Form.Control.Feedback type="invalid">

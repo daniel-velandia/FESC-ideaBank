@@ -1,21 +1,43 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { PROPOSAL_DETAIL_GET_ENDPOINT } from '../../connections/helpers/endpoints';
+import { PROJECT_USER_LIST_GET_ENDPOINT, PROPOSAL_DETAIL_GET_ENDPOINT } from '../../connections/helpers/endpoints';
 import axios from 'axios';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button, Col, Row, Badge, ListGroup } from 'react-bootstrap';
 import PermissionCheck from '../PermissionCheck';
 import { roles } from '../../utils/roles';
 import { status } from '../../utils/status';
 import { ButtonProjectReject } from './ButtonProjectReject';
 
-function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
-  
+function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) { 
+
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${PROJECT_USER_LIST_GET_ENDPOINT}?identificator=${project.identificator}`)
+      .then((res) => {
+        setStudents(res.data);      
+      })
+      .catch((err) => {
+        console.error("Error al obtener datos:", err);
+      });
+  }, [project.identificator]);
+
+  const states = {
+    "INGENIERIA DE SOFTWARE": "my-badge-career-software",
+    "DISEÑO GRAFICO": "my-badge-career-graphic",
+    "ADMINISTRACION FINANCIERA": "my-badge-career-financial",
+    "DISEÑO DE MODAS": "my-badge-career-fashions",
+    "HOTELERIA Y TURISMO": "my-badge-career-tourism",
+    "LOGISTICA EMPRESARIAL": "my-badge-career-logistics",
+  };  
+
   return (
     <Modal
       show={show}
       onHide={onHide}
-      size="md"
+      size={project.status === status.IN_PROGRESS ? "lg" : "md"}
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
@@ -24,49 +46,97 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
       </Modal.Header>
       <Modal.Body className='px-4 pt-5 ms-2 text-lg-start'>
         <Row>
-        <Col xs="12" className='mb-4'>
-  <Row >
-    <Col xs="12">
-      <strong className="h3">{project.company}</strong>
-    </Col>
-  </Row>
-</Col>
+          <Col xs="12" className='mb-4'>
+            <strong className="h3">{project.company}</strong>
+          </Col>  
+          {project.status === status.IN_PROGRESS ? (
+            <>
+            <Row>
+              <Col xs="12" md="12" lg="8">
+                <Row>
+                  <Col xs="12" sm="6">
+                    <strong>Nombre del Proyecto</strong>
+                    <p>{project.projectName}</p>
 
-<Col xs="12" className="mb-2">
-  <Row>
-    <Col xs="12">
-      <strong>Propuesta de valor</strong>
-      <p>{project.valueProposal}</p>
-    </Col>
-  </Row>
-</Col>
+                    <strong>Creado por</strong>
+                    <p>{project.nameUserCreator}</p>
 
-<Col xs="12" className='mb-2'>
-  <Row>
-    <Col xs="12">
-      <strong>Descripción</strong>
-      <p>{project.description}</p>
-    </Col>
-  </Row>
-</Col>
+                    <strong>Fecha</strong>
+                    <p>{project.creationDate}</p>  
+                  </Col>
+                  <Col xs="12" sm="6">
+                    <strong>Valor de la propuesta</strong>
+                    <p>{project.valueProposal}</p>
 
-<Col xs="12" className='mb-2'>
-  <Row>
-    <Col xs="12">
-      <strong>Creado por</strong>
-      <p>{project.nameUserCreator}</p>
-    </Col>
-  </Row>
-</Col>
-
-<Col xs="12" className='mb-2'>
-  <Row>
-    <Col xs="12">
-      <strong>Fecha</strong>
-      <p>{project.creationDate}</p>
-    </Col>
-  </Row>
-</Col>
+                    <strong>Tags</strong>
+                    <div>
+                    {project.tags.map((tag, index) => (
+                      <Badge
+                        key={index}
+                        className={`${states[tag.tagName] || ""}`}
+                        style={{
+                          borderRadius: "50px",
+                          margin: "5px",                    
+                        }}
+                      >
+                        {tag.tagName}
+                      </Badge>
+                    ))}
+                    </div>
+                  </Col>
+                </Row>                
+                <Row>
+                  <Col xs="12" sm="12">
+                    <strong>Descripción</strong>
+                    <p style={{ maxHeight: '200px', overflow: "auto" }}>{project.description}</p>
+                  </Col>                  
+                </Row>                
+              </Col>
+              <Col xs="12" sm="8" lg="4">
+                <strong>Miembros del equipo</strong>
+                <ListGroup>
+                  {students.map((student) => (
+                    <ListGroup.Item
+                      key={student.email}
+                      style={{   
+                        position: "relative",
+                      }}                    
+                    >
+                      {student.name +' '+ student.lastName}
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Col>
+            </Row>
+            </>
+          ) : (
+          <Row>
+            <Col xs="12" sm="6">
+            <strong>Valor de la propuesta</strong>
+          </Col>
+          <Col xs="12" sm="6" className='text-sm-end'>
+            <p>{project.valueProposal}</p>
+          </Col>
+          <Col xs="12" sm="6">
+            <strong>Descripción</strong>
+          </Col>
+          <Col xs="12" sm="6" className='text-sm-end'>
+            <p>{project.description}</p>
+          </Col>
+          <Col xs="12" sm="6">
+            <strong>Creado por</strong>
+          </Col>
+          <Col xs="12" sm="6" className='text-sm-end'>
+            <p>{project.nameUserCreator}</p>
+          </Col>
+          <Col xs="12" sm="6">
+            <strong>Fecha</strong>
+          </Col>
+          <Col xs="12" sm="6" className='text-sm-end'>
+            <p>{project.creationDate}</p>
+          </Col>
+          </Row>
+          )}          
           <Col xs="12" className='d-flex justify-content-end'>
             <PermissionCheck requiredRoles={[roles.VALIDATOR]}>
               {project.status === status.PENDING && (
@@ -91,6 +161,19 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     type="submit"
                     variant="success"
                     className="my-modal-button-approve"
+                  >
+                    Editar
+                </Button>
+              )}
+            </PermissionCheck>
+            <PermissionCheck requiredRoles={[roles.DIRECTOR]}>
+              {project.status === status.IN_PROGRESS && (
+                <Button
+                    as={NavLink}
+                    to={`/project/detail?id=${project.identificator}`}
+                    type="submit"
+                    variant="danger"
+                    className="my-modal-button-approve me-2"
                   >
                     Editar
                 </Button>

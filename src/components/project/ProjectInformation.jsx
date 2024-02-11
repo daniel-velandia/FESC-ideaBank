@@ -130,7 +130,7 @@ export const ProjectInformation = () => {
     <>
       <Card>
         <Card.Header className={`my-header-project-${name}`}>
-          <div className={`my-badge-state-${name}`}>{name}</div>
+          <div className={`my-badge-state-${name}`}>EDITAR PROYECTO</div>
         </Card.Header>
         <Card.Body>
           <Form className="px-3 mt-4">
