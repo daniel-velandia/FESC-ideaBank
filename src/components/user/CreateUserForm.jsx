@@ -3,6 +3,7 @@ import { Col, Row, Form, Button, Modal, FloatingLabel } from "react-bootstrap";
 import { SelectProgram } from "./SelectProgram";
 import { SelectUserRol } from "./SelectUserRol";
 import { Plus } from "react-bootstrap-icons";
+import validator from "validator"; // Importa la librería validator
 
 export const CreateUserForm = ({ callback }) => {
   const [showModal, setShowModal] = useState(false);
@@ -18,8 +19,6 @@ export const CreateUserForm = ({ callback }) => {
     program: "",
     rol: "",
   });
-
-  
 
   const handleModalShow = () => {
     setShowModal(true);
@@ -60,7 +59,15 @@ export const CreateUserForm = ({ callback }) => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    // Validar y formatear el número de teléfono
+    if (name === "cellPhone") {
+      // Eliminar cualquier caracter que no sea número
+      value = value.replace(/\D/g, "");
+      // Limitar a 10 dígitos
+      value = value.slice(0, 10);
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -79,6 +86,18 @@ export const CreateUserForm = ({ callback }) => {
     if (Object.values(errors).every((error) => error === "")) {
       handleModalClose();
       callback(formData);
+
+      // Limpiar los campos del formulario
+      setFormData({
+        name: "",
+        lastName: "",
+        email: "",
+        cellPhone: "",
+        password: "",
+        repeatPassword: "",
+        program: "",
+        rol: "",
+      });
     }
   };
 
@@ -91,7 +110,11 @@ export const CreateUserForm = ({ callback }) => {
         ? ""
         : "Por favor, ingrese un correo electrónico válido",
       cellPhone:
-        data.cellPhone.trim() === "" ? "Este campo no puede estar vacío" : "",
+        data.cellPhone.trim() === ""
+          ? "Este campo no puede estar vacío"
+          : isValidPhoneNumber(data.cellPhone)
+          ? ""
+          : "Por favor, ingrese un número de teléfono válido",
       password:
         data.password.trim() === "" ? "Este campo no puede estar vacío" : "",
       repeatPassword:
@@ -101,12 +124,28 @@ export const CreateUserForm = ({ callback }) => {
       program: data.program.trim() === "" ? "Seleccione un programa" : "",
       rol: data.rol.trim() === "" ? "Seleccione un rol" : "",
     };
+
+    // Validar la longitud y la coincidencia de contraseñas
+    if (!validator.isLength(data.password, { min: 8, max: 30 })) {
+      errors.password = "La contraseña debe tener entre 8 y 30 caracteres";
+    }
+
+    if (data.password !== data.repeatPassword) {
+      errors.password = "Las contraseñas deben coincidir";
+    }
+
     return errors;
   };
 
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  };
+
+  const isValidPhoneNumber = (phone) => {
+    // Expresión regular para validar un número de teléfono con un máximo de 10 dígitos
+    const phoneRegex = /^\d{0,10}$/;
+    return phoneRegex.test(phone);
   };
 
   return (
@@ -203,7 +242,7 @@ export const CreateUserForm = ({ callback }) => {
                   <FloatingLabel label="Teléfono celular" htmlFor="cellPhone">
                     <Form.Control
                       size="lg"
-                      type="number"
+                      type="tel" // Cambiado a teléfono
                       name="cellPhone"
                       value={formData.cellPhone}
                       onChange={handleChange}

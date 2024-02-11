@@ -12,7 +12,7 @@ import {
 import { SelectMemberTask } from "./SelectMemberTask";
 import { TASK_PROJECT_CREATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import axios from "axios";
-import { formatDate } from "../../utils/dateFormat";
+import { formatDate } from "../../utils/dateFormatBackend";
 import { Plus } from "react-bootstrap-icons";
 import { useParams } from "react-router-dom";
 import { refresh } from "../../states/pageReducer";

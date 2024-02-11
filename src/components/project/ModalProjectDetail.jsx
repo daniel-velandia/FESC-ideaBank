@@ -22,35 +22,51 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
       <Modal.Header className={`my-modal-header-${project.status} px-4`} closeButton>
           <div className={`my-badge-state-${project.status}`}>{project.status}</div>
       </Modal.Header>
-      <Modal.Body className='px-4 pt-5'>
+      <Modal.Body className='px-4 pt-5 ms-2 text-lg-start'>
         <Row>
-          <Col xs="12" className='mb-4'>
-            <strong className="h3">{project.company}</strong>
-          </Col>
-          <Col xs="12" sm="6">
-            <strong>Valor de la propuesta</strong>
-          </Col>
-          <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{project.valueProposal}</p>
-          </Col>
-          <Col xs="12" sm="6">
-            <strong>Descripción</strong>
-          </Col>
-          <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{project.description}</p>
-          </Col>
-          <Col xs="12" sm="6">
-            <strong>Creado por</strong>
-          </Col>
-          <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{project.nameUserCreator}</p>
-          </Col>
-          <Col xs="12" sm="6">
-            <strong>Fecha</strong>
-          </Col>
-          <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{project.creationDate}</p>
-          </Col>
+        <Col xs="12" className='mb-4'>
+  <Row >
+    <Col xs="12">
+      <strong className="h3">{project.company}</strong>
+    </Col>
+  </Row>
+</Col>
+
+<Col xs="12" className="mb-2">
+  <Row>
+    <Col xs="12">
+      <strong>Propuesta de valor</strong>
+      <p>{project.valueProposal}</p>
+    </Col>
+  </Row>
+</Col>
+
+<Col xs="12" className='mb-2'>
+  <Row>
+    <Col xs="12">
+      <strong>Descripción</strong>
+      <p>{project.description}</p>
+    </Col>
+  </Row>
+</Col>
+
+<Col xs="12" className='mb-2'>
+  <Row>
+    <Col xs="12">
+      <strong>Creado por</strong>
+      <p>{project.nameUserCreator}</p>
+    </Col>
+  </Row>
+</Col>
+
+<Col xs="12" className='mb-2'>
+  <Row>
+    <Col xs="12">
+      <strong>Fecha</strong>
+      <p>{project.creationDate}</p>
+    </Col>
+  </Row>
+</Col>
           <Col xs="12" className='d-flex justify-content-end'>
             <PermissionCheck requiredRoles={[roles.VALIDATOR]}>
               {project.status === status.PENDING && (
@@ -73,7 +89,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     as={NavLink}
                     to={`/project/detail?id=${project.identificator}`}
                     type="submit"
-                    variant="danger"
+                    variant="success"
                     className="my-modal-button-approve"
                   >
                     Editar
@@ -86,7 +102,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     as={NavLink}
                     to={`/table/task/${project.identificator}`}
                     type="submit"
-                    variant="danger"
+                    variant="warning"
                     className="my-modal-button-task"
                   >
                     Tareas

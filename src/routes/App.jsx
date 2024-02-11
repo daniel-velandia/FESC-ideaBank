@@ -21,14 +21,16 @@ import { Error404 } from "../pages/Error404";
 
 import { UserList } from "../pages/user/UserList";
 
-import { TableTask } from "../pages/user/UserTableTask";
+import { TableTask } from "../pages/task/UserTableTask";
 
 import { ProjectList } from "../pages/project/ProjectList";
 import { ProjectDetail } from "../pages/project/ProjectDetail";
 
+import { TaskEdit } from "../pages/task/TaskEdit";
 
 
 import '../css/style.css';
+import { ChangePassword } from "../pages/auth/ChangePassword";
 
 getAuthenticationToken();
 
@@ -41,6 +43,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/changePassword" element={<ChangePassword />} />
           <Route
             element={
               <>
@@ -55,6 +58,7 @@ const App = () => {
               {/* <Route path="/user/create" element={<UserCreate />} /> */}
               <Route path="/project/detail" element={<ProjectDetail />}/>
               <Route path="/table/task/:identificator" element={<TableTask />}/>
+              <Route path="/table/task/:identificator/taskEdit/:taskId" element={<TaskEdit/>}/>
             </Route>
           </Route>
           <Route path="*" element={<Error404 />} />

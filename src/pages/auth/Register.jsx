@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { REGISTER_EXTERNAL_POST_ENDPOINT, REGISTER_INVITED_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import { Alert, Card, Col, Container, Image, Row } from "react-bootstrap";
 import { RegisterForm } from "../../components/auth/RegisterForm";
@@ -11,11 +11,9 @@ import { useSelector } from "react-redux";
 import {  toast } from "react-toastify";
 import toastConfig from "../../utils/toastConfig";
 
-
 const Register = () => {
   const [errors, setErrors] = useState({});
   const connected = useSelector((state) => state.user.connected);
-
   const navigation = useNavigate();
 
   useEffect(() => {
@@ -25,23 +23,24 @@ const Register = () => {
   });
 
   const register = async (user) => {
-
     const error = {};
 
     if (validator.isEmpty(user.name)) {
-      error.name = "El nombre no puede estar vacio";
+      error.name = "El nombre no puede estar vacío";
     }
 
     if (validator.isEmpty(user.lastName)) {
-      error.lastName = "El apellido no puede estar vacio";
+      error.lastName = "El apellido no puede estar vacío";
     }
 
     if (!validator.isEmail(user.email)) {
-      error.email = "El correo electronico es invalido";
+      error.email = "El correo electrónico es inválido";
     }
 
     if (validator.isEmpty(user.cellPhone)) {
-      error.cellPhone = "El telefono no puede estar vacio";
+      error.cellPhone = "El teléfono no puede estar vacío";
+    } else if (!isValidPhoneNumber(user.cellPhone)) {
+      error.cellPhone = "Por favor, ingrese un número de teléfono válido";
     }
 
     if (!validator.isLength(user.password, { min: 8, max: 30 })) {
@@ -49,7 +48,7 @@ const Register = () => {
     }
 
     if (user.password !== user.repeatPassword) {
-      error.password = "Las contraseñas debe coincidir";
+      error.password = "Las contraseñas deben coincidir";
     }
 
     if (!isEmptyObject(error)) {
@@ -59,11 +58,16 @@ const Register = () => {
         .post(user.type === "external" ? REGISTER_EXTERNAL_POST_ENDPOINT : REGISTER_INVITED_POST_ENDPOINT, user)
         .then((res) => navigation("/login"))
         .catch((err) => {
-          toast.error(`Error: ${err.response.data}`, toastConfig );
-
+          toast.error(`Error: ${err.response.data}`, toastConfig);
         });
     }
-  };  
+  };
+
+  const isValidPhoneNumber = (phone) => {
+    // Expresión regular para validar un número de teléfono con exactamente 10 dígitos
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
+  };
 
   return (
     <Container>

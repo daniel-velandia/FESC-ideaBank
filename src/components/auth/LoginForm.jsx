@@ -51,6 +51,9 @@ const LoginForm = ({errors, callback}) => {
                     value={formData.password}
                     onChange={handleChange}
                     isInvalid={errors.password} />
+                    <Form.Text id="passwordHelpBlock" muted>
+                        <Link to={'/changePassword'}>Cambiar contraseña</Link>
+                    </Form.Text>
                  </FloatingLabel>
                 <Form.Control.Feedback type='invalid'>
                     {errors.password}
@@ -61,9 +64,8 @@ const LoginForm = ({errors, callback}) => {
                 Iniciar sesion
             </Button>
 
-            <div className='mt-3 text-center'>
-                <Link to={'/register'}>¿No tienes una cuenta?, registrate aquí</Link>
-                
+            <div className='mt-3 small text-start'>
+                <p>¿No tienes una cuenta?, <Link to={'/register'}>registrate aquí</Link></p>
             </div>
             
             
