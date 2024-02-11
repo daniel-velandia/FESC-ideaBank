@@ -6,7 +6,6 @@ import { Download } from 'react-bootstrap-icons';
 const ButtonDownloadFile = ({ identificator, isProject, filename }) => {
 
   const downloadFile = async () => {
-    console.log({ identificator, isProject, filename })
     try {
       const response = await axios.post(DOWNLOAD_FILE_POST_ENDPOINT, { identificator, isProject, filename }, {
         responseType: 'arraybuffer', // Importante para obtener el archivo como un array de bytes
@@ -33,7 +32,7 @@ const ButtonDownloadFile = ({ identificator, isProject, filename }) => {
   };
 
   return (
-      <Button variant='link' onClick={downloadFile}><Download color='red' /></Button>
+      <Button variant='link' onClick={downloadFile}><Download color='blue' /></Button>
   );
 };
 

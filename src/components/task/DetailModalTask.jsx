@@ -10,10 +10,12 @@ import { Upload } from "react-bootstrap-icons";
 import PermissionCheck from "../PermissionCheck";
 import { roles } from "../../utils/roles";
 import { SelectStateTask } from "./SelectStateTask";
+import { ButtonDeletefile } from "../files/ButtonDeleteFile";
 
 export const DetailModalTask = () => {
 
   const [modalShow, setModalShow] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [task, setTask] = useState({});
 
   const dispatch = useDispatch();
@@ -42,7 +44,7 @@ export const DetailModalTask = () => {
           console.log(err);
         });
     }
-  }, [id]);
+  }, [id, refresh]);
 
   const handleUploadFile = () => {
     dispatch(upload({ id: task.identificator }));
@@ -100,21 +102,24 @@ export const DetailModalTask = () => {
           <Col xs="6" className="mt-4  mb-2">
             <h4>Archivos</h4>
           </Col>
-          <Col xs="6" className="text-end mt-4 mb-2">
-            <OverlayTrigger
-              placement="left"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-            >
-              <Button
-                variant="ligth"
-                style={{ backgroundColor: "#EBEBEB" }}
-                onClick={() => handleUploadFile()}
+          {
+            task.hasHacces && 
+            <Col xs="6" className="text-end mt-4 mb-2">
+              <OverlayTrigger
+                placement="left"
+                delay={{ show: 250, hide: 400 }}
+                overlay={renderTooltip}
               >
-                <Upload />
-              </Button>
-            </OverlayTrigger>
-          </Col>
+                <Button
+                  variant="ligth"
+                  style={{ backgroundColor: "#EBEBEB" }}
+                  onClick={() => handleUploadFile()}
+                >
+                  <Upload />
+                </Button>
+              </OverlayTrigger>
+            </Col>
+          }
           {task.files && task.files.length > 0 &&
           <Col xs="12">
             <Table responsive>
@@ -130,6 +135,13 @@ export const DetailModalTask = () => {
                       <tr key={index}>
                         <td>{file}</td>
                         <td className="text-end">
+                          <ButtonDeletefile
+                            refresh={refresh}
+                            setRefresh={setRefresh}
+                            identificator={task.identificator}
+                            isProject={"no"}
+                            filename={file}
+                          />
                           <ButtonDownloadFile
                             identificator={task.identificator}
                             isProject={"no"}
