@@ -57,7 +57,7 @@ const LoginForm = ({errors, callback}) => {
                 </Form.Control.Feedback>
                     </FloatingLabel>
                     <Form.Text id="passwordHelpBlock" className=" d-flex justify-content-center" muted>
-                <Link to={'/changePassword'}>Cambiar contraseña</Link>
+                <Link to={'/changePassword'}>¿Olvidaste tu contraseña?</Link>
             </Form.Text>
             </Form.Group>
 

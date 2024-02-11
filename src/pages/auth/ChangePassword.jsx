@@ -55,7 +55,7 @@ const ChangePassword = () => {
         axios.post(FORGOT_PASS_POST_ENDPOINT, { email: data.email })
             .then(res => {
                 setStep(step + 1);
-                toast.info(res.data.message, toastConfig);
+                toast.info(res.data.mensaje, toastConfig);
             })
             .catch(err => {
                 toast.error(`Error: ${err.response.data}`, toastConfig);
@@ -66,7 +66,7 @@ const ChangePassword = () => {
         axios.get(`${VALIDATE_CODE_GET_ENDPOINT}?codePass=${data.code}`)
             .then(res => {
                 setStep(step + 1);
-                toast.info(res.data.message, toastConfig);
+                toast.info(res.data.mensaje, toastConfig);
             })
             .catch(err => {
                 toast.error(`Error: ${err.response.data}`, toastConfig);
