@@ -15,7 +15,6 @@ export const DetailModalTask = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [task, setTask] = useState({});
-
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
