@@ -25,12 +25,14 @@ import ButtonDownloadFile from "../files/ButtonDownloadFile";
 import { Upload } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
 import { upload } from "../../states/uploadFileReducer";
+import { ButtonDeletefile } from "../files/ButtonDeleteFile";
 
-function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
+function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved, refresh, setRefresh }) {
   const [students, setStudents] = useState([]);
-  console.log(project)
   const [progressProject, setprogressProject] = useState(0);
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (project.progress !== undefined) {
       setprogressProject(project.progress);
@@ -186,6 +188,13 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                         <tr>
                           <td>{project.file}</td>
                           <td className="text-end">
+                            <ButtonDeletefile
+                            refresh={refresh}
+                            setRefresh={setRefresh}
+                            identificator={project.identificator}
+                            isProject={"yes"}
+                            filename={project.file}
+                          />
                             <ButtonDownloadFile
                               identificator={project.identificator}
                               isProject={"yes"}
@@ -293,6 +302,8 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
 
 function ModalProjectDetail() {
   const [modalShow, setModalShow] = useState(false);
+  const [refresh, setRefresh] = useState(false);
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -313,7 +324,7 @@ function ModalProjectDetail() {
           setModalShow(false);
         });
     }
-  }, [q, location]);
+  }, [q, location, refresh]);
 
   const hideModal = () => {
     setModalShow(false);
@@ -341,6 +352,8 @@ function ModalProjectDetail() {
       show={modalShow}
       onHide={() => hideModal()}
       onClickApproved={() => showModalApproved()}
+      refresh={refresh}
+      setRefresh={setRefresh}
     />
   );
 }
