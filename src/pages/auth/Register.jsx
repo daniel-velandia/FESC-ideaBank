@@ -20,13 +20,18 @@ const Register = () => {
     if (connected) {
       navigation("/");
     }
-  });
+  }, [connected, navigation]);
 
   const register = async (user) => {
+    console.log(user)
     const error = {};
 
     if (validator.isEmpty(user.name)) {
       error.name = "El nombre no puede estar vacío";
+    }
+
+    if (user.type === "external" && validator.isEmpty(user.companyName)) {
+      error.companyName = "La empresa no puede estar vacía";
     }
 
     if (validator.isEmpty(user.lastName)) {
