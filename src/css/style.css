@@ -251,6 +251,10 @@ color: red;
   background-color: #03a9f4; 
 }
 
+.status-indicator__dot.status-pendiente.de.validar {
+  background-color: #f29c07; 
+}
+
 @media (min-width: 768px) {
   .button-container {
     display: flex;

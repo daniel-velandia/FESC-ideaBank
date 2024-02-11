@@ -54,11 +54,11 @@ export const SelectStateTask = ({ idTask, statusTask, onHide }) => {
 
   return (
     <Form.Select
-      className="me-2 w-25"
+      className="me-2 w-50"
       value={selectedOption}
       onChange={handleChange}
     >
-      <option value="">Actualizar estado</option>
+      <option value="">Estado</option>
       {filteredOptions.map(([key, value]) => (
         <option key={key} value={value}>
           {value}
