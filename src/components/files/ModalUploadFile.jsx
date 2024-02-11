@@ -51,7 +51,6 @@ function ModalUploadFile() {
       navigate(`?taskId=${id}`);
       dispatch(upload({ id: "", isproject: "" }));
     } else if (isproject === "yes") {
-      console.log("entramos aqui")
       navigate(`?filter=mine&q=${id}`);
       dispatch(upload({ id: "", isproject: "" }));
     }

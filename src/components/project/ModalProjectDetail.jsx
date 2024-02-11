@@ -28,6 +28,7 @@ import { upload } from "../../states/uploadFileReducer";
 
 function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
   const [students, setStudents] = useState([]);
+  console.log(project)
   const [progressProject, setprogressProject] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -59,7 +60,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      Cargar archivo
+      Cargar archivo final
     </Tooltip>
   );
 
@@ -155,7 +156,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                 <Col xs="6" className="mt-4  mb-2">
                   <h4>Archivos</h4>
                 </Col>
-                {progressProject >= 100 && project.file.trim().length < 0 &&  (
+                {progressProject >= 100 && project.file==="" &&  (
                   <Col xs="6" className="text-end mt-4 mb-2">
                     <OverlayTrigger
                       placement="left"
