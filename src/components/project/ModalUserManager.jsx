@@ -5,6 +5,7 @@ export const ModalUserManager = ({
   isOpen,
   closeModal,
   docenteUsers,
+  assignedDocenteUsers, // Recibe la lista de docentes asignados como prop
   onDocenteSelect,
 }) => {
   const [selectedDocenteUser, setSelectedDocenteUser] = useState(null);
@@ -24,6 +25,7 @@ export const ModalUserManager = ({
     closeModal();
   };
 
+  const allDocenteUsers = [...docenteUsers, ...assignedDocenteUsers];
 
   return (
     <>
@@ -43,7 +45,7 @@ export const ModalUserManager = ({
             style={{ maxHeight: "320px", overflowY: "auto" }}
           >
             <ListGroup>
-              {docenteUsers.map((docenteUser) => (
+              {allDocenteUsers.map((docenteUser) => (
                 <ListGroup.Item
                   key={docenteUser.email}
                   style={{
@@ -67,4 +69,4 @@ export const ModalUserManager = ({
       </Modal>
     </>
   );
-};
+}

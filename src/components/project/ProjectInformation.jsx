@@ -139,11 +139,20 @@ export const ProjectInformation = () => {
 
   // Función para manejar el clic en el botón de Confirmar (solo cuando el estado es "EN PROGRESO")
   const handleButtonClickEdit = () => {
-    const users = teamproject.filter((user) => user.rol === "DOCENTE" || user.rol === "ESTUDIANTE");
-    if (users.length >= 0) {
+    // Verificar si se seleccionó un docente nuevo en la lista de miembros agregados
+    const docenteUsers = teamproject.filter((user) => user.rol === "DOCENTE");
+    const newDocenteUsers = newTeamProject.filter((user) => user.rol === "DOCENTE");
+
+    // Si hay al menos un docente nuevo, abrir el modal
+    if (newDocenteUsers.length > 0 || docenteUsers.length > 0) {
       setShowModalManager(true);
+    } else {
+      // Si no se seleccionaron docentes nuevos, actualizar el proyecto
+      sendProjectDataUpdateToBackend();
     }
   };
+
+  const assignedDocenteUsers = teamproject.filter((user) => user.isManager && user.isManager === "yes" && user.rol === "DOCENTE");
 
   return (
     <>
@@ -267,6 +276,7 @@ export const ProjectInformation = () => {
           setShowModalManager(false);
         }}
         docenteUsers={teamproject.filter((user) => user.rol === "DOCENTE")}
+        assignedDocenteUsers={assignedDocenteUsers} // Lista de docentes ya asignados
         onDocenteSelect={handleDocenteManagerSelect}
       />
     </>

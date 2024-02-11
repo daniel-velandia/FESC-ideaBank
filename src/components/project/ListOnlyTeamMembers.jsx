@@ -18,6 +18,7 @@ const ListOnlyTeamMembers = ({ onStudentSelect }) => {
       .get(`${PROJECT_USER_LIST_GET_ENDPOINT}?identificator=${idProject}`)
       .then((res) => {
         setStudents(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.error("Error al obtener datos:", err);
