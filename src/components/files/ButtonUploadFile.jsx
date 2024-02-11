@@ -12,6 +12,8 @@ const ButtonUploadFile = ({ identificator, isProject, onHide }) => {
     files: [] // Cambiado a un array para almacenar múltiples archivos
   });
 
+  console.log(formData)
+
   const handleFileChange = (event) => {
     setFormData({ ...formData, files: [...formData.files, ...event.target.files] }); // Agregar archivos al array
   };
@@ -38,7 +40,7 @@ const ButtonUploadFile = ({ identificator, isProject, onHide }) => {
       }
     })
     .then(response => {
-      console.log('Response:', response.data);
+      console.log(response)
       onHide();
       // Aquí puedes manejar la respuesta de la petición según tus necesidades
     })

@@ -44,7 +44,7 @@ export const DetailModalTask = () => {
   }, [id]);
 
   const handleUploadFile = () => {
-    dispatch(upload({ id: task.identificator }));
+    dispatch(upload({ id: task.identificator, isproject: "no" }));
     onHide();
   }
 

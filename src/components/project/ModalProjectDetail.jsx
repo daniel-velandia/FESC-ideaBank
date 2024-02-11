@@ -28,10 +28,13 @@ import { upload } from "../../states/uploadFileReducer";
 
 function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
   const [students, setStudents] = useState([]);
+  const [progressProject, setprogressProject] = useState(0);
   const dispatch = useDispatch();
-
   useEffect(() => {
-    if (project.identificator != undefined) {
+    if (project.progress !== undefined) {
+      setprogressProject(project.progress);
+    }
+    if (project.identificator !== undefined) {
       axios
         .get(
           `${PROJECT_USER_LIST_GET_ENDPOINT}?identificator=${project.identificator}`
@@ -61,7 +64,10 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
   );
 
   const handleUploadFile = () => {
-    dispatch(upload({ id: project.identificator }));
+    if (project.identificator !== undefined) {
+      dispatch(upload({ id: project.identificator, isproject: "yes" }));
+      onHide(false);
+    }
   };
   return (
     <Modal
@@ -81,7 +87,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
       </Modal.Header>
       <Modal.Body className="px-4 pt-5 ms-2 text-lg-start">
         <Row>
-          <ProjectProgressBar numberProgres={project.progress} />
+          <ProjectProgressBar numberProgress={progressProject} />
 
           <Col xs="12" className="mb-4">
             <strong className="h3">{project.company}</strong>
@@ -149,22 +155,24 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                 <Col xs="6" className="mt-4  mb-2">
                   <h4>Archivos</h4>
                 </Col>
-                <Col xs="6" className="text-end mt-4 mb-2">
-                  <OverlayTrigger
-                    placement="left"
-                    delay={{ show: 250, hide: 400 }}
-                    overlay={renderTooltip}
-                  >
-                    <Button
-                      variant="ligth"
-                      style={{ backgroundColor: "#EBEBEB" }}
-                      onClick={() => handleUploadFile()}
+                {progressProject >= 100 && project.file.trim().length < 0 &&  (
+                  <Col xs="6" className="text-end mt-4 mb-2">
+                    <OverlayTrigger
+                      placement="left"
+                      delay={{ show: 250, hide: 400 }}
+                      overlay={renderTooltip}
                     >
-                      <Upload />
-                    </Button>
-                  </OverlayTrigger>
-                </Col>
-                {project.file && project.file != null && (
+                      <Button
+                        variant="ligth"
+                        style={{ backgroundColor: "#EBEBEB" }}
+                        onClick={() => handleUploadFile()}
+                      >
+                        <Upload />
+                      </Button>
+                    </OverlayTrigger>
+                  </Col>
+                )}
+                {project.file && (
                   <Col xs="12">
                     <Table responsive>
                       <thead>

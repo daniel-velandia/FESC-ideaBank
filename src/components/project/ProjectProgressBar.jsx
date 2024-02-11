@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import { useEffect, useState } from "react";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 export const ProjectProgressBar = ({ numberProgress }) => {
   const [numberProgressProject, setNumberProgressProject] = useState(0);
@@ -10,14 +10,13 @@ export const ProjectProgressBar = ({ numberProgress }) => {
     }
   }, [numberProgress]);
 
-  let progressBarVariant = 'danger';
+  let progressBarVariant = "danger";
 
   if (numberProgressProject >= 30 && numberProgressProject < 70) {
-    progressBarVariant = 'warning'; // Amarillo
+    progressBarVariant = "warning"; // Amarillo
   } else if (numberProgressProject >= 70) {
-    progressBarVariant = 'success'; // Verde
+    progressBarVariant = "success"; // Verde
   }
-
   return (
     <ProgressBar
       variant={progressBarVariant}
@@ -26,4 +25,3 @@ export const ProjectProgressBar = ({ numberProgress }) => {
     />
   );
 };
-
