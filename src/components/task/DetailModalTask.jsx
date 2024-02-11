@@ -9,6 +9,7 @@ import ButtonDownloadFile from "../files/ButtonDownloadFile";
 import { Upload } from "react-bootstrap-icons";
 import PermissionCheck from "../PermissionCheck";
 import { roles } from "../../utils/roles";
+import { SelectStateTask } from "./SelectStateTask";
 
 export const DetailModalTask = () => {
 
@@ -50,7 +51,6 @@ export const DetailModalTask = () => {
 
   const onClickInEditTask = () => {
     searchParams.delete("taskId");
-    //let url = ?taskEdit=${idTask};
     let url = `${location.pathname}/taskEdit/${task.identificator}`;
     navigate(url);
   };
@@ -94,6 +94,9 @@ export const DetailModalTask = () => {
         <p className="text-lg">{task.finishDate}</p>
       </Col>
           
+          <Col xs="12" className="d-flex justify-content-end">
+            <SelectStateTask idTask={task.identificator} statusTask={task.status} onHide={onHide} />
+          </Col>
           <Col xs="6" className="mt-4  mb-2">
             <h4>Archivos</h4>
           </Col>
