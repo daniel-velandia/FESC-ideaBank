@@ -1,4 +1,3 @@
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ButtonUploadFile } from './ButtonUploadFile';
 import { useEffect, useState } from 'react';
@@ -7,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { upload } from '../../states/uploadFileReducer';
 
 function MyVerticallyCenteredModal(props) {
+  const task = {}; // Aquí deberías establecer la tarea correctamente
+  const status = task.status || "PENDIENTE"; // Si task.status es undefined, establecer PENDIENTE como valor predeterminado
   return (
     <Modal
       {...props}
@@ -14,10 +15,10 @@ function MyVerticallyCenteredModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
+      <Modal.Header closeButton className={`my-modal-header-${status} px-4 mb-4`}>
+        <div className={`my-badge-state-${status}`}>
+          Selecciona el archivo
+        </div>
       </Modal.Header>
       <Modal.Body>
         <ButtonUploadFile 
@@ -26,9 +27,6 @@ function MyVerticallyCenteredModal(props) {
             onHide={props.onHide}
         />
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 }

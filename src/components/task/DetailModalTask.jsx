@@ -129,6 +129,7 @@ export const DetailModalTask = () => {
               overlay={renderTooltip}
             >
               <Button
+                className="upload-file-btn"
                 variant="ligth"
                 style={{ backgroundColor: "#EBEBEB" }}
                 onClick={() => handleUploadFile()}
