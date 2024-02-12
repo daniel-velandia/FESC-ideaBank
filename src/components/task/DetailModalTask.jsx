@@ -10,10 +10,11 @@ import { Upload } from "react-bootstrap-icons";
 import PermissionCheck from "../PermissionCheck";
 import { roles } from "../../utils/roles";
 import { SelectStateTask } from "./SelectStateTask";
-import { ModalUploadFile } from "../files/ModalUploadFile";
+import { ButtonDeletefile } from "../files/ButtonDeleteFile";
 
 export const DetailModalTask = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [task, setTask] = useState({});
   const dispatch = useDispatch();
   const location = useLocation();
@@ -40,10 +41,10 @@ export const DetailModalTask = () => {
           console.log(err);
         });
     }
-  }, [id]);
+  }, [id, refresh]);
 
   const handleUploadFile = () => {
-    dispatch(upload({ id: task.identificator }));
+    dispatch(upload({ id: task.identificator, isproject: "no" }));
     onHide();
   }
 
@@ -159,20 +160,27 @@ export const DetailModalTask = () => {
                 </tr>
               </thead>
               <tbody>
-                {task.files.map((file, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{file}</td>
-                      <td className="text-end">
-                        <ButtonDownloadFile
-                          identificator={task.identificator}
-                          isProject={"no"}
-                          filename={file}
-                        />
-                      </td>
-                    </tr>
-                  );
-                })}
+                  {task.files.map((file, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{file}</td>
+                        <td className="text-end">
+                          <ButtonDeletefile
+                            refresh={refresh}
+                            setRefresh={setRefresh}
+                            identificator={task.identificator}
+                            isProject={"no"}
+                            filename={file}
+                          />
+                          <ButtonDownloadFile
+                            identificator={task.identificator}
+                            isProject={"no"}
+                            filename={file}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </Table>
           </Col>

@@ -16,9 +16,9 @@ export const USER_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/user/list/project
 export const PROPOSAL_LIST_GET_ENDPOINT = API_URL + "/project/list" //Obtener la lista de proyectos o propuestas
 export const PROPOSAL_LIST_STATUS_APPROVED_REJECTED_GET_ENDPOINT = API_URL + "/project/list-projects"//Obtener la lista de proyectos o propuestas RECHAZADAS o APROBADAS
 export const PROPOSAL_CREATE_POST_ENDPOINT = API_URL + "/project/create" //Creacion de un propuesta de proyecto
-export const  PROPOSAL_DETAIL_GET_ENDPOINT = API_URL + "/project/detail" //Obtener detalle de proyecto
-export const  PROPOSAL_EDIT_POST_ENDPOINT = API_URL + "/project/edit" //Editar propuesta de proyecto
-export const  PROPOSAL_UPDATE_STATES_POST_ENDPOINT = API_URL + "/project/update/status" //Actualizacion de estado propuesta de proyecto
+export const PROPOSAL_DETAIL_GET_ENDPOINT = API_URL + "/project/detail" //Obtener detalle de proyecto
+export const PROPOSAL_EDIT_POST_ENDPOINT = API_URL + "/project/edit" //Editar propuesta de proyecto
+export const PROPOSAL_UPDATE_STATES_POST_ENDPOINT = API_URL + "/project/update/status" //Actualizacion de estado propuesta de proyecto
 
 export const TAGS_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/project/tag/list" //Obtener la lista de tags
 
@@ -32,7 +32,7 @@ export const TASK_UPDATE_STATE_POST_ENDPOINT= API_URL + "/task/status/update"; /
 
 export const UPLOAD_FILE_POST_ENDPOINT = API_URL + "/file/save"
 export const DOWNLOAD_FILE_POST_ENDPOINT= API_URL+"/file/download";
-export const DOWNLOAD_FILE_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas
+export const DELETE_FILE_DELETE_ENDPOINT= API_URL+"/file/delete";
 
 export const FORGOT_PASS_POST_ENDPOINT = API_URL + "/user/pass/forgot-password"
 export const CHANGE_PASS_POST_ENDPOINT = API_URL + "/user/pass/change-password"

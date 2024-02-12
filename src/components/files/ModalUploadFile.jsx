@@ -1,10 +1,10 @@
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import { ButtonUploadFile } from './ButtonUploadFile';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { upload } from '../../states/uploadFileReducer';
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import { ButtonUploadFile } from "./ButtonUploadFile";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { upload } from "../../states/uploadFileReducer";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -18,10 +18,10 @@ function MyVerticallyCenteredModal(props) {
       <div className={`my-badge-state-PENDIENTE`}>ARCHIVO</div>
       </Modal.Header>
       <Modal.Body>
-        <ButtonUploadFile 
-            identificator={props.identificator} 
-            isProject={props.isProject}
-            onHide={props.onHide}
+        <ButtonUploadFile
+          identificator={props.identificator}
+          isProject={props.isProject}
+          onHide={props.onHide}
         />
       </Modal.Body>
     </Modal>
@@ -30,7 +30,8 @@ function MyVerticallyCenteredModal(props) {
 
 function ModalUploadFile() {
   const [modalShow, setModalShow] = useState(false);
-  const id = useSelector(state => state.upload.id);
+  const id = useSelector((state) => state.upload.id);
+  const isproject = useSelector((state) => state.upload.isproject);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,16 +40,22 @@ function ModalUploadFile() {
     setModalShow(id ? true : false);
   }, [id]);
 
+
   const handleModalShow = () => {
-    navigate(`?taskId=${id}`);
-    dispatch(upload({ id: "" }));
+    if (isproject === "no") {
+      navigate(`?taskId=${id}`);
+      dispatch(upload({ id: "", isproject: "" }));
+    } else if (isproject === "yes") {
+      navigate(`?filter=mine&q=${id}`);
+      dispatch(upload({ id: "", isproject: "" }));
+    }
   };
 
   return (
     <MyVerticallyCenteredModal
       show={modalShow}
       identificator={id}
-      isProject={"no"}
+      isProject={isproject}
       onHide={() => handleModalShow()}
       
     />
