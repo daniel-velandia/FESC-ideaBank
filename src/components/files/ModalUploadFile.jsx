@@ -14,10 +14,8 @@ function MyVerticallyCenteredModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
+    <Modal.Header className={`my-modal-header-PENDIENTE px-4 mb-4`} closeButton>
+      <div className={`my-badge-state-PENDIENTE`}>ARCHIVO</div>
       </Modal.Header>
       <Modal.Body>
         <ButtonUploadFile 
@@ -26,9 +24,6 @@ function MyVerticallyCenteredModal(props) {
             onHide={props.onHide}
         />
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 }
@@ -55,6 +50,7 @@ function ModalUploadFile() {
       identificator={id}
       isProject={"no"}
       onHide={() => handleModalShow()}
+      
     />
   );
 }

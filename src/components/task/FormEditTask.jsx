@@ -158,7 +158,7 @@ export const FormEditTask = ({ task, idProject }) => {
         <Button
           type="button"
           variant="success"
-          className="my-modal-button-approve"
+          className={`my-modal-button-${task.status}`}
           onClick={handleTaskUpdate}
         >
           Confirmar

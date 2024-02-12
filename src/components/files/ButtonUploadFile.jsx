@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { UPLOAD_FILE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
 import { toast } from "react-toastify";
 import toastConfig from "../../utils/toastConfig";
@@ -51,12 +51,16 @@ const ButtonUploadFile = ({ identificator, isProject, onHide }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formFile" className="mb-3">
-        <Form.Label>Default file input example</Form.Label>
+    <Form onSubmit={handleSubmit}  className="me-2 mx-2">
+      <Col>
+      <Form.Group controlId="formFile" className="mb-4">
+        <Form.Label >Selecciona tu archivo .pdf o .doc</Form.Label>
         <Form.Control type="file" onChange={handleFileChange} multiple={true} /> {/* Permitir la selección de múltiples archivos */}
       </Form.Group>
-      <Button variant="primary" type="submit">Submit</Button>
+      </Col>
+      <Col className="d-flex justify-content-end ">
+      <Button className="my-modal-button-approve" type="submit">Subir</Button>
+      </Col>
     </Form>
   );
 };

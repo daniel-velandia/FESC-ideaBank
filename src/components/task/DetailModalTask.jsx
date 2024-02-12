@@ -10,16 +10,14 @@ import { Upload } from "react-bootstrap-icons";
 import PermissionCheck from "../PermissionCheck";
 import { roles } from "../../utils/roles";
 import { SelectStateTask } from "./SelectStateTask";
+import { ModalUploadFile } from "../files/ModalUploadFile";
 
 export const DetailModalTask = () => {
-
   const [modalShow, setModalShow] = useState(false);
   const [task, setTask] = useState({});
-
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('taskId');
 
@@ -61,52 +59,83 @@ export const DetailModalTask = () => {
     </Tooltip>
   );
 
+  // Obtener el color del estado de la tarea
+  const color = task.status ? task.status: "PENDIENTE";
+
   return (
     <Modal
-      show={modalShow}
-      onHide={onHide}
-      size="md"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header className="my-modal-header-PENDIENTE px-4" closeButton>
-        <div className="my-badge-state-PENDIENTE">DETALLE DE TAREA</div>
-      </Modal.Header>
-      <Modal.Body className="px-4 pt-5 me-2 ms-2">
+    show={modalShow}
+    onHide={onHide}
+    size="md"
+    aria-labelledby="contained-modal-title-vcenter"
+    centered
+  >
+    <Modal.Header className={`my-modal-header-${color} px-4`} closeButton> {/* Usamos el color del estado de la tarea */}
+      <div className={`my-badge-state-${color}`}>DETALLE DE TAREA</div>
+    </Modal.Header>
+    <Modal.Body className="px-4 pt-5 me-2 ms-2">
       <Row>
-      <Col xs="12" className="mb-4">
-        <strong className="h3">{task.title}</strong>
-      </Col>
-      <Col xs="12" className="mb-2" >
-        <strong>Usuario asignado</strong>
-        <p className="text-lg">{task.assignedUser}</p>
-      </Col>
-      <Col xs="12"className="mb-2">
-        <strong>Descripción</strong>
-        <p className="text-lg">{task.description}</p>
-      </Col>
-      <Col xs="12" className="mb-2">
-        <strong>Fecha de Inicio</strong>
-        <p className="text-lg">{task.creationDate}</p>
-      </Col>
-      <Col xs="12" className="mb-2">
-        <strong>Fecha de finalización</strong>
-        <p className="text-lg">{task.finishDate}</p>
-      </Col>
-          
-          <Col xs="12" className="d-flex justify-content-end">
-            <SelectStateTask idTask={task.identificator} statusTask={task.status} onHide={onHide} />
-          </Col>
-          <Col xs="6" className="mt-4  mb-2">
-            <h4>Archivos</h4>
-          </Col>
-          <Col xs="6" className="text-end mt-4 mb-2">
+        <Col xs="12" className="mb-4">
+          <strong className="h3">{task.title}</strong>
+        </Col>
+        <Col xs="12" className="mb-2">
+          <strong>Usuario asignado</strong>
+          <p className="text-lg">{task.assignedUser}</p>
+        </Col>
+        <Col xs="12" className="mb-2">
+          <strong>Descripción</strong>
+          <p className="text-lg">{task.description}</p>
+        </Col>
+        <Col xs="12" className="mb-2">
+          <strong>Fecha de Inicio</strong>
+          <p className="text-lg">{task.creationDate}</p>
+        </Col>
+        <Col xs="12" className="mb-2">
+          <strong>Fecha de finalización</strong>
+          <p className="text-lg">{task.finishDate}</p>
+        </Col>
+
+        <Col> <strong>Acciones</strong> </Col>
+        <Col xs="auto" className="d-flex justify-content-end">
+          {/* Validación para mostrar los elementos según el estado de la tarea */}
+          {task.status !== 'LISTO' && (
+            <>
+              <SelectStateTask idTask={task.identificator} statusTask={task.status} onHide={onHide} />
+              <PermissionCheck requiredRoles={[roles.DIRECTOR, roles.TEACHER, roles.STUDENT]}>
+                <Button
+                  type="button"
+                  variant="success"
+                  className={`my-modal-button-${task.status}`}
+                  onClick={onClickInEditTask}
+                >
+                  Editar
+                </Button>
+              </PermissionCheck>
+            </>
+          )}
+        </Col>
+      </Row>
+    </Modal.Body>
+    <Modal.Footer className=" d-flex justify-content-between mb-2 mt-2">
+
+      
+      <Row className=" d-flex align-items-center justify-content-between">
+        <Col xs="auto">
+          <h5 className="mb-0">Archivos</h5>
+        </Col>
+        </Row>
+        <Row>
+        <Col xs="auto">
+          {/* Validación para mostrar el botón de subir archivos según el estado de la tarea */}
+          {task.status !== 'LISTO' && (
             <OverlayTrigger
+              
               placement="left"
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
             >
               <Button
+                className="upload-file-btn"
                 variant="ligth"
                 style={{ backgroundColor: "#EBEBEB" }}
                 onClick={() => handleUploadFile()}
@@ -114,10 +143,15 @@ export const DetailModalTask = () => {
                 <Upload />
               </Button>
             </OverlayTrigger>
-          </Col>
-          {task.files && task.files.length > 0 &&
+          )}
+        </Col>
+
+      </Row>
+      
+      {task.files && task.files.length > 0 &&
+        <Row >
           <Col xs="12">
-            <Table responsive>
+          <Table responsive >
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -125,41 +159,26 @@ export const DetailModalTask = () => {
                 </tr>
               </thead>
               <tbody>
-                  {task.files.map((file, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{file}</td>
-                        <td className="text-end">
-                          <ButtonDownloadFile
-                            identificator={task.identificator}
-                            isProject={"no"}
-                            filename={file}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })}
+                {task.files.map((file, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{file}</td>
+                      <td className="text-end">
+                        <ButtonDownloadFile
+                          identificator={task.identificator}
+                          isProject={"no"}
+                          filename={file}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </Table>
           </Col>
-          
-          }
         </Row>
-        <Col xs="12" className="d-flex justify-content-end mt-4">
-            <PermissionCheck
-              requiredRoles={[roles.DIRECTOR, roles.TEACHER, roles.STUDENT]}
-            >
-                  <Button
-                    type="button"
-                    variant="success"
-                    className="my-modal-button-pending"
-                    onClick={onClickInEditTask}
-                  >
-                    Editar
-                  </Button>
-            </PermissionCheck>
-          </Col>
-      </Modal.Body>
-    </Modal>
-  );
+      }
+    </Modal.Footer>
+  </Modal>
+);
 };

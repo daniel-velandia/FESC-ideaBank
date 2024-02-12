@@ -111,29 +111,41 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
             </>
           ) : (
           <Row>
-            <Col xs="12" sm="6">
-            <strong>Valor de la propuesta</strong>
+
+          <Col xs="12" className="mb-2">
+            <Row>
+              <Col xs="12">
+                <strong>Propuesta de valor</strong>
+                <p>{project.valueProposal}</p>
+              </Col>
+            </Row>
           </Col>
-          <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{project.valueProposal}</p>
+
+          <Col xs="12" className='mb-2'>
+            <Row>
+              <Col xs="12">
+                <strong>Descripción</strong>
+                <p>{project.description}</p>
+              </Col>
+            </Row>
           </Col>
-          <Col xs="12" sm="6">
-            <strong>Descripción</strong>
+
+          <Col xs="12" className='mb-2'>
+            <Row>
+              <Col xs="12">
+                <strong>Creado por</strong>
+                <p>{project.nameUserCreator}</p>
+              </Col>
+            </Row>
           </Col>
-          <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{project.description}</p>
-          </Col>
-          <Col xs="12" sm="6">
-            <strong>Creado por</strong>
-          </Col>
-          <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{project.nameUserCreator}</p>
-          </Col>
-          <Col xs="12" sm="6">
-            <strong>Fecha</strong>
-          </Col>
-          <Col xs="12" sm="6" className='text-sm-end'>
-            <p>{project.creationDate}</p>
+
+          <Col xs="12" className='mb-2'>
+            <Row>
+              <Col xs="12">
+                <strong>Fecha</strong>
+                <p>{project.creationDate}</p>
+              </Col>
+            </Row>
           </Col>
           </Row>
           )}          
@@ -172,8 +184,8 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     as={NavLink}
                     to={`/project/detail?id=${project.identificator}`}
                     type="submit"
-                    variant="danger"
-                    className="my-modal-button-approve me-2"
+                    variant="success"
+                    className="my-modal-button-approve me-2 mt-4"
                   >
                     Editar
                 </Button>
@@ -186,7 +198,7 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved }) {
                     to={`/table/task/${project.identificator}`}
                     type="submit"
                     variant="warning"
-                    className="my-modal-button-task"
+                    className="my-modal-button-task me-2 mt-4"
                   >
                     Tareas
                 </Button>

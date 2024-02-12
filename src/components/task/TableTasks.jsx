@@ -23,6 +23,9 @@ const TableTasks = ({ task }) => {
         <Badge className='my-badge-appoved-state'>{task.status}</Badge>
       ) : task.status === 'LISTO' ? (
         <Badge className='my-badge-done-state'>{task.status}</Badge>
+        ) : 
+          task.status === 'PENDIENTE DE VALIDAR' ? (
+        <Badge className='my-badge-pendingvalide-state'>{task.status}</Badge>
       ) : (
         <Badge className='my-badge-rejected-state'>{task.status}</Badge>
       )}
