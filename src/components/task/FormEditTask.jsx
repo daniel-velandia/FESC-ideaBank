@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
 import { dateFormatFrontend } from "../../utils/dateFormatFrontend";
 import axios from "axios";
-import { PROJECT_USER_LIST_GET_ENDPOINT, TASK_UPDATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+import {
+  PROJECT_USER_LIST_GET_ENDPOINT,
+  TASK_UPDATE_POST_ENDPOINT,
+} from "../../connections/helpers/endpoints";
 import { formatDate } from "../../utils/dateFormatBackend";
 import { toast } from "react-toastify";
 import toastConfig from "../../utils/toastConfig";
@@ -18,7 +21,7 @@ export const FormEditTask = ({ task, idProject }) => {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [members, setMembers] = useState([]);
-  const [selectedMember, setSelectedMember] = useState(""); 
+  const [selectedMember, setSelectedMember] = useState("");
   useEffect(() => {
     if (task.title !== undefined) {
       setTitle(task.title);
@@ -29,10 +32,9 @@ export const FormEditTask = ({ task, idProject }) => {
     if (task.finishDate !== undefined) {
       setDate(dateFormatFrontend(task.finishDate));
     }
-    if (task.emailAssignedUser !== undefined) { 
-      setSelectedMember(task.emailAssignedUser); 
+    if (task.emailAssignedUser !== undefined) {
+      setSelectedMember(task.emailAssignedUser);
     }
-
     axios
       .get(`${PROJECT_USER_LIST_GET_ENDPOINT}?identificator=${idProject}`)
       .then((res) => {
@@ -44,12 +46,15 @@ export const FormEditTask = ({ task, idProject }) => {
   }, [task]);
 
   const handleTaskUpdate = () => {
+    const fechaFormateada = formatDate(
+      new Date(new Date(date).getTime() + 86400000)
+    ); // Sumar 86400000 milisegundos (un día)
     const taskUpdateData = {
       identificatorTask: task.identificator,
-      title: title, 
-      description: description, 
-      assignedUser: selectedMember,  
-      finishDate: formatDate(date),
+      title: title,
+      description: description,
+      assignedUser: selectedMember,
+      finishDate: fechaFormateada,
     };
 
     axios
@@ -69,7 +74,10 @@ export const FormEditTask = ({ task, idProject }) => {
       <Row>
         <Col>
           <Form.Group controlId="nombreTarea" className="mb-4">
-            <FloatingLabel controlId="floatingSelect" label="Titulo de la tarea">
+            <FloatingLabel
+              controlId="floatingSelect"
+              label="Titulo de la tarea"
+            >
               <Form.Control
                 type="text"
                 style={{ height: "50px" }}
@@ -103,7 +111,7 @@ export const FormEditTask = ({ task, idProject }) => {
           <Form.Select
             as="select"
             value={selectedMember}
-            onChange={(e) => setSelectedMember(e.target.value)} 
+            onChange={(e) => setSelectedMember(e.target.value)}
             style={{ height: "50px" }}
           >
             {members.map((member) => (
@@ -116,7 +124,10 @@ export const FormEditTask = ({ task, idProject }) => {
       </Form.Group>
 
       <Form.Group controlId="descripcionTarea" className="mb-4">
-        <FloatingLabel controlId="floatingSelect" label="Descripción de la tarea">
+        <FloatingLabel
+          controlId="floatingSelect"
+          label="Descripción de la tarea"
+        >
           <Form.Control
             as="textarea"
             rows={3}
@@ -132,14 +143,14 @@ export const FormEditTask = ({ task, idProject }) => {
 
       <div style={{ textAlign: "right", marginBottom: "10px" }}>
         <PermissionCheck requiredRoles={[roles.DIRECTOR, roles.TEACHER]}>
-        <Button
-          type="button"
-          variant="success"
-          className={`my-modal-button-${task.status}`}
-          onClick={handleTaskUpdate}
-        >
-          Confirmar
-        </Button>
+          <Button
+            type="button"
+            variant="success"
+            className={`my-modal-button-${task.status}`}
+            onClick={handleTaskUpdate}
+          >
+            Confirmar
+          </Button>
         </PermissionCheck>
       </div>
     </Form>

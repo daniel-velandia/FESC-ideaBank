@@ -330,7 +330,6 @@ function ModalProjectDetail() {
       .then(res => {
         setProject(res.data);
         setModalShow(true);
-        console.log("Datos de detalle proyecto", res.data);
       })
       .catch(err => {
         setModalShow(false);
