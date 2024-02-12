@@ -23,6 +23,9 @@ export const PROPOSAL_UPDATE_STATES_POST_ENDPOINT = API_URL + "/project/update/s
 export const TAGS_LIST_TEAM_PROJECT_GET_ENDPOINT = API_URL + "/project/tag/list" //Obtener la lista de tags
 
 export const PROJECT_USER_LIST_GET_ENDPOINT = API_URL + "/project/user/list" //Obtener listado  de integrantes del equipo de trabajo
+export const PROJECT_UPDATE_POST_ENDPOINT = API_URL + "/project/edit"  //editar proyecto
+export const TAG_PROJECT_DELETE_ENDPOINT = API_URL + "/project/delete/tag" //eliminar un tag de un proyecto
+export const USER_PROJECT_DELETE_ENDPOINT = API_URL + "/project/delete/user" //eliminar usuario de un proyecto
 
 export const TASK_PROJECT_CREATE_POST_ENDPOINT = API_URL + "/task/create"
 export const LISTTASKS_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas

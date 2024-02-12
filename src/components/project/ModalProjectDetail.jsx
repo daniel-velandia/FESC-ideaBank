@@ -277,19 +277,6 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved, ref
                 </Button>
               )}
             </PermissionCheck>
-            <PermissionCheck requiredRoles={[roles.DIRECTOR]}>
-              {project.status === status.IN_PROGRESS && (
-                <Button
-                    as={NavLink}
-                    to={`/project/detail?id=${project.identificator}`}
-                    type="submit"
-                    variant="success"
-                    className="my-modal-button-approve me-2 mt-4"
-                  >
-                    Editar
-                </Button>
-              )}
-            </PermissionCheck>
             <PermissionCheck
               requiredRoles={[roles.DIRECTOR, roles.TEACHER, roles.STUDENT]}
             >
@@ -299,11 +286,24 @@ function MyVerticallyCenteredModal({ project, show, onHide, onClickApproved, ref
                     to={`/table/task/${project.identificator}`}
                     type="submit"
                     variant="warning"
-                    className="my-modal-button-task me-2 mt-4"
+                    className="my-modal-button-task me-2"
                   >
                     Tareas
                 </Button>
               )}
+            </PermissionCheck>
+            <PermissionCheck requiredRoles={[roles.DIRECTOR]}>
+              {project.status === status.IN_PROGRESS && 
+                <Button
+                  as={NavLink}
+                  to={`/project/detail?id=${project.identificator}`}
+                  type="submit"
+                  variant="primary"
+                  className="my-modal-button-approve ms-2"
+                >
+                  Editar proyecto
+                </Button>
+              }
             </PermissionCheck>
           </Col>
         </Row>
@@ -326,15 +326,15 @@ function ModalProjectDetail() {
 
   useEffect(() => {
     if (q) {
-      axios
-        .get(`${PROPOSAL_DETAIL_GET_ENDPOINT}?identificator=${q}`)
-        .then((res) => {
-          setProject(res.data);
-          setModalShow(true);
-        })
-        .catch((err) => {
-          setModalShow(false);
-        });
+      axios.get(`${PROPOSAL_DETAIL_GET_ENDPOINT}?identificator=${q}`)
+      .then(res => {
+        setProject(res.data);
+        setModalShow(true);
+        console.log("Datos de detalle proyecto", res.data);
+      })
+      .catch(err => {
+        setModalShow(false);
+      });
     }
   }, [q, location, refresh]);
 
