@@ -74,12 +74,19 @@ body {
   background-color: #f6b3b3;
 }
 
+.my-modal-header-LISTO {
+  border-bottom: none !important;
+  background-color: #96c4f9;
+}
 .my-modal-header-EN.PROGRESO {
   border-bottom: none !important;
   background-color: #f6ec96;
 }
 
-
+.my-modal-header-PENDIENTE.DE.VALIDAR {
+  border-bottom: none !important;
+  background-color: #fbcd94;
+}
 
 .my-badge-state {
   padding: 12px;
@@ -116,6 +123,26 @@ body {
   color: #fff;
   font-weight: 600;
   background: #4b4b4b !important;
+  border-radius: 3px;
+  position: absolute;
+  top: 23px;
+}
+
+.my-badge-state-PENDIENTE.DE.VALIDAR{
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #d6690f !important;
+  border-radius: 3px;
+  position: absolute;
+  top: 23px;
+}
+
+.my-badge-state-LISTO{
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #0059ff !important;
   border-radius: 3px;
   position: absolute;
   top: 23px;
@@ -158,6 +185,76 @@ body {
   border-radius: 3px;
 }
 
+.my-modal-button-pending {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #4b4b4b !important;
+  border: 1px solid #4b4b4b;
+  border-radius: 3px;
+}
+
+.my-modal-button-PENDIENTE {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #4b4b4b !important;
+  border: 1px solid #4b4b4b;
+  border-radius: 3px;
+}
+
+.my-modal-button-RECHAZADO {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #da241e !important;
+  border: 1px solid #da241e;
+  border-radius: 3px;
+}
+
+.my-modal-button-LISTO {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #0059ff !important;
+  border: 1px solid #0059ff;
+  border-radius: 3px;
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+
+.my-modal-button-EN.PROGRESO {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #d6b635 !important;
+  border: 1px solid #d6b635;
+  border-radius: 3px;
+}
+
+.my-modal-button-PENDIENTE.DE.VALIDAR {
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  background: #d6690f !important;
+  border: 1px solid #d6690f;
+  border-radius: 3px;
+}
+
+
+
+.hover-row:hover {
+  background-color: #ffffff;
+  cursor: pointer; /* Cambia el cursor a un puntero al pasar por encima */
+}
+
+.hover-row:hover td {
+  background-color: #cccccc;
+}
 
 .my-badge-pending-state {
   background-color: #4b4b4b !important;
@@ -173,6 +270,10 @@ body {
 
 .my-badge-rejected-state {
   background-color: #e30513 !important;
+}
+
+.my-badge-pendingvalide-state {
+  background-color: #d6690f !important;
 }
 
 .my-badge-done-state {
@@ -262,6 +363,17 @@ body {
   border-bottom: none !important;
   background-color: #f6ec96;
 }
+
+.my-header-project-RECHAZADO  {
+  border-bottom: none !important;
+  background-color: #f6b3b3;
+}
+
+.my-header-project-PENDIENTE.DE.VALIDAR  {
+  border-bottom: none !important;
+  background-color: #f6d396;
+}
+
 .my-header-project-finalized  {
   border-bottom: none !important;
   background-color: #78d5ff;

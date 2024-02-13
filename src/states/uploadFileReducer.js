@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     id: "",
+    isproject: ""
 }
 
 const uploadFileReducer = createSlice({
@@ -9,7 +10,8 @@ const uploadFileReducer = createSlice({
     initialState,
     reducers: {
         upload: (state, action) => {
-            state.id = action.payload.id
+            state.id = action.payload.id;
+            state.isproject = action.payload.isproject;
         }
     }
 });

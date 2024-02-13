@@ -176,7 +176,7 @@ export const CardViewUsers = () => {
             xs={12}
             md={6}
             lg={4}
-            className="bg-body rounded border mt-2 me-1 mb-2"
+            className="my-card-hover rounded border mt-2 me-1 mb-2"
           >
             <Link
               to={`/user?q=${usuario.email}`}

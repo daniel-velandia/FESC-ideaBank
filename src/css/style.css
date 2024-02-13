@@ -208,6 +208,12 @@ color: red;
   font-weight: bold;
   white-space: nowrap;
 }
+.my-card-hover:hover {
+  /* Cambia el color de fondo y otras propiedades de estilo en hover según sea necesario */
+  background-color: #e4e3e3;
+  cursor: pointer;
+}
+
 
 .card-body {
   padding: 20px;
@@ -243,6 +249,10 @@ color: red;
 
 .status-indicator__dot.status-terminada {
   background-color: #03a9f4; 
+}
+
+.status-indicator__dot.status-pendiente.de.validar {
+  background-color: #f29c07; 
 }
 
 @media (min-width: 768px) {

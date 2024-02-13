@@ -137,11 +137,12 @@ export const CreateProposalModal = ({ callback }) => {
                         formSubmitted && formErrors.valueProposal !== ""
                       }
                     />
-                  </FloatingLabel>
-
+                    
                   <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.valueProposal}
                   </Form.Control.Feedback>
+                  </FloatingLabel>
+
                 </Form.Group>
               </Col>
 
@@ -161,10 +162,11 @@ export const CreateProposalModal = ({ callback }) => {
                       isInvalid={formSubmitted && formErrors.description !== ""}
                       style={{ height: "200px" }}
                     />
-                  </FloatingLabel>
-                  <Form.Control.Feedback type="invalid">
+                    <Form.Control.Feedback type="invalid">
                     {formSubmitted && formErrors.description}
                   </Form.Control.Feedback>
+                  </FloatingLabel>
+
                 </Form.Group>
               </Col>
             </Row>

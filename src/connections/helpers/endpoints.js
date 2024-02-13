@@ -31,10 +31,11 @@ export const TASK_PROJECT_CREATE_POST_ENDPOINT = API_URL + "/task/create"
 export const LISTTASKS_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas
 export const TASK_DETAIL_GET_ENDPOINT= API_URL+"/task/detail";
 export const TASK_UPDATE_POST_ENDPOINT= API_URL+"/task/update";
+export const TASK_UPDATE_STATE_POST_ENDPOINT= API_URL + "/task/status/update"; //Actualizar el estado de una tarea
 
 export const UPLOAD_FILE_POST_ENDPOINT = API_URL + "/file/save"
 export const DOWNLOAD_FILE_POST_ENDPOINT= API_URL+"/file/download";
-export const DOWNLOAD_FILE_GET_ENDPOINT= API_URL+"/task/list"; //Obtener lista de tareas
+export const DELETE_FILE_DELETE_ENDPOINT= API_URL+"/file/delete";
 
 export const FORGOT_PASS_POST_ENDPOINT = API_URL + "/user/pass/forgot-password"
 export const CHANGE_PASS_POST_ENDPOINT = API_URL + "/user/pass/change-password"

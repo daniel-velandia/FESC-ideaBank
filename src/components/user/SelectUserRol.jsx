@@ -4,15 +4,15 @@ import { ROL_ALL_GET_ENDPOINT } from "../../connections/helpers/endpoints";
 import axios from "axios";
 
 
-export const SelectUserRol = ({ onSelect }) => {
+export const SelectUserRol = ({ onSelect, errores }) => {
   const [selectedRol, setSelectedRol] = useState("");
-  const [rols, setrols] = useState([]);
+  const [rols, setRols] = useState([]);
 
   useEffect(() => {
     axios
       .get(ROL_ALL_GET_ENDPOINT)
       .then((response) => {
-        setrols(response.data);
+        setRols(response.data);
       })
       .catch((error) => {
         console.error("Error fetching rols:", error);
@@ -24,11 +24,14 @@ export const SelectUserRol = ({ onSelect }) => {
     setSelectedRol(selected);
     onSelect("rol", selected);
   };
+
   return (
-    <Form.Select  style={{ height: "45px", fontSize: "16px" }}
+    <Form.Select
+      style={{ height: "45px", fontSize: "16px" }}
       value={selectedRol}
       onChange={handleRolChange}
       aria-label="Default select example"
+      isInvalid={errores !== ""}
     >
       <option style={{ fontSize: "16px" }}>Seleccione su rol</option>
       {rols.map((rol, index) => (
@@ -39,3 +42,4 @@ export const SelectUserRol = ({ onSelect }) => {
     </Form.Select>
   );
 };
+

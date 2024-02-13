@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Form, Button, Row, Col, FloatingLabel } from "react-bootstrap";
 import { dateFormatFrontend } from "../../utils/dateFormatFrontend";
 import axios from "axios";
-import { PROJECT_USER_LIST_GET_ENDPOINT, TASK_UPDATE_POST_ENDPOINT } from "../../connections/helpers/endpoints";
+import {
+  PROJECT_USER_LIST_GET_ENDPOINT,
+  TASK_UPDATE_POST_ENDPOINT,
+} from "../../connections/helpers/endpoints";
 import { formatDate } from "../../utils/dateFormatBackend";
 import { toast } from "react-toastify";
 import toastConfig from "../../utils/toastConfig";
@@ -11,20 +14,14 @@ import PermissionCheck from "../PermissionCheck";
 import { roles } from "../../utils/roles";
 
 export const FormEditTask = ({ task, idProject }) => {
-
   const navigate = useNavigate();
 
-
-
   const [errores, setErrores] = useState({});
-
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [members, setMembers] = useState([]);
   const [selectedMember, setSelectedMember] = useState("");
-
-  // Esta función se ejecutará cuando el componente se monte
   useEffect(() => {
     if (task.title !== undefined) {
       setTitle(task.title);
@@ -35,13 +32,9 @@ export const FormEditTask = ({ task, idProject }) => {
     if (task.finishDate !== undefined) {
       setDate(dateFormatFrontend(task.finishDate));
     }
-    if (task.assignedUser !== undefined) {
-      setSelectedMember(task.assignedUser);
+    if (task.emailAssignedUser !== undefined) {
+      setSelectedMember(task.emailAssignedUser);
     }
-
-
-
-
     axios
       .get(`${PROJECT_USER_LIST_GET_ENDPOINT}?identificator=${idProject}`)
       .then((res) => {
@@ -53,29 +46,28 @@ export const FormEditTask = ({ task, idProject }) => {
   }, [task]);
 
   const handleTaskUpdate = () => {
+    const fechaFormateada = formatDate(
+      new Date(new Date(date).getTime() + 86400000)
+    ); // Sumar 86400000 milisegundos (un día)
     const taskUpdateData = {
       identificatorTask: task.identificator,
-      title: title, 
-      description: description, 
-      assignedUser: selectedMember,  
-      finishDate: formatDate(date),
+      title: title,
+      description: description,
+      assignedUser: selectedMember,
+      finishDate: fechaFormateada,
+    };
 
-    }
-    
     axios
       .post(TASK_UPDATE_POST_ENDPOINT, taskUpdateData)
       .then((res) => {
         toast.success("Tarea actualizada", toastConfig);
-        console.log(res)
-        navigate( `/table/task/${idProject}` )
+        console.log(res);
+        navigate(`/table/task/${idProject}`);
       })
       .catch((err) => {
         console.error("Error fetching programs:", err);
       });
-
-
   };
-
 
   return (
     <Form>
@@ -114,8 +106,6 @@ export const FormEditTask = ({ task, idProject }) => {
         </Col>
       </Row>
 
-      
-
       <Form.Group controlId="cargoTarea" className="mb-4">
         <FloatingLabel controlId="floatlabel3" label="Cargo">
           <Form.Select
@@ -124,14 +114,12 @@ export const FormEditTask = ({ task, idProject }) => {
             onChange={(e) => setSelectedMember(e.target.value)}
             style={{ height: "50px" }}
           >
-            <option value="">{selectedMember}</option>
             {members.map((member) => (
               <option key={member.email} value={member.email}>
                 {member.name} {member.lastName}
               </option>
             ))}
           </Form.Select>
-          {/* {errores && <Form.Text className="text-danger">{errores}</Form.Text>} */}
         </FloatingLabel>
       </Form.Group>
 
@@ -153,16 +141,16 @@ export const FormEditTask = ({ task, idProject }) => {
         </FloatingLabel>
       </Form.Group>
 
-      <div style={{ textAlign: "center", marginBottom: "10px" }}>
+      <div style={{ textAlign: "right", marginBottom: "10px" }}>
         <PermissionCheck requiredRoles={[roles.DIRECTOR, roles.TEACHER]}>
-        <Button
-          type="button"
-          variant="danger"
-          className="my-modal-button"
-          onClick={handleTaskUpdate}
-        >
-          Editar Tarea
-        </Button>
+          <Button
+            type="button"
+            variant="success"
+            className={`my-modal-button-${task.status}`}
+            onClick={handleTaskUpdate}
+          >
+            Confirmar
+          </Button>
         </PermissionCheck>
       </div>
     </Form>
