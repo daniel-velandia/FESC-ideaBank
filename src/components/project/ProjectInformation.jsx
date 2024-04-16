@@ -7,6 +7,7 @@ import { ListOnlyTeamMembers } from './ListOnlyTeamMembers';
 import { useProjectData } from "../../hooks/useProjectData";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ModalUserManager } from "./ModalUserManager";
+import { toast } from "react-toastify";
 import axios from "axios";
 import {
   PROPOSAL_EDIT_POST_ENDPOINT,
@@ -133,7 +134,7 @@ export const ProjectInformation = () => {
     if (docenteUsers.length > 0) {
       setShowModalManager(true);
     } else {
-      console.log("No hay usuarios con el rol DOCENTE");
+      toast.error("Seleccione un docente al proyecto");
     }
   };
 
